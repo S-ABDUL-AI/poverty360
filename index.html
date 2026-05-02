@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO & Open Graph -->
+  <title>Poverty 360 — Evidence-Based Analytics & Social Impact</title>
+  <meta name="description" content="Poverty 360 builds evidence-based decision tools and delivers social impact programs for underserved populations across West Africa and the United States."/>
+  <meta property="og:type"        content="website"/>
+  <meta property="og:title"       content="Poverty 360 — Evidence-Based Analytics & Social Impact"/>
+  <meta property="og:description" content="Decision-support tools and social impact programs for underserved populations across West Africa and the United States. Founded 2018, Ghana."/>
+  <meta property="og:url"         content="https://poverty360.org"/>
+  <meta property="og:image"       content="https://raw.githubusercontent.com/S-ABDUL-AI/PORTFOLIO-HUB/main/cover.png"/>
+  <meta name="twitter:card"       content="summary_large_image"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: #F7F4EE;
+      color: #2C2C2C;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+
+    /* ── TOKENS ────────────────────────────────────────────── */
+    :root {
+      --ink:       #1A1A1A;
+      --body:      #3D3D3D;
+      --muted:     #7A7A6E;
+      --pale:      #F7F4EE;
+      --cream:     #EDE9DF;
+      --white:     #FDFCF9;
+      --gold:      #B8860B;
+      --gold-lt:   #D4A843;
+      --gold-pale: #F5EDD3;
+      --forest:    #2D4A3E;
+      --forest-lt: #3D6B5A;
+      --forest-pale:#E8F0EC;
+      --rule:      #D8D2C4;
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes lineGrow {
+      from { width: 0; } to { width: 60px; }
+    }
+
+    .fade-up  { animation: fadeUp  0.8s cubic-bezier(.22,.68,0,1.2) both; }
+    .fade-in  { animation: fadeIn  0.6s ease both; }
+    .d1 { animation-delay: .1s; }
+    .d2 { animation-delay: .25s; }
+    .d3 { animation-delay: .4s; }
+    .d4 { animation-delay: .55s; }
+    .d5 { animation-delay: .7s; }
+
+    /* ── NAV ───────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(247,244,238,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 64px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--forest);
+      letter-spacing: 0.5px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--forest); }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--forest);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 80px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Texture overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(184,134,11,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Geometric accent */
+    .hero-geo {
+      position: absolute;
+      right: 0; top: 0;
+      width: 380px; height: 380px;
+      background: rgba(184,134,11,0.06);
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
+    .hero-geo-2 {
+      position: absolute;
+      right: 0; top: 0;
+      width: 240px; height: 240px;
+      background: rgba(184,134,11,0.09);
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
+    .hero-dot-grid {
+      position: absolute;
+      right: 80px; bottom: 80px;
+      width: 160px; height: 160px;
+      background-image: radial-gradient(circle, rgba(184,134,11,0.25) 1px, transparent 1px);
+      background-size: 18px 18px;
+      opacity: 0.4;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(44px, 6vw, 78px);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.05;
+      max-width: 760px;
+      margin-bottom: 8px;
+    }
+    .hero-title em {
+      color: var(--gold-lt);
+      font-style: italic;
+    }
+
+    .hero-line {
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      margin: 28px 0;
+      animation: lineGrow 1s .5s ease both;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(253,252,249,0.72);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--gold-lt);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(253,252,249,0.5);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px; left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(253,252,249,0.35);
+    }
+    .hero-scroll::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: rgba(253,252,249,0.25);
+    }
+
+    /* ── SECTION WRAPPER ───────────────────────────────────── */
+    section { padding: 96px 80px; }
+    .section-alt { background: var(--white); }
+    .section-dark {
+      background: var(--forest);
+      color: var(--white);
+    }
+    .section-cream { background: var(--cream); }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-title-light { color: var(--white); }
+
+    .section-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 600px;
+      margin-bottom: 56px;
+    }
+    .section-sub-light { color: rgba(253,252,249,0.65); }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0 80px;
+    }
+
+    /* ── MISSION SECTION ───────────────────────────────────── */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .mission-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--forest);
+      line-height: 1.5;
+      border-left: 3px solid var(--gold);
+      padding-left: 28px;
+      margin-bottom: 32px;
+    }
+
+    .mission-body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.85;
+    }
+
+    .mission-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .pillar {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .pillar-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 40px;
+      opacity: 0.6;
+    }
+
+    .pillar-content h4 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .pillar-content p {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── IMPACT SECTION ────────────────────────────────────── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-bottom: 64px;
+    }
+
+    .impact-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 40px 32px;
+      transition: background .3s;
+    }
+    .impact-card:hover {
+      background: rgba(184,134,11,0.08);
+    }
+
+    .impact-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--gold-lt);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .impact-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(253,252,249,0.85);
+      margin-bottom: 8px;
+    }
+
+    .impact-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(253,252,249,0.45);
+      line-height: 1.6;
+    }
+
+    .impact-validators {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .validator-pill {
+      background: rgba(184,134,11,0.12);
+      border: 1px solid rgba(184,134,11,0.25);
+      color: var(--gold-lt);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 6px 14px;
+      border-radius: 2px;
+      transition: background .2s;
+    }
+    .validator-pill:hover {
+      background: rgba(184,134,11,0.22);
+    }
+
+    /* ── PROGRAMS ──────────────────────────────────────────── */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .program-card {
+      background: var(--pale);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--forest);
+      padding: 32px 28px;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .program-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .program-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .program-region {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .program-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .program-desc {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── TOOLS ─────────────────────────────────────────────── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--gold);
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: box-shadow .2s;
+    }
+    .tool-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    .tool-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .tool-info p {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .tool-btn {
+      display: inline-block;
+      background: var(--forest);
+      color: var(--white) !important;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      border-radius: 2px;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .tool-btn:hover { background: var(--gold); }
+
+    /* ── FOUNDER ───────────────────────────────────────────── */
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .founder-card {
+      background: var(--forest);
+      padding: 40px 32px;
+      color: var(--white);
+      position: sticky;
+      top: 80px;
+    }
+
+    .founder-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .founder-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 20px;
+    }
+
+    .founder-bio {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(253,252,249,0.72);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .founder-awards {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .award-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11.5px;
+      color: rgba(253,252,249,0.65);
+    }
+    .award-item::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .founder-story h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .founder-story p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .founder-story p:last-child { margin-bottom: 0; }
+
+    /* ── PARTNERS ──────────────────────────────────────────── */
+    .partners-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .partner-badge {
+      background: var(--pale);
+      border: 1px solid var(--rule);
+      color: var(--body);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 2px;
+      transition: border-color .2s, color .2s;
+    }
+    .partner-badge:hover {
+      border-color: var(--gold);
+      color: var(--forest);
+    }
+
+    /* ── CONTACT ───────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact-intro {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(24px, 2.5vw, 34px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 28px;
+    }
+
+    .contact-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(253,252,249,0.6);
+      line-height: 1.75;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 20px;
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contact-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .contact-link {
+      display: inline-block;
+      margin-top: 24px;
+      background: var(--gold);
+      color: var(--ink) !important;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 2px;
+      transition: background .2s, transform .2s;
+    }
+    .contact-link:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: #111A16;
+      padding: 32px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left {
+      font-size: 13px;
+      color: rgba(253,252,249,0.35);
+    }
+    .footer-left strong {
+      color: rgba(253,252,249,0.6);
+      font-weight: 500;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(253,252,249,0.4);
+      transition: color .2s;
+      border-bottom: 1px solid rgba(184,134,11,0.3);
+      padding-bottom: 2px;
+    }
+    .footer-links a:hover { color: var(--gold-lt); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 64px 24px; }
+      .hero { padding: 100px 24px 64px; }
+      hr.divider { margin: 0 24px; }
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+      .mission-grid,
+      .programs-grid,
+      .tools-grid,
+      .contact-grid,
+      .founder-grid { grid-template-columns: 1fr; gap: 40px; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 32px; }
+      .founder-card { position: static; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ─────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-logo">Poverty <span>360</span></div>
+    <ul class="nav-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#founder">Founder</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="hero-geo"></div>
+    <div class="hero-geo-2"></div>
+    <div class="hero-dot-grid"></div>
+
+    <p class="hero-eyebrow fade-in">Evidence-Based Analytics & Social Impact · Est. 2018 · Ghana</p>
+
+    <h1 class="hero-title fade-up d1">
+      Where data meets<br/>
+      <em>human dignity.</em>
+    </h1>
+
+    <div class="hero-line"></div>
+
+    <p class="hero-sub fade-up d2">
+      Poverty 360 builds decision-support tools and delivers social impact
+      programs for underserved populations — working at the intersection
+      of evidence-based analytics, government digital services, and
+      community-level change across West Africa and the United States.
+    </p>
+
+    <div class="hero-stats fade-up d3">
+      <div class="stat">
+        <span class="stat-num">25,000+</span>
+        <span class="stat-lbl">Beneficiaries reached</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-lbl">African countries</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">7</span>
+        <span class="stat-lbl">Years of impact</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">$50K</span>
+        <span class="stat-lbl">USADF + Citibank Grant</span>
+      </div>
+    </div>
+
+    <div class="hero-scroll fade-in d5">Scroll to explore</div>
+  </section>
+
+  <!-- ── MISSION ──────────────────────────────────────────── -->
+  <section id="mission" class="section-alt">
+    <div class="mission-grid">
+      <div>
+        <p class="section-eyebrow">Our Mission</p>
+        <blockquote class="mission-quote">
+          "What do you do when evidence is incomplete,
+          resources are limited, and a decision still
+          has to be made?"
+        </blockquote>
+        <p class="mission-body">
+          Poverty 360 exists to answer that question — with rigour,
+          transparency, and a deep commitment to the people most
+          affected by those decisions. We build analytical frameworks
+          and decision-support tools that help governments, funders,
+          and program officers allocate scarce resources more fairly
+          and effectively.<br/><br/>
+          Founded in Ghana in 2018, we have expanded our work to
+          Mali, Niger, and Burkina Faso across West Africa — and
+          are now bringing our evidence-based approach to government
+          digital services and safety net programs in the United States.
+        </p>
+      </div>
+
+      <div class="mission-pillars">
+        <p class="section-eyebrow">Three Pillars</p>
+        <div class="pillar">
+          <span class="pillar-num">01</span>
+          <div class="pillar-content">
+            <h4>Evidence-Based Analytics</h4>
+            <p>Cost-effectiveness analysis, causal inference, and decision modelling — translating complex data into practical recommendations that decision-makers can act on.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">02</span>
+          <div class="pillar-content">
+            <h4>Digital Decision Tools</h4>
+            <p>Production-ready tools for SNAP program officers, Medicaid administrators, and global health funders — built on the same analytical rigour as our field programs.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">03</span>
+          <div class="pillar-content">
+            <h4>Community-Level Programs</h4>
+            <p>Direct delivery of health, nutrition, energy, and livelihood interventions in partnership with national governments, bilateral donors, and international NGOs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- ── IMPACT ───────────────────────────────────────────── -->
+  <section id="impact" class="section-dark">
+    <p class="section-eyebrow">Our Impact</p>
+    <h2 class="section-title section-title-light">
+      Seven Years. Four Countries.<br/>One Consistent Mission.
+    </h2>
+    <p class="section-sub section-sub-light">
+      Every number below represents a real decision made by a real person
+      whose life was materially changed by evidence-based resource allocation.
+    </p>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-num">1,250</div>
+        <div class="impact-label">Women enrolled in national health insurance</div>
+        <div class="impact-desc">Partnered with Ghana's National Health Insurance Authority to enroll vulnerable women and abuse survivors — owning end-to-end digital onboarding.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">10,000</div>
+        <div class="impact-label">Children with extended study hours in Mali</div>
+        <div class="impact-desc">Renewable Energy for Rural Schools initiative — solar power to 50+ rural schools, increasing study hours by 700%.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">600</div>
+        <div class="impact-label">Farmers empowered in Burkina Faso</div>
+        <div class="impact-desc">Targeted livelihood interventions boosting revenue margins by 60% through climate-smart agricultural practices.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">78</div>
+        <div class="impact-label">Jobs created through USADF grant project</div>
+        <div class="impact-desc">Top 0.1% USADF + Citibank grant — served 1,000+ additional low-income students and increased income for women and minority groups.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">150K+</div>
+        <div class="impact-label">Patients served via telemedicine platform</div>
+        <div class="impact-desc">Digital health platform at Abusua Community Health Centre — reducing average travel distance by 75km.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">4</div>
+        <div class="impact-label">Countries of operation</div>
+        <div class="impact-desc">Ghana · Mali · Niger · Burkina Faso — with decision-support tools now reaching program officers across the United States.</div>
+      </div>
+    </div>
+
+    <div class="impact-validators">
+      <span class="validator-pill">USADF + Citibank Grant — Top 0.1%</span>
+      <span class="validator-pill">Obama Foundation Leaders Award — Top 1.3%</span>
+      <span class="validator-pill">EB1-A Extraordinary Ability — USCIS 2024</span>
+      <span class="validator-pill">U.S. Vice President Kamala Harris — VVIP Recognition</span>
+      <span class="validator-pill">Ambassador Linda Thomas-Greenfield — UN Food Security</span>
+      <span class="validator-pill">Mercy Corps — Evaluation Panel Judge</span>
+      <span class="validator-pill">Mandela Washington Fellow — Top 0.3%</span>
+    </div>
+  </section>
+
+  <!-- ── IMPACT TIMELINE ────────────────────────────────── -->
+  <!-- NOTE: Upload 2019-annual-report.pdf, 2020-annual-report.pdf,
+       and 2021-annual-report.pdf to the same GitHub repo root
+       so the download buttons work correctly. -->
+  <style>
+    #impact-timeline {
+      background: var(--cream);
+      padding: 100px 0 0;
+      overflow: hidden;
+      position: relative;
+    }
+    #impact-timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--forest), var(--gold), var(--forest));
+    }
+    .tl-container { max-width: 1140px; margin: 0 auto; padding: 0 80px; }
+    .tl-header { text-align: center; margin-bottom: 72px; }
+    .tl-eyebrow {
+      font-family: 'Jost', sans-serif; font-weight: 500;
+      font-size: 0.75rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 14px;
+    }
+    .tl-title {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: clamp(2.2rem, 4vw, 3.4rem); color: var(--forest);
+      line-height: 1.15; margin: 0 0 16px;
+    }
+    .tl-title em { font-style: italic; color: var(--gold); }
+    .tl-subtitle {
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 0.95rem; color: var(--muted);
+      max-width: 620px; margin: 0 auto; line-height: 1.75;
+    }
+    /* Revenue arc */
+    .rev-arc {
+      display: flex; align-items: stretch;
+      justify-content: center; gap: 0;
+      margin-bottom: 72px; position: relative;
+    }
+    .rev-arc::before {
+      content: '';
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 80px); height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .rev-bar {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; padding: 0 16px 32px;
+      position: relative; cursor: default;
+      transition: transform 0.3s ease;
+    }
+    .rev-bar:hover { transform: translateY(-4px); }
+    .rev-bar .yr-badge {
+      font-family: 'Jost', sans-serif; font-weight: 600;
+      font-size: 0.7rem; letter-spacing: 0.18em;
+      color: var(--white); background: var(--forest);
+      padding: 4px 12px; border-radius: 2px; margin-bottom: 14px;
+    }
+    .rev-bar .yr-amt {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      color: var(--forest); line-height: 1; margin-bottom: 4px;
+    }
+    .rev-bar .yr-lbl {
+      font-family: 'Jost', sans-serif; font-size: 0.7rem;
+      color: var(--muted); letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+    .rev-pill {
+      font-family: 'Jost', sans-serif; font-size: 0.68rem;
+      font-weight: 500; padding: 3px 10px; border-radius: 20px;
+    }
+    .rev-pill.neutral { background: var(--cream); color: var(--muted); border: 1px solid var(--rule); }
+    .rev-pill.up { background: rgba(45,74,62,0.08); color: var(--forest); }
+    .rev-pill.up-big { background: rgba(184,134,11,0.12); color: var(--gold); }
+    /* Year cards */
+    .tl-cards {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 24px; margin-bottom: 0;
+    }
+    .tl-card {
+      background: var(--white);
+      border: 1px solid rgba(45,74,62,0.1);
+      border-top: 3px solid var(--forest);
+      position: relative; overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .tl-card:hover { box-shadow: 0 12px 36px rgba(45,74,62,0.11); transform: translateY(-4px); }
+    .tl-card.gold-top { border-top-color: var(--gold); }
+    .tl-hero { width: 100%; height: 200px; overflow: hidden; }
+    .tl-hero img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center top; display: block;
+      transition: transform 0.5s ease;
+    }
+    .tl-card:hover .tl-hero img { transform: scale(1.04); }
+    .tl-caption {
+      font-family: 'Jost', sans-serif; font-size: 0.62rem;
+      color: var(--muted); font-style: italic;
+      padding: 6px 18px 0; border-top: 1px solid var(--cream);
+      background: var(--white);
+    }
+    .tl-body { padding: 22px 26px 26px; }
+    .tl-year-ghost {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.8rem;
+      font-weight: 300; color: var(--cream);
+      position: absolute; top: 210px; right: 18px;
+      line-height: 1; user-select: none; z-index: 1;
+    }
+    .tl-theme {
+      font-family: 'Jost', sans-serif; font-weight: 500;
+      font-size: 0.66rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+    }
+    .tl-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: 1.4rem; color: var(--forest); line-height: 1.2;
+      margin: 0 0 14px;
+    }
+    .tl-desc {
+      font-family: 'Jost', sans-serif; font-size: 0.855rem;
+      font-weight: 300; color: var(--muted); line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .tl-metrics {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 11px 16px; margin-bottom: 20px;
+    }
+    .tl-metric { border-left: 2px solid var(--gold); padding-left: 10px; }
+    .tl-metric .mn {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: 1.35rem; color: var(--forest); display: block; line-height: 1;
+    }
+    .tl-metric .ml {
+      font-family: 'Jost', sans-serif; font-size: 0.62rem;
+      color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.05em; display: block; margin-top: 3px; line-height: 1.3;
+    }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; }
+    .tl-tags span {
+      font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 3px 8px; border: 1px solid rgba(45,74,62,0.18);
+      color: var(--forest); border-radius: 2px; background: var(--cream);
+    }
+    .tl-eff { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .tl-eff-lbl {
+      font-family: 'Jost', sans-serif; font-size: 0.64rem; font-weight: 500;
+      color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;
+      white-space: nowrap; min-width: 84px;
+    }
+    .tl-eff-bar { flex: 1; height: 4px; background: var(--cream); border-radius: 2px; overflow: hidden; }
+    .tl-eff-fill { height: 100%; background: linear-gradient(90deg, var(--forest), var(--gold)); border-radius: 2px; }
+    .tl-eff-pct {
+      font-family: 'Jost', sans-serif; font-size: 0.72rem;
+      font-weight: 600; color: var(--forest); white-space: nowrap;
+    }
+    .tl-dl-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'Jost', sans-serif; font-size: 0.7rem;
+      font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--forest); border: 1px solid var(--forest);
+      padding: 9px 16px; background: transparent; cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+      width: 100%; justify-content: center; box-sizing: border-box;
+      text-decoration: none;
+    }
+    .tl-dl-btn:hover { background: var(--forest); color: var(--white); }
+    .tl-dl-btn svg { flex-shrink: 0; transition: transform 0.25s; }
+    .tl-dl-btn:hover svg { transform: translateY(2px); }
+    /* Cumulative banner */
+    .tl-banner {
+      background: var(--forest); color: var(--white);
+      padding: 56px 80px; margin-top: 48px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      align-items: center; position: relative; overflow: hidden;
+    }
+    .tl-banner::before {
+      content: '"'; font-family: 'Cormorant Garamond', serif;
+      font-size: 26rem; color: rgba(255,255,255,0.03);
+      position: absolute; top: -50px; left: -10px;
+      line-height: 1; pointer-events: none;
+    }
+    .tl-cum { text-align: center; padding: 0 18px; }
+    .tl-cum .big-n {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--gold-lt);
+      display: block; line-height: 1; margin-bottom: 7px;
+    }
+    .tl-cum .big-l {
+      font-family: 'Jost', sans-serif; font-size: 0.68rem;
+      font-weight: 400; letter-spacing: 0.13em; text-transform: uppercase;
+      color: rgba(247,244,238,0.6); line-height: 1.4;
+    }
+    .tl-div { width: 1px; height: 56px; background: rgba(247,244,238,0.15); }
+    /* Bridge note */
+    .tl-bridge {
+      background: var(--forest);
+      padding: 0 80px 48px;
+      text-align: center;
+    }
+    .tl-bridge-inner {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 28px;
+      max-width: 680px; margin: 0 auto;
+    }
+    .tl-bridge p {
+      font-family: 'Jost', sans-serif; font-size: 0.875rem;
+      font-weight: 300; color: rgba(247,244,238,0.6);
+      line-height: 1.75;
+    }
+    .tl-bridge strong { color: var(--gold-lt); font-weight: 500; }
+    /* Scroll reveal */
+    @keyframes tl-up {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .tl-rev { opacity: 0; animation: tl-up 0.7s ease forwards; animation-play-state: paused; }
+    .tl-rev.d1 { animation-delay: 0.1s; }
+    .tl-rev.d2 { animation-delay: 0.25s; }
+    .tl-rev.d3 { animation-delay: 0.4s; }
+    .tl-rev.d4 { animation-delay: 0.1s; }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .tl-container { padding: 0 24px; }
+      .tl-cards { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+      .rev-arc { flex-direction: column; align-items: stretch; gap: 12px; }
+      .rev-arc::before { display: none; }
+      .rev-bar { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 14px 16px; background: var(--white); border: 1px solid rgba(45,74,62,0.1); gap: 6px 12px; }
+      .tl-banner { grid-template-columns: 1fr 1fr; gap: 32px 16px; padding: 44px 32px; }
+      .tl-div { display: none; }
+      .tl-bridge { padding: 0 24px 40px; }
+    }
+    @media (max-width: 600px) {
+      #impact-timeline { padding: 64px 0 0; }
+      .tl-hero { height: 175px; }
+      .tl-banner { grid-template-columns: 1fr; padding: 40px 24px; }
+    }
+  </style>
+
+  <section id="impact-timeline">
+    <div class="tl-container">
+
+      <!-- Header -->
+      <div class="tl-header tl-rev d1">
+        <span class="tl-eyebrow">Annual Reports · 2019 – 2021</span>
+        <h2 class="tl-title">The <em>Foundation Years</em></h2>
+        <p class="tl-subtitle">
+          From 2019 to 2021, Poverty 360 built the programmatic foundation
+          that now underpins our analytics and government digital services work
+          across West Africa and the United States. These annual reports document
+          that early growth — from dairy resilience during COVID-19 to solar
+          classrooms in Mali to Ghana's first community-scale clean cookstove rollout.
+        </p>
+      </div>
+
+      <!-- Revenue arc -->
+      <div class="rev-arc tl-rev d2">
+        <div class="rev-bar">
+          <span class="yr-badge">2019</span>
+          <span class="yr-amt">$56,443</span>
+          <span class="yr-lbl">Total Revenue</span>
+          <span class="rev-pill neutral">Baseline Year</span>
+        </div>
+        <div class="rev-bar">
+          <span class="yr-badge">2020</span>
+          <span class="yr-amt">$71,448</span>
+          <span class="yr-lbl">Total Revenue</span>
+          <span class="rev-pill up">&#9650; 27% YoY</span>
+        </div>
+        <div class="rev-bar">
+          <span class="yr-badge">2021</span>
+          <span class="yr-amt">$467,744</span>
+          <span class="yr-lbl">Total Revenue</span>
+          <span class="rev-pill up-big">&#9650; 554% YoY</span>
+        </div>
+      </div>
+
+      <!-- Year cards -->
+      <div class="tl-cards">
+
+        <!-- 2019 -->
+        <div class="tl-card tl-rev d1">
+          <div class="tl-hero">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAGQASwDASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAABQYEBwIDCAH/xABPEAACAQMDAgQEAgYGCAQFBQABAgMABBEFEiExBhNBUWEicYGRBxQyobHBFSNC0fAWJDNSYnKC4fEXU2N0kqKy0kRUg8IlNGSSk9P/xAAZAQADAQEBAAAAAAAAAAAAAAABAgMEAAX/xAAhEQACAgMBAQEBAQEAAAAAAAAAAQIREiExA0FB..." alt="Dairy farmer supported through USADF C.A.R.E.S. programme, Ghana 2019" loading="lazy">
+          </div>
+          <p class="tl-caption">Dairy farmer supported through the USADF C.A.R.E.S. programme, Ghana</p>
+          <span class="tl-year-ghost">19</span>
+          <div class="tl-body">
+            <p class="tl-theme">COVID Response · Ghana</p>
+            <h3>Dairy Resilience &amp; Nutrition</h3>
+            <p class="tl-desc">With USADF C.A.R.E.S. support, Poverty 360 equipped dairy farmers to survive COVID-19 — keeping milk on tables and livelihoods intact across Ghana.</p>
+            <div class="tl-metrics">
+              <div class="tl-metric"><span class="mn">5,000</span><span class="ml">Children fed dairy nutrition</span></div>
+              <div class="tl-metric"><span class="mn">330</span><span class="ml">Dairy farmers supported</span></div>
+              <div class="tl-metric"><span class="mn">450</span><span class="ml">Handwashing stations</span></div>
+              <div class="tl-metric"><span class="mn">+60%</span><span class="ml">Farmer revenue increase</span></div>
+            </div>
+            <div class="tl-tags">
+              <span>USADF C.A.R.E.S.</span><span>Health</span><span>Economic Development</span>
+            </div>
+            <div class="tl-eff">
+              <span class="tl-eff-lbl">Program Use</span>
+              <div class="tl-eff-bar"><div class="tl-eff-fill" style="width:97%"></div></div>
+              <span class="tl-eff-pct">97&#162; / $1</span>
+            </div>
+            <a class="tl-dl-btn" href="2019-annual-report.pdf" download="Poverty360_2019_Annual_Report.pdf">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download 2019 Report
+            </a>
+          </div>
+        </div>
+
+        <!-- 2020 -->
+        <div class="tl-card gold-top tl-rev d2">
+          <div class="tl-hero">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAGQASwDASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAABQYEBwIDCAH/xABPEAACAQMDAgQEAgYGCAQFBQABAgMABBEFEiExBhNBUWEicYGRBxQyobHBFSNC0fAWJDNSYnKC4fEXU2N0kqKy0kRUg8IlNGSSk9P/xAAZAQADAQEBAAAAAAAAAAAAAAABAgMEAAX/xAAhEQACAgMBAQEBAQEAAAAAAAAAAQIREiExA0FB..." alt="Children studying by solar lamp — Light for All programme, Mali 2020" loading="lazy">
+          </div>
+          <p class="tl-caption">Children studying by solar lamp — Light for All programme, rural Mali</p>
+          <span class="tl-year-ghost">20</span>
+          <div class="tl-body">
+            <p class="tl-theme">Multi-Country · Ghana · Mali · Burkina Faso</p>
+            <h3>Light, Food &amp; Livelihoods</h3>
+            <p class="tl-desc">Solar lamps transformed nighttime study in Mali. Hermetically sealed crop bags doubled farmer incomes in Ghana. Market skills lifted 600 women in Burkina Faso.</p>
+            <div class="tl-metrics">
+              <div class="tl-metric"><span class="mn">5,000</span><span class="ml">Solar lamps to Mali students</span></div>
+              <div class="tl-metric"><span class="mn">700%</span><span class="ml">Increase in study hours</span></div>
+              <div class="tl-metric"><span class="mn">10,000</span><span class="ml">PICS crop storage sacks</span></div>
+              <div class="tl-metric"><span class="mn">+80%</span><span class="ml">Farmer margin increase</span></div>
+              <div class="tl-metric"><span class="mn">600</span><span class="ml">Women trained, Burkina Faso</span></div>
+              <div class="tl-metric"><span class="mn">+60%</span><span class="ml">Vegetable farmer profits</span></div>
+            </div>
+            <div class="tl-tags">
+              <span>Light For All</span><span>Farmers' Hope</span><span>Climate &amp; Energy</span>
+            </div>
+            <div class="tl-eff">
+              <span class="tl-eff-lbl">Program Use</span>
+              <div class="tl-eff-bar"><div class="tl-eff-fill" style="width:94%"></div></div>
+              <span class="tl-eff-pct">94&#162; / $1</span>
+            </div>
+            <a class="tl-dl-btn" href="2020-annual-report.pdf" download="Poverty360_2020_Annual_Report.pdf">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download 2020 Report
+            </a>
+          </div>
+        </div>
+
+        <!-- 2021 -->
+        <div class="tl-card tl-rev d3">
+          <div class="tl-hero">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAGQASwDASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAABQYEBwIDCAH/xABPEAACAQMDAgQEAgYGCAQFBQABAgMABBEFEiExBhNBUWEicYGRBxQyobHBFSNC0fAWJDNSYnKC4fEXU2N0kqKy0kRUg8IlNGSSk9P/xAAZAQADAQEBAAAAAAAAAAAAAAABAgMEAAX/xAAhEQACAgMBAQEBAQEAAAAAAAAAAQIREiExA0FB..." alt="CLIMESMART student peer educators with seedlings, northern Ghana 2021" loading="lazy">
+          </div>
+          <p class="tl-caption">CLIMESMART student peer educators with seedlings ready for planting, northern Ghana</p>
+          <span class="tl-year-ghost">21</span>
+          <div class="tl-body">
+            <p class="tl-theme">Climate Year · Ghana</p>
+            <h3>Trees, Clean Stoves &amp; Clean Shores</h3>
+            <p class="tl-desc">2021 was our Climate Year — 10,000 seedlings planted, clean cookstoves to 3,000 households, and plastic waste cleared from Ghana's coastal communities.</p>
+            <div class="tl-metrics">
+              <div class="tl-metric"><span class="mn">10,000</span><span class="ml">Seedlings planted</span></div>
+              <div class="tl-metric"><span class="mn">300</span><span class="ml">Student peer educators</span></div>
+              <div class="tl-metric"><span class="mn">6,000</span><span class="ml">Clean stoves distributed</span></div>
+              <div class="tl-metric"><span class="mn">3,000</span><span class="ml">Households using clean cooking</span></div>
+              <div class="tl-metric"><span class="mn">0.2 t</span><span class="ml">CO&#8322; saved per month</span></div>
+              <div class="tl-metric"><span class="mn">$8</span><span class="ml">Monthly fuel savings / household</span></div>
+            </div>
+            <div class="tl-tags">
+              <span>CLIMESMART</span><span>COOKCLEAN</span><span>PLACYCLE</span><span>WASH</span>
+            </div>
+            <div class="tl-eff">
+              <span class="tl-eff-lbl">Program Use</span>
+              <div class="tl-eff-bar"><div class="tl-eff-fill" style="width:96%"></div></div>
+              <span class="tl-eff-pct">96&#162; / $1</span>
+            </div>
+            <a class="tl-dl-btn" href="2021-annual-report.pdf" download="Poverty360_2021_Annual_Report.pdf">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download 2021 Report
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /tl-cards -->
+    </div><!-- /tl-container -->
+
+    <!-- Cumulative banner -->
+    <div class="tl-banner tl-rev d4">
+      <div class="tl-cum">
+        <span class="big-n">21,000+</span>
+        <span class="big-l">Children &amp; students<br>directly reached</span>
+      </div>
+      <div class="tl-div"></div>
+      <div class="tl-cum">
+        <span class="big-n">16,330</span>
+        <span class="big-l">Farmers &amp; women<br>entrepreneurs supported</span>
+      </div>
+      <div class="tl-div"></div>
+      <div class="tl-cum">
+        <span class="big-n">$595K+</span>
+        <span class="big-l">Cumulative revenue<br>raised 2019–2021</span>
+      </div>
+      <div class="tl-div"></div>
+      <div class="tl-cum">
+        <span class="big-n">4 Nations</span>
+        <span class="big-l">Ghana · Mali<br>Burkina Faso · Niger</span>
+      </div>
+    </div>
+
+    <!-- Bridge note: what happened next -->
+    <div class="tl-bridge">
+      <div class="tl-bridge-inner">
+        <p>
+          Since 2021, Poverty 360 has expanded its evidence-based approach into
+          <strong>US government digital services and Medicaid analytics</strong> —
+          building decision-support tools now used by program officers across
+          all 50 US states. Our West Africa partnerships remain active.
+          <strong>Annual reporting will resume in 2025.</strong>
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    (function () {
+      var items = document.querySelectorAll('#impact-timeline .tl-rev');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function(el){ el.style.opacity='1'; el.style.animationPlayState='running'; });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.style.animationPlayState='running'; io.unobserve(e.target); }
+        });
+      }, { threshold: 0.10 });
+      items.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
+
+  <!-- ── PROGRAMS ─────────────────────────────────────────── -->
+  <section id="programs" class="section-cream">
+    <p class="section-eyebrow">Our Programs</p>
+    <h2 class="section-title">What We Do on the Ground</h2>
+    <p class="section-sub">
+      Direct delivery programs across four thematic areas —
+      each grounded in evidence, measured rigorously, and
+      designed to reach the people most often missed.
+    </p>
+
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-icon">🏥</div>
+        <div class="program-region">Ghana · West Africa</div>
+        <h3 class="program-title">Healthcare Access & Insurance Enrollment</h3>
+        <p class="program-desc">
+          Partnered with Ghana's National Health Insurance Authority to
+          redesign digital enrollment workflows for vulnerable populations.
+          Enrolled 1,250 women and abuse survivors into national health
+          coverage — demonstrating that the gap between eligibility and
+          enrollment is almost always a systems problem, not a policy problem.
+        </p>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">⚡</div>
+        <div class="program-region">Mali</div>
+        <h3 class="program-title">Renewable Energy for Rural Schools</h3>
+        <p class="program-desc">
+          Delivered solar power to 50+ rural schools with no previous access
+          to electricity. Distributed 10,000 solar lamps — increasing
+          children's study hours by 700%. Clean cooking solutions reduced
+          monthly household fuel costs by $8 and CO₂ emissions by 0.2 tons
+          per household per month.
+        </p>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">🌾</div>
+        <div class="program-region">Niger · Burkina Faso</div>
+        <h3 class="program-title">Food Security & Nutrition</h3>
+        <p class="program-desc">
+          Directed the Food Security and Nutrition Program in Niger —
+          significantly reducing child malnutrition through sustainable
+          agricultural practices and nutritional education. Empowered
+          600 farmers in Burkina Faso with climate-smart interventions,
+          boosting revenue margins by 60%.
+        </p>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">📊</div>
+        <div class="program-region">United States · Global</div>
+        <h3 class="program-title">Decision Analytics & Government Digital Services</h3>
+        <p class="program-desc">
+          Expanding Poverty 360's evidence-based approach into US government
+          digital services — building decision-support tools for SNAP program
+          officers, Medicaid administrators, and global health funders.
+          The same analytical rigour that informed West Africa field programs
+          now powers tools used by program officers across 50 US states.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TOOLS ────────────────────────────────────────────── -->
+  <section id="tools" class="section-alt">
+    <p class="section-eyebrow">Decision Tools</p>
+    <h2 class="section-title">Live Tools for Program Officers & Funders</h2>
+    <p class="section-sub">
+      Production-ready decision-support tools built for SNAP outreach
+      coordinators, Medicaid program officers, and global health funders.
+      Each generates a downloadable McKinsey-style PDF policy report.
+    </p>
+
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-info">
+          <h4>Medicaid & Healthcare Access Risk Monitor</h4>
+          <p>State-level coverage risk scoring across all 50 US states — insurance gaps, cost burden, income capacity, and rural reach.</p>
+        </div>
+        <a href="https://chpghrwawmvddoquvmniwm.streamlit.app/" target="_blank" class="tool-btn">Open →</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-info">
+          <h4>Safety Net Risk Monitor</h4>
+          <p>Proactive SNAP and food security vulnerability targeting — identifies communities at risk before they reach crisis point.</p>
+        </div>
+        <a href="https://povertyearlywarningsystem-7rrmkktbi7bwha2nna8gk7.streamlit.app/" target="_blank" class="tool-btn">Open →</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-info">
+          <h4>Public Budget Allocation Tool</h4>
+          <p>Need-based government budget distribution — generates a ministerial-grade decision brief with risk flags and action steps.</p>
+        </div>
+        <a href="https://smart-resource-allocation-dashboard-eudzw5r2f9pbu4qyw3psez.streamlit.app/" target="_blank" class="tool-btn">Open →</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-info">
+          <h4>GovFund Allocation Engine</h4>
+          <p>Cost-effectiveness decision tool for global health funders — models cost-per-life-saved across malaria and social protection interventions.</p>
+        </div>
+        <a href="https://impact-allocation-engine-ahxxrbgwmvyapwmifahk2b.streamlit.app/" target="_blank" class="tool-btn">Open →</a>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; text-align: center;">
+      <a href="https://s-abdul-ai.github.io" target="_blank"
+         style="font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+                text-transform: uppercase; color: var(--forest);
+                border-bottom: 2px solid var(--gold); padding-bottom: 2px;">
+        View full portfolio →
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- ── FOUNDER ──────────────────────────────────────────── -->
+  <section id="founder" class="section-alt">
+    <p class="section-eyebrow">Our Founder</p>
+    <div class="founder-grid">
+
+      <div class="founder-card">
+        <div class="founder-name">Sherriff Abdul-Hamid</div>
+        <div class="founder-title">Founder & Executive Director</div>
+        <p class="founder-bio">
+          Health economist, data scientist, and product leader
+          working at the intersection of evidence-based analytics,
+          government digital services, and social protection.
+          Based in Los Angeles, CA.
+        </p>
+        <div class="founder-awards">
+          <div class="award-item">EB1-A Extraordinary Ability — USCIS, 2024</div>
+          <div class="award-item">Obama Foundation Leaders Award — Top 1.3%, 2023</div>
+          <div class="award-item">Mandela Washington Fellow — Top 0.3%, U.S. Dept of State</div>
+          <div class="award-item">Harvard Business School — Senior Executive Program</div>
+          <div class="award-item">USADF + Citibank Grant — Top 0.1% globally</div>
+          <div class="award-item">MS Economics (Econometrics) — KNUST, Ghana</div>
+        </div>
+      </div>
+
+      <div class="founder-story">
+        <h3>Building from the gap between what a law says and what a system delivers.</h3>
+        <p>
+          In 2018, Sherriff Abdul-Hamid founded Poverty 360 with a single
+          observation: well-funded programs consistently fail to reach the
+          people they were designed to serve — not because of bad intentions,
+          but because the systems delivering the benefits were never built for
+          the people using them.
+        </p>
+        <p>
+          Over seven years, that observation has driven field programs in four
+          African countries, a telemedicine platform serving 150,000+ patients,
+          a national health insurance enrollment system for 1,250 vulnerable
+          women, and a suite of decision-support tools now used by program
+          officers managing SNAP, Medicaid, and global health funding.
+        </p>
+        <p>
+          The thread connecting all of it is the same question: what do you do
+          when evidence is incomplete, resources are limited, and a decision
+          still has to be made? Poverty 360 builds the frameworks, tools, and
+          institutional relationships that help the right people answer that
+          question — and act on the answer.
+        </p>
+        <p>
+          In 2024, the U.S. Citizenship and Immigration Services approved
+          Sherriff's EB1-A Extraordinary Ability petition on the basis of this
+          body of work — an independent validation of its global significance.
+        </p>
+
+        <div style="margin-top: 32px;">
+          <a href="https://www.linkedin.com/in/abdul-hamid-sherriff-08583354/"
+             target="_blank"
+             style="display: inline-block; background: var(--forest);
+                    color: white; font-size: 11px; font-weight: 600;
+                    letter-spacing: 1.5px; text-transform: uppercase;
+                    padding: 12px 24px; border-radius: 2px; margin-right: 12px;
+                    transition: background .2s;">
+            LinkedIn →
+          </a>
+          <a href="https://s-abdul-ai.github.io"
+             target="_blank"
+             style="display: inline-block; border: 1px solid var(--rule);
+                    color: var(--forest); font-size: 11px; font-weight: 600;
+                    letter-spacing: 1.5px; text-transform: uppercase;
+                    padding: 12px 24px; border-radius: 2px;
+                    transition: border-color .2s;">
+            Portfolio →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARTNERS ─────────────────────────────────────────── -->
+  <section id="partners" class="section-cream">
+    <p class="section-eyebrow">Partners & Validators</p>
+    <h2 class="section-title">Organisations We Have Worked With</h2>
+    <p class="section-sub">
+      Our work has been funded, validated, and recognised by governments,
+      bilateral donors, and international organisations across four continents.
+    </p>
+
+    <div class="partners-list">
+      <span class="partner-badge">USAID</span>
+      <span class="partner-badge">United Nations Development Programme</span>
+      <span class="partner-badge">UKAID / FCDO</span>
+      <span class="partner-badge">Australian High Commission (DAP)</span>
+      <span class="partner-badge">Canadian Government (CFLI)</span>
+      <span class="partner-badge">Ghana National Health Insurance Authority</span>
+      <span class="partner-badge">Save the Children International</span>
+      <span class="partner-badge">Mercy Corps</span>
+      <span class="partner-badge">U.S. African Development Foundation</span>
+      <span class="partner-badge">Citibank</span>
+      <span class="partner-badge">Obama Foundation</span>
+      <span class="partner-badge">U.S. Department of State</span>
+      <span class="partner-badge">Harvard Business School</span>
+      <span class="partner-badge">KNUST — Ghana</span>
+      <span class="partner-badge">University of Iowa</span>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ──────────────────────────────────────────── -->
+  <section id="contact" class="section-dark">
+    <div class="contact-grid">
+      <div>
+        <p class="section-eyebrow">Get in Touch</p>
+        <p class="contact-intro">
+          Working on a program that needs better
+          evidence? Building a tool that should
+          reach more people? Let's talk.
+        </p>
+        <p class="contact-sub">
+          We work with USAID implementing partners,
+          Medicaid managed care organisations, FQHCs,
+          government digital services teams, and global
+          health funders on a retainer basis.
+        </p>
+        <a href="mailto:sherriffhamid001@gmail.com"
+           class="contact-link">Send a message →</a>
+      </div>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">sherriffhamid001@gmail.com</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">(424) 222-2856</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Los Angeles, CA — West Africa</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Registration</div>
+          <div class="contact-value">Registered in Ghana · Operating in the United States</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Portfolio</div>
+          <div class="contact-value">
+            <a href="https://s-abdul-ai.github.io"
+               target="_blank"
+               style="color: var(--gold-lt); border-bottom: 1px solid rgba(184,134,11,0.4);">
+              s-abdul-ai.github.io
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ───────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-left">
+      <strong>Poverty 360</strong> · Evidence-Based Analytics & Social Impact ·
+      Registered in Ghana · Est. 2018
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/abdul-hamid-sherriff-08583354/" target="_blank">LinkedIn</a>
+      <a href="https://s-abdul-ai.github.io" target="_blank">Portfolio</a>
+      <a href="mailto:sherriffhamid001@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
