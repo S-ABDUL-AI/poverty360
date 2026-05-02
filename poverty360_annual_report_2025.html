@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poverty 360 · 2025 Annual Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:   #2D4A3E;
+    --forest-lt:#3D6B5A;
+    --gold:     #B8860B;
+    --gold-lt:  #D4A843;
+    --cream:    #F7F4EE;
+    --white:    #FDFCF9;
+    --ink:      #1A1A1A;
+    --muted:    #6B6B5E;
+    --rule:     #E0DBD0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PRINT BUTTON ── */
+  .print-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--forest);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 40px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  }
+  .print-bar span {
+    font-family: 'Jost', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(247,244,238,0.6);
+  }
+  .print-btn {
+    font-family: 'Jost', sans-serif; font-size: 0.72rem;
+    font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--white); border: 1px solid rgba(255,255,255,0.4);
+    padding: 7px 18px; background: transparent; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .print-btn:hover { background: var(--gold); border-color: var(--gold); }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh; background: var(--forest);
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    padding-top: 48px;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        rgba(184,134,11,0.04) 0px,
+        rgba(184,134,11,0.04) 1px,
+        transparent 1px,
+        transparent 48px
+      );
+  }
+  .cover-inner {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 80px 80px 60px; max-width: 900px; position: relative;
+  }
+  .cover-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(7rem, 18vw, 14rem);
+    font-weight: 300; color: rgba(255,255,255,0.06);
+    line-height: 0.85; position: absolute;
+    right: -20px; bottom: 40px; user-select: none;
+    letter-spacing: -0.02em;
+  }
+  .cover-eyebrow {
+    font-family: 'Jost', sans-serif; font-weight: 500;
+    font-size: 0.7rem; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--gold-lt);
+    margin-bottom: 28px; display: flex; align-items: center; gap: 12px;
+  }
+  .cover-eyebrow::before {
+    content: ''; width: 32px; height: 1px; background: var(--gold);
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.8rem, 6vw, 5rem); color: var(--white);
+    line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .cover-title em { font-style: italic; color: var(--gold-lt); }
+  .cover-subtitle {
+    font-family: 'Jost', sans-serif; font-weight: 300;
+    font-size: 1rem; color: rgba(247,244,238,0.55);
+    max-width: 480px; margin-bottom: 52px; letter-spacing: 0.02em;
+  }
+  .cover-meta {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px; width: 100%;
+  }
+  .cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .cover-meta-item .lbl {
+    font-family: 'Jost', sans-serif; font-size: 0.62rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(247,244,238,0.4);
+  }
+  .cover-meta-item .val {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+    font-weight: 400; color: var(--white);
+  }
+  .cover-flag {
+    position: absolute; top: 60px; right: 80px;
+    display: flex; gap: 8px;
+  }
+  .flag-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold); opacity: 0.4;
+  }
+  .flag-dot:first-child { opacity: 1; }
+
+  /* ── SECTION STYLES ── */
+  section { padding: 88px 80px; max-width: 1100px; margin: 0 auto; }
+  section.full { max-width: none; padding: 0; }
+  section.cream { background: var(--cream); }
+  section.white { background: var(--white); }
+  section.forest { background: var(--forest); }
+
+  .section-wrap { max-width: 1100px; margin: 0 auto; padding: 88px 80px; }
+
+  .eyebrow {
+    font-family: 'Jost', sans-serif; font-weight: 500;
+    font-size: 0.68rem; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px;
+  }
+  .eyebrow::before { content:''; width:24px; height:1px; background:var(--gold); }
+
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.2rem); color: var(--forest);
+    line-height: 1.15; margin-bottom: 20px;
+  }
+  h2.section-title em { font-style: italic; color: var(--gold); }
+  h2.section-title.light { color: var(--white); }
+  h2.section-title.light em { color: var(--gold-lt); }
+
+  p.lead {
+    font-family: 'Jost', sans-serif; font-size: 1.05rem;
+    font-weight: 300; color: var(--muted); line-height: 1.8;
+    max-width: 680px; margin-bottom: 28px;
+  }
+  p.lead.light { color: rgba(247,244,238,0.65); }
+
+  p.body {
+    font-family: 'Jost', sans-serif; font-size: 0.92rem;
+    font-weight: 300; color: var(--muted); line-height: 1.82;
+    max-width: 720px; margin-bottom: 20px;
+  }
+  p.body.light { color: rgba(247,244,238,0.6); }
+  p.body strong { color: var(--forest); font-weight: 500; }
+  p.body strong.light { color: var(--gold-lt); }
+
+  hr.divider {
+    border: none; border-top: 1px solid var(--rule);
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ── FOUNDER LETTER ── */
+  .letter-wrap {
+    display: grid; grid-template-columns: 1fr 320px; gap: 72px;
+    align-items: start;
+  }
+  .letter-text {}
+  .letter-sig {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.5rem; color: var(--forest); margin-top: 28px;
+    border-top: 1px solid var(--rule); padding-top: 20px;
+  }
+  .letter-sig span {
+    display: block; font-family: 'Jost', sans-serif;
+    font-size: 0.68rem; font-style: normal; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-top: 4px;
+  }
+  .letter-sidebar {
+    background: var(--forest); padding: 36px 32px;
+    position: sticky; top: 72px;
+  }
+  .sidebar-title {
+    font-family: 'Jost', sans-serif; font-weight: 500;
+    font-size: 0.65rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold-lt);
+    margin-bottom: 24px;
+  }
+  .sidebar-stat { margin-bottom: 22px; }
+  .sidebar-stat .n {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    font-size: 2.2rem; color: var(--white); display: block; line-height: 1;
+  }
+  .sidebar-stat .l {
+    font-family: 'Jost', sans-serif; font-size: 0.68rem;
+    font-weight: 300; color: rgba(247,244,238,0.55);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    line-height: 1.4; display: block; margin-top: 4px;
+  }
+  .sidebar-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 8px 0 22px; }
+
+  /* ── TIMELINE BRIDGE ── */
+  .timeline-bridge {
+    background: var(--forest); padding: 72px 80px;
+  }
+  .bridge-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; max-width: 1100px; margin: 48px auto 0;
+  }
+  .bridge-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 32px; position: relative;
+  }
+  .bridge-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--gold);
+  }
+  .bridge-card h4 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    font-size: 1.2rem; color: var(--white); margin-bottom: 12px;
+  }
+  .bridge-card p {
+    font-family: 'Jost', sans-serif; font-size: 0.85rem;
+    font-weight: 300; color: rgba(247,244,238,0.6); line-height: 1.7;
+  }
+  .bridge-card ul {
+    margin-top: 10px; padding-left: 0; list-style: none;
+  }
+  .bridge-card ul li {
+    font-family: 'Jost', sans-serif; font-size: 0.82rem;
+    font-weight: 300; color: rgba(247,244,238,0.65);
+    padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .bridge-card ul li::before {
+    content: '→'; color: var(--gold); flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ── PROGRAMME SECTION ── */
+  .prog-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center; margin-bottom: 56px;
+  }
+  .prog-header.reverse { direction: rtl; }
+  .prog-header.reverse > * { direction: ltr; }
+  .prog-img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    display: block; filter: sepia(0.08) contrast(1.05);
+  }
+  .prog-img-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--forest-lt), var(--forest));
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px;
+  }
+  .prog-img-placeholder .flag {
+    font-size: 3.5rem; line-height: 1;
+  }
+  .prog-img-placeholder .caption {
+    font-family: 'Jost', sans-serif; font-size: 0.7rem;
+    font-weight: 400; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(247,244,238,0.5);
+  }
+  .prog-tag {
+    display: inline-block;
+    font-family: 'Jost', sans-serif; font-size: 0.62rem;
+    font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--white); background: var(--gold);
+    padding: 5px 12px; margin-bottom: 16px;
+  }
+  .prog-name {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    font-size: 0.95rem; color: var(--forest); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+
+  /* ── METRICS GRID ── */
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin: 48px 0; border: 1px solid var(--rule);
+  }
+  .metric-box {
+    padding: 32px 24px; text-align: center;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--white); position: relative;
+  }
+  .metric-box:nth-child(4n) { border-right: none; }
+  .metric-box::after {
+    content: ''; position: absolute; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 32px; height: 2px; background: var(--gold);
+  }
+  .metric-box .mn {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--forest);
+    display: block; line-height: 1; margin-bottom: 8px;
+  }
+  .metric-box .ml {
+    font-family: 'Jost', sans-serif; font-size: 0.68rem;
+    font-weight: 400; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.1em; line-height: 1.4;
+  }
+
+  /* ── CONTEXT BOX ── */
+  .context-box {
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px; background: var(--white);
+    margin: 28px 0;
+  }
+  .context-box .context-label {
+    font-family: 'Jost', sans-serif; font-size: 0.62rem;
+    font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .context-box p {
+    font-family: 'Jost', sans-serif; font-size: 0.88rem;
+    font-weight: 300; color: var(--muted); line-height: 1.75;
+  }
+  .context-box p strong { color: var(--forest); font-weight: 500; }
+
+  /* ── MODEL STEPS ── */
+  .model-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; margin: 36px 0;
+  }
+  .step {
+    background: var(--cream); padding: 28px 22px;
+    position: relative;
+  }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 3rem;
+    font-weight: 300; color: rgba(45,74,62,0.08);
+    position: absolute; top: 12px; right: 14px; line-height: 1;
+  }
+  .step h5 {
+    font-family: 'Jost', sans-serif; font-weight: 500;
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--forest); margin-bottom: 10px;
+  }
+  .step p {
+    font-family: 'Jost', sans-serif; font-size: 0.8rem;
+    font-weight: 300; color: var(--muted); line-height: 1.65;
+  }
+
+  /* ── WATER CRISIS BANNER ── */
+  .crisis-banner {
+    background: var(--forest); padding: 48px 56px;
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 40px; align-items: center; margin: 48px 0;
+  }
+  .crisis-icon {
+    font-size: 4rem; line-height: 1; flex-shrink: 0;
+  }
+  .crisis-banner h3 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: 1.6rem; color: var(--white); margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .crisis-banner p {
+    font-family: 'Jost', sans-serif; font-size: 0.88rem;
+    font-weight: 300; color: rgba(247,244,238,0.6); line-height: 1.75;
+  }
+  .crisis-banner strong { color: var(--gold-lt); font-weight: 500; }
+
+  /* ── TWO-COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .two-col.thirds { grid-template-columns: 2fr 1fr; }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-top: 3px solid var(--gold);
+    border-bottom: 1px solid var(--rule);
+    padding: 36px 0 28px; margin: 40px 0;
+  }
+  .pull-quote blockquote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem); color: var(--forest);
+    font-weight: 300; line-height: 1.45; max-width: 640px;
+  }
+  .pull-quote cite {
+    display: block; font-family: 'Jost', sans-serif;
+    font-size: 0.68rem; font-style: normal; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); margin-top: 16px;
+  }
+
+  /* ── FORWARD SECTION ── */
+  .forward-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; margin-top: 48px;
+  }
+  .forward-card {
+    background: var(--white); padding: 36px 28px;
+    border-top: 3px solid var(--forest);
+  }
+  .forward-card.gold-top { border-top-color: var(--gold); }
+  .forward-card h4 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    font-size: 1.3rem; color: var(--forest); margin-bottom: 12px;
+  }
+  .forward-card p {
+    font-family: 'Jost', sans-serif; font-size: 0.82rem;
+    font-weight: 300; color: var(--muted); line-height: 1.7;
+  }
+  .forward-card .tag {
+    font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px; display: block;
+  }
+
+  /* ── PARTNERS ── */
+  .partners-grid {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px;
+  }
+  .partner-chip {
+    font-family: 'Jost', sans-serif; font-size: 0.7rem;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--forest); border: 1px solid rgba(45,74,62,0.25);
+    padding: 8px 16px; background: var(--white);
+  }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    background: var(--forest); padding: 56px 80px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 40px; align-items: end;
+  }
+  .footer-org {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: 1.6rem; color: var(--white); margin-bottom: 8px;
+  }
+  .footer-org em { font-style: italic; color: var(--gold-lt); }
+  .footer-sub {
+    font-family: 'Jost', sans-serif; font-size: 0.72rem;
+    font-weight: 300; color: rgba(247,244,238,0.45);
+    letter-spacing: 0.06em;
+  }
+  .footer-right {
+    text-align: right;
+    font-family: 'Jost', sans-serif; font-size: 0.7rem;
+    font-weight: 300; color: rgba(247,244,238,0.4);
+    line-height: 1.8;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .rev { opacity: 0; }
+  .rev.visible { animation: fadeUp 0.7s ease forwards; }
+  .rev.d1 { animation-delay: 0.05s; }
+  .rev.d2 { animation-delay: 0.18s; }
+  .rev.d3 { animation-delay: 0.3s; }
+  .rev.d4 { animation-delay: 0.42s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    section { padding: 64px 32px; }
+    .section-wrap { padding: 64px 32px; }
+    .cover-inner { padding: 64px 32px 48px; }
+    .cover-flag { right: 32px; }
+    .letter-wrap { grid-template-columns: 1fr; }
+    .letter-sidebar { position: static; }
+    .prog-header { grid-template-columns: 1fr; }
+    .prog-header.reverse { direction: ltr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .model-steps { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .two-col.thirds { grid-template-columns: 1fr; }
+    .forward-grid { grid-template-columns: 1fr; }
+    .bridge-grid { grid-template-columns: 1fr; }
+    .timeline-bridge { padding: 64px 32px; }
+    .report-footer { grid-template-columns: 1fr; padding: 48px 32px; }
+    .footer-right { text-align: left; }
+  }
+
+  @media (max-width: 600px) {
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .model-steps { grid-template-columns: 1fr; }
+    .cover-year { font-size: 6rem; }
+    .print-bar { padding: 10px 20px; }
+    .crisis-banner { grid-template-columns: 1fr; padding: 36px 28px; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .print-bar { display: none; }
+    .cover { min-height: auto; page-break-after: always; }
+    section, .section-wrap { padding: 48px 56px; }
+    body { background: white; }
+    .rev { opacity: 1 !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Print Bar -->
+<div class="print-bar">
+  <span>Poverty 360 · Annual Report 2025</span>
+  <button class="print-btn" onclick="window.print()">↓ Download / Print PDF</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     COVER
+════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-flag">
+    <div class="flag-dot"></div>
+    <div class="flag-dot"></div>
+    <div class="flag-dot"></div>
+  </div>
+  <div class="cover-inner">
+    <div class="cover-eyebrow">Annual Report</div>
+    <h1 class="cover-title">
+      Evidence.<br>
+      <em>Equity.</em><br>
+      Impact.
+    </h1>
+    <p class="cover-subtitle">
+      A report on Poverty 360's programmes, strategic evolution,
+      and forward vision — covering 2022 through 2025.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="lbl">Report Period</span>
+        <span class="val">2022 – 2025</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="lbl">Geographies</span>
+        <span class="val">Niger · Ghana · United States</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="lbl">Total Lives Reached</span>
+        <span class="val">58,830+ (cumulative)</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="lbl">Organisation</span>
+        <span class="val">Poverty 360</span>
+      </div>
+    </div>
+  </div>
+  <span class="cover-year" aria-hidden="true">2025</span>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FOUNDER'S LETTER
+════════════════════════════════════════════════ -->
+<section class="white">
+  <div class="letter-wrap">
+    <div class="letter-text">
+      <div class="eyebrow rev d1">Message from the Founder</div>
+      <h2 class="section-title rev d2">A Word <em>Before the Numbers</em></h2>
+      <p class="body rev d3">
+        When Poverty 360 published its last annual report in 2021, we had just completed
+        our most ambitious year as an organisation — a Climate Year that planted 10,000
+        seedlings, reached 3,000 households with clean cookstoves, and demonstrated that a
+        small organisation with a clear evidence base can punch well above its weight.
+      </p>
+      <p class="body rev d3">
+        Then came a period of deliberate transition. Between 2022 and 2024, I made a
+        considered decision to expand the organisation's methodological foundations —
+        deepening my own expertise in government digital services, Medicaid analytics, and
+        decision-support systems through direct work with <strong>USAID, UNDP, and
+        UKAID</strong> programmes worth over $200 million. That knowledge is now
+        embedded in how Poverty 360 designs and evaluates its programmes.
+      </p>
+      <p class="body rev d3">
+        During this period, we did not stop working. In 2023, we launched
+        <strong>BIRTHSAFE Niger</strong> — our most medically critical programme to date —
+        bringing life-saving misoprostol access to 1,400 women in the remote Tillabéri and
+        Diffa regions through 200 trained traditional birth attendants. In a country where
+        postpartum haemorrhage kills more mothers than any other cause, this work is
+        measured not in metrics but in lives.
+      </p>
+      <p class="body rev d3">
+        In 2025, we turned to Ghana's Western Region, where illegal mining has rendered the
+        Tano and Ankobra Rivers — once lifelines for entire communities — toxic with mercury
+        and cyanide. Our <strong>CLEARWATER Ghana</strong> programme distributed 400
+        water purification systems to 2,400 households in Alubo, Samreboi, and surrounding
+        mining-affected communities, ensuring that families who cannot wait for the rivers
+        to heal do not drink water that will harm them.
+      </p>
+      <p class="body rev d3">
+        This report tells those stories honestly — including the transition period,
+        including the gap, and including our forward commitments. We believe that
+        transparency is itself a programme outcome.
+      </p>
+      <div class="letter-sig rev d4">
+        Sherriff Abdul-Hamid
+        <span>Founder & Executive Director, Poverty 360</span>
+      </div>
+    </div>
+
+    <div class="letter-sidebar rev d2">
+      <div class="sidebar-title">Report at a Glance</div>
+      <div class="sidebar-stat">
+        <span class="n">58,830+</span>
+        <span class="l">Cumulative beneficiaries<br>2019 – 2025</span>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-stat">
+        <span class="n">1,400</span>
+        <span class="l">Women reached with<br>misoprostol access — Niger</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="n">200</span>
+        <span class="l">Traditional birth attendants<br>trained — Niger</span>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-stat">
+        <span class="n">2,400</span>
+        <span class="l">Households with clean<br>water access — Ghana</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="n">400</span>
+        <span class="l">Water purifiers distributed<br>Western Region, Ghana</span>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-stat">
+        <span class="n">5</span>
+        <span class="l">Countries reached<br>across programme history</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════
+     WHERE WE WORK
+════════════════════════════════════════════════ -->
+<section class="cream">
+  <div class="eyebrow rev d1">Our Geography</div>
+  <h2 class="section-title rev d2">Where <em>We Work</em></h2>
+  <p class="lead rev d2">
+    Poverty 360 operates across West Africa and the United States —
+    in countries and communities where poverty, exclusion from formal systems,
+    and lack of access to basic services converge most sharply.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:44px;" class="rev d3">
+
+    <div style="background:var(--white);padding:32px 24px;border-top:3px solid var(--forest);">
+      <div style="font-size:2rem;margin-bottom:12px;">🇬🇭</div>
+      <div style="font-family:'Jost',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Active</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.3rem;color:var(--forest);margin-bottom:10px;">Ghana</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;color:var(--muted);line-height:1.65;margin-bottom:14px;">HDI Rank: 138 / 189. One of Africa's fastest-growing economies — yet more than half the population still lacks reliable access to water, healthcare, and economic opportunity.</p>
+      <div style="font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--forest);border-top:1px solid var(--rule);padding-top:10px;">Food Security · WASH · Health · Climate</div>
+    </div>
+
+    <div style="background:var(--white);padding:32px 24px;border-top:3px solid var(--muted);">
+      <div style="font-size:2rem;margin-bottom:12px;">🇲🇱</div>
+      <div style="font-family:'Jost',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Historical</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.3rem;color:var(--forest);margin-bottom:10px;">Mali</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;color:var(--muted);line-height:1.65;margin-bottom:14px;">HDI Rank: 184 / 189. Population 19.6 million. Political instability since 2012 has displaced 400,000 people. 1.3 million face food insecurity.</p>
+      <div style="font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--rule);padding-top:10px;">Food Security · Education · Energy</div>
+    </div>
+
+    <div style="background:var(--white);padding:32px 24px;border-top:3px solid var(--muted);">
+      <div style="font-size:2rem;margin-bottom:12px;">🇧🇫</div>
+      <div style="font-family:'Jost',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Historical</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.3rem;color:var(--forest);margin-bottom:10px;">Burkina Faso</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;color:var(--muted);line-height:1.65;margin-bottom:14px;">HDI Rank: 182 / 189. Per capita income under $720. Among the world's highest rates of child mortality, illiteracy, and malnutrition. 8.1 million live under $1.25 per day.</p>
+      <div style="font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--rule);padding-top:10px;">Women's Empowerment · Agriculture</div>
+    </div>
+
+    <div style="background:var(--white);padding:32px 24px;border-top:3px solid var(--gold);">
+      <div style="font-size:2rem;margin-bottom:12px;">🇳🇪</div>
+      <div style="font-family:'Jost',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Active</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.3rem;color:var(--forest);margin-bottom:10px;">Niger</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;color:var(--muted);line-height:1.65;margin-bottom:14px;">HDI Rank: 189 / 189 — last globally. Highest population growth rate in the world (3.9%). 76% of girls married before 18. Postpartum haemorrhage is the leading cause of maternal death.</p>
+      <div style="font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);border-top:1px solid var(--rule);padding-top:10px;">Maternal Health · Humanitarian Assistance</div>
+    </div>
+
+    <div style="background:var(--forest);padding:32px 24px;border-top:3px solid var(--gold);">
+      <div style="font-size:2rem;margin-bottom:12px;">🇺🇸</div>
+      <div style="font-family:'Jost',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:8px;">Active</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.3rem;color:var(--white);margin-bottom:10px;">United States</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;color:rgba(247,244,238,0.6);line-height:1.65;margin-bottom:14px;">Poverty 360's evidence-based methodology applied to US safety net systems — Medicaid, SNAP, and public benefits delivery — through open-access tools used by programme officers across all 50 states.</p>
+      <div style="font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-lt);border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;">Digital Services · Medicaid Analytics</div>
+    </div>
+
+  </div>
+
+  <div style="display:flex;gap:28px;margin-top:18px;align-items:center;" class="rev d4">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:14px;height:3px;background:var(--forest);border-radius:1px;"></div>
+      <span style="font-family:'Jost',sans-serif;font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">Active programme country</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:14px;height:3px;background:var(--muted);border-radius:1px;"></div>
+      <span style="font-family:'Jost',sans-serif;font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">Historical programme country</span>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════
+     2022–2024 TRANSITION BRIDGE
+════════════════════════════════════════════════ -->
+<div class="timeline-bridge full">
+  <div class="section-wrap">
+    <div class="eyebrow" style="color:var(--gold-lt)">
+      <span style="color:var(--gold-lt)">Strategic Period</span>
+    </div>
+    <h2 class="section-title light rev d1">
+      2022 – 2024:<br><em>The Expansion Years</em>
+    </h2>
+    <p class="lead light rev d2" style="max-width:620px">
+      Between 2021 and 2024, Poverty 360 entered a deliberate period of strategic
+      expansion — deepening its evidence base, building new analytical capabilities,
+      and launching its first maternal health programme in the Sahel.
+    </p>
+    <p class="body light rev d3">
+      This period was not a pause. It was the investment phase that will underpin
+      the next chapter of Poverty 360's work — in West Africa, Southeast Asia,
+      and the United States.
+    </p>
+  </div>
+
+  <div class="bridge-grid" style="max-width:1100px;margin:0 auto;padding:0 80px 80px;">
+    <div class="bridge-card rev d1">
+      <h4>Methodological Expansion</h4>
+      <p>The founder directed international development programmes totalling over $200M in partnership with USAID, UNDP, and UKAID — embedding the analytical rigour and programme design experience that now shapes every Poverty 360 intervention.</p>
+      <ul>
+        <li>Harvard Business School Senior Executive Programme completed</li>
+        <li>Decision-support frameworks developed for safety net systems</li>
+        <li>Cost-effectiveness analytical tools built and open-sourced</li>
+        <li>EB-1A Extraordinary Ability recognition — United States, 2024</li>
+      </ul>
+    </div>
+    <div class="bridge-card rev d2">
+      <h4>NHIA Ghana Enrollment</h4>
+      <p>Poverty 360 partnered with Ghana's National Health Insurance Authority to enroll 1,250 vulnerable women — previously unregistered and excluded from national health coverage — into the NHIA scheme, giving them access to subsidised maternal and general healthcare.</p>
+      <ul>
+        <li>1,250 women enrolled into NHIA national health insurance</li>
+        <li>Focused on rural and peri-urban communities in Ghana</li>
+        <li>Linked to broader maternal health strategy later deployed in Niger</li>
+        <li>Partnership with NHIA remains active for future programmes</li>
+      </ul>
+    </div>
+    <div class="bridge-card rev d3">
+      <h4>BIRTHSAFE Niger — Programme Launch</h4>
+      <p>In 2023, Poverty 360 launched its first Sahelian maternal health programme — targeting the two highest-risk regions in Niger for postpartum haemorrhage mortality: Tillabéri in the west and Diffa in the southeast.</p>
+      <ul>
+        <li>200 traditional birth attendants identified and trained</li>
+        <li>Misoprostol supply chains established with district health facilities</li>
+        <li>1,400 women reached with PPH prevention coverage in 2023–2024</li>
+        <li>Community referral linkages created to reduce facility distance barrier</li>
+      </ul>
+    </div>
+    <div class="bridge-card rev d4">
+      <h4>US Digital Services &amp; Tool Development</h4>
+      <p>Poverty 360's evidence-based methodology was translated into open-access decision-support tools for US government programme officers — extending the organisation's reach into Medicaid, SNAP, and public budget allocation.</p>
+      <ul>
+        <li>Safety Net Risk Monitor — deployed for state programme officers</li>
+        <li>Medicaid Access Risk Analyser — 50-state coverage</li>
+        <li>Public Budget Allocation Tool — evidence-based resource allocation</li>
+        <li>Tools remain free and publicly accessible</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Foundation years photo gallery -->
+    <div style="max-width:1100px;margin:48px auto 0;padding:0 80px;">
+      <div style="font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:500;
+        letter-spacing:0.22em;text-transform:uppercase;color:#D4A843;margin-bottom:16px;">
+        Programme Photography · 2019–2021
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="overflow:hidden;">
+          <img src="usadfdairynutrition-01.JPG" alt="USADF dairy nutrition programme, Ghana 2019"
+            loading="lazy" style="width:100%;height:140px;object-fit:cover;display:block;
+            filter:sepia(0.06) contrast(1.04);transition:transform 0.4s;"
+            onmouseover="this.style.transform='scale(1.05)'"
+            onmouseout="this.style.transform='scale(1)'">
+          <div style="font-family:'Jost',sans-serif;font-size:0.58rem;color:rgba(247,244,238,0.4);
+            padding:6px 4px;font-style:italic;">USADF Dairy Nutrition · Ghana · 2019</div>
+        </div>
+        <div style="overflow:hidden;">
+          <img src="lightforall-02.jpg" alt="Light for All solar lamps, Mali 2020"
+            loading="lazy" style="width:100%;height:140px;object-fit:cover;display:block;
+            filter:sepia(0.06) contrast(1.04);transition:transform 0.4s;"
+            onmouseover="this.style.transform='scale(1.05)'"
+            onmouseout="this.style.transform='scale(1)'">
+          <div style="font-family:'Jost',sans-serif;font-size:0.58rem;color:rgba(247,244,238,0.4);
+            padding:6px 4px;font-style:italic;">Light for All · Mali · 2020</div>
+        </div>
+        <div style="overflow:hidden;">
+          <img src="cookclean-02.jpg" alt="CookClean clean cookstoves, Ghana 2021"
+            loading="lazy" style="width:100%;height:140px;object-fit:cover;display:block;
+            filter:sepia(0.06) contrast(1.04);transition:transform 0.4s;"
+            onmouseover="this.style.transform='scale(1.05)'"
+            onmouseout="this.style.transform='scale(1)'">
+          <div style="font-family:'Jost',sans-serif;font-size:0.58rem;color:rgba(247,244,238,0.4);
+            padding:6px 4px;font-style:italic;">CookClean · Ghana · 2021</div>
+        </div>
+        <div style="overflow:hidden;">
+          <img src="climesmart-03.JPG" alt="CLIMESMART seedling programme, Ghana 2021"
+            loading="lazy" style="width:100%;height:140px;object-fit:cover;display:block;
+            filter:sepia(0.06) contrast(1.04);transition:transform 0.4s;"
+            onmouseover="this.style.transform='scale(1.05)'"
+            onmouseout="this.style.transform='scale(1)'">
+          <div style="font-family:'Jost',sans-serif;font-size:0.58rem;color:rgba(247,244,238,0.4);
+            padding:6px 4px;font-style:italic;">CLIMESMART · Ghana · 2021</div>
+        </div>
+      </div>
+    </div>
+
+<!-- ══════════════════════════════════════════════
+     PROGRAMME 1: BIRTHSAFE NIGER
+════════════════════════════════════════════════ -->
+<section class="cream rev d1">
+  <div class="eyebrow">Programme Report · 2023–2024</div>
+  <div class="prog-header">
+    <div>
+      <div class="prog-tag">BIRTHSAFE Niger</div>
+      <div class="prog-name">Maternal Mortality Prevention — Tillabéri &amp; Diffa</div>
+      <h2 class="section-title">When the Nearest <em>Clinic Is a Day Away</em></h2>
+      <p class="lead">
+        In Niger's most remote communities, women die not from lack of knowledge —
+        but from lack of access. BIRTHSAFE puts life-saving medicine in the hands
+        of the people already trusted to deliver babies.
+      </p>
+    </div>
+        <!-- BIRTHSAFE Niger — real programme photos -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;aspect-ratio:4/3;overflow:hidden;">
+      <div style="overflow:hidden;">
+        <img src="birthsafeniger-01.JPG" alt="BIRTHSAFE programme — traditional birth attendant training, Niger 2023"
+          loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;
+          filter:sepia(0.08) contrast(1.05);transition:transform 0.5s ease;"
+          onmouseover="this.style.transform='scale(1.04)'"
+          onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden;">
+        <img src="birthsafeniger-02.jpg" alt="BIRTHSAFE programme — community health outreach, Tillabéri Niger 2024"
+          loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;
+          filter:sepia(0.08) contrast(1.05);transition:transform 0.5s ease;"
+          onmouseover="this.style.transform='scale(1.04)'"
+          onmouseout="this.style.transform='scale(1)'">
+      </div>
+    </div>
+    <p style="font-family:'Jost',sans-serif;font-size:0.62rem;color:#6B6B5E;
+      font-style:italic;margin-top:6px;text-align:center;">
+      BIRTHSAFE Niger · Tillabéri &amp; Diffa Regions · 2023–2024
+    </p>
+    </div>
+
+  <div class="pull-quote rev d2">
+    <blockquote>
+      "The potential for saving maternal lives increases substantially when community-based
+      birth attendants are trained to use misoprostol and connected to reliable drug supply chains."
+    </blockquote>
+    <cite>World Health Organization · Misoprostol Guidelines for PPH Prevention, 2012</cite>
+  </div>
+
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--forest);margin-bottom:24px;" class="rev d2">
+    The BIRTHSAFE <em>Model</em>
+  </h3>
+  <div class="model-steps rev d3">
+    <div class="step">
+      <span class="step-num">01</span>
+      <h5>Identify &amp; Select</h5>
+      <p>200 traditional birth attendants (TBAs) identified in Tillabéri and Diffa — the women already attending births in communities with no skilled facility access.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <h5>Train</h5>
+      <p>TBAs trained in the appropriate use of misoprostol — dosage, timing of administration, recognition of PPH signs, and when to trigger a facility referral.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <h5>Link to Supply</h5>
+      <p>Formal supply linkages created between TBAs and district health facilities — giving them authorised, replenishable access to misoprostol stock without requiring women to travel.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <h5>Monitor &amp; Refer</h5>
+      <p>Referral pathways established for TBAs to escalate complications to the nearest health facility, supported by community health worker liaison roles.</p>
+    </div>
+  </div>
+
+  <div class="metrics-grid rev d3">
+    <div class="metric-box">
+      <span class="mn">200</span>
+      <span class="ml">Traditional birth attendants trained in misoprostol use</span>
+    </div>
+    <div class="metric-box">
+      <span class="mn">1,400</span>
+      <span class="ml">Women reached with PPH prevention coverage</span>
+    </div>
+    <div class="metric-box">
+      <span class="mn">2</span>
+      <span class="ml">High-risk regions covered: Tillabéri &amp; Diffa</span>
+    </div>
+    <div class="metric-box">
+      <span class="mn">&lt;$1</span>
+      <span class="ml">Cost per dose — misoprostol is low-cost, high-impact</span>
+    </div>
+  </div>
+
+  <div class="two-col rev d4">
+    <div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--forest);margin-bottom:16px;">
+        Why Tillabéri and Diffa?
+      </h3>
+      <p class="body">
+        Tillabéri region in western Niger has historically faced the double burden of low skilled
+        birth attendance and long distances to health infrastructure — with communities spread
+        across semi-arid terrain where a health centre may serve populations 40–80 kilometres away.
+      </p>
+      <p class="body">
+        Diffa, in southeastern Niger near the Lake Chad basin, faces the additional challenge of
+        instability and displacement — meaning that even where health facilities exist, women may
+        be unable to safely reach them at the moment of delivery. In both regions, the traditional
+        birth attendant is not a last resort — she is the primary care provider at the moment of
+        highest risk.
+      </p>
+    </div>
+    <div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--forest);margin-bottom:16px;">
+        The Evidence Behind the Model
+      </h3>
+      <p class="body">
+        Community-based misoprostol distribution for PPH prevention has been rigorously
+        evaluated across Pakistan, India, Nepal, Afghanistan, Indonesia, and throughout
+        sub-Saharan Africa. Coverage rates are highest when traditional birth attendants and
+        community health workers distribute the medication — outperforming facility-based
+        distribution in remote settings.
+      </p>
+      <p class="body">
+        Niger's own national PPH initiative demonstrated that near-universal uterotonic coverage
+        is achievable at scale when supply chains and training are aligned. BIRTHSAFE applies
+        those national lessons at the community level, in two of the country's most
+        underserved regions.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════
+     PROGRAMME 2: CLEARWATER GHANA
+════════════════════════════════════════════════ -->
+<section class="white rev d1">
+  <div class="eyebrow">Programme Report · 2025</div>
+  <div class="prog-header reverse">
+    <div>
+      <div class="prog-tag" style="background:var(--forest)">CLEARWATER Ghana</div>
+      <div class="prog-name">Clean Water for Mining-Affected Communities — Western Region</div>
+      <h2 class="section-title">Rivers Poisoned, <em>Communities Surviving</em></h2>
+      <p class="lead">
+        When illegal mining turns your water black, you do not wait for the river
+        to be clean. You bring clean water to the people who cannot leave.
+      </p>
+    </div>
+    <div class="prog-img-placeholder" style="background:linear-gradient(135deg,#1a3a2e,#2D4A3E)">
+      <!-- PHOTO SLOT: Replace outer div with <img src="clearwater-ghana.jpg" class="prog-img" alt="...">
+           Unsplash search: "Ghana community water" or "West Africa water access women" -->
+      <div style="font-family:'Jost',sans-serif;font-size:0.58rem;font-weight:500;
+        letter-spacing:0.22em;text-transform:uppercase;color:#D4A843;margin-bottom:10px;">
+        🇬🇭 Alubo · Samreboi · Western Region · Ghana · 2025</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;
+        color:rgba(247,244,238,0.8);line-height:1.4;max-width:260px;">
+        "60% of Ghana's water resources are now polluted — largely from unregulated mercury and cyanide use."
+      </div>
+      <div style="margin-top:16px;display:flex;gap:20px;flex-wrap:wrap;">
+        <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:#D4A843;">400</div>
+          <div style="font-family:'Jost',sans-serif;font-size:0.54rem;color:rgba(247,244,238,0.45);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Purifiers</div></div>
+        <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
+        <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:#D4A843;">2,400</div>
+          <div style="font-family:'Jost',sans-serif;font-size:0.54rem;color:rgba(247,244,238,0.45);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Households</div></div>
+        <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
+        <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:#D4A843;">2</div>
+          <div style="font-family:'Jost',sans-serif;font-size:0.54rem;color:rgba(247,244,238,0.45);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Rivers</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="crisis-banner rev d2">
+    <div class="crisis-icon">⚠️</div>
+    <div>
+      <h3>The Galamsey Water Crisis — Western Region, Ghana</h3>
+      <p>
+        Illegal small-scale gold mining — locally known as <strong>galamsey</strong> — has
+        contaminated over <strong>60% of Ghana's water bodies</strong>, according to the Ghana
+        Water Company. Mercury, cyanide, arsenic, and cadmium from unregulated mining operations
+        flow directly into the Tano River and the Ankobra River — the primary water sources for
+        communities in Alubo, Samreboi, and surrounding Western Region towns.
+        Residents of these communities face <strong>waterborne diseases, heavy metal poisoning,
+        kidney damage, and elevated risks of cancer</strong> — health consequences that accumulate
+        over years of exposure to contaminated water. Children and pregnant women bear the
+        highest burden. The crisis is not new. The response, for most of these communities,
+        has not come.
+      </p>
+    </div>
+  </div>
+
+  <div class="two-col thirds rev d2">
+    <div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--forest);margin-bottom:16px;">
+        Alubo and Samreboi: The Communities We Serve
+      </h3>
+      <p class="body">
+        <strong>Alubo</strong> sits on the Ghana–Côte d'Ivoire border in the Jomoro District —
+        a trading town of considerable economic activity but minimal infrastructure investment.
+        The community draws water from the Tano River, which has been progressively contaminated
+        by upstream mining operations. Alubo's residents have no alternative municipal water supply.
+      </p>
+      <p class="body">
+        <strong>Samreboi</strong> lies in the Amenfi West area, directly on the Tano River.
+        A town of approximately 29,000 people and 20 surrounding villages — historically dependent
+        on the river and on the Samartex timber industry — it has seen its primary water source
+        rendered unsafe by mining discharge from operations stretching from Sefwi Wiawso downstream.
+        Research confirms that mercury concentrations in the Tano basin, while variable, have
+        exceeded WHO safe thresholds at specific monitoring points.
+      </p>
+      <p class="body">
+        The Ankobra River, which flows 190 kilometres from its source northeast of Wiawso to the
+        Gulf of Guinea, is similarly polluted — with entire communities along its course relying on
+        water that the Ghana Water Company has declared unfit for human consumption.
+      </p>
+    </div>
+    <div>
+      <div class="context-box" style="margin-top:0">
+        <div class="context-label">Health Evidence</div>
+        <p>
+          Research by the Ghana Health Service documents that <strong>respiratory disease
+          cases in galamsey-affected regions reached 560 per 100,000 people in 2024</strong> —
+          more than double the rate in unaffected areas. Heavy metal poisoning via fish and
+          water consumption is documented in the Tano and Ankobra basins. About
+          <strong>70% of households in mining-affected communities rely on surface water</strong>
+          as their primary source.
+        </p>
+      </div>
+      <div class="context-box">
+        <div class="context-label">Why Water Purifiers</div>
+        <p>
+          Household water purification systems represent the most immediate, community-deployable
+          intervention available when river decontamination — a process taking years and requiring
+          government action — cannot be waited for. Point-of-use purification removes biological
+          contaminants and reduces exposure to heavy metals, providing protection while the
+          structural pollution crisis is addressed at the policy level.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics-grid rev d3">
+    <div class="metric-box">
+      <span class="mn">400</span>
+      <span class="ml">Water purifiers distributed across Western Region communities</span>
+    </div>
+    <div class="metric-box">
+      <span class="mn">2,400</span>
+      <span class="ml">Households served with access to clean, purified water</span>
+    </div>
+    <div class="metric-box">
+      <span class="mn">2</span>
+      <span class="ml">Rivers affected: Tano River &amp; Ankobra River</span>
+    </div>
+    <div class="metric-box">
+      <span class="mn">6</span>
+      <span class="ml">Households reached per purifier — community sharing model</span>
+    </div>
+  </div>
+
+  <div class="pull-quote rev d3">
+    <blockquote>
+      "Over 60% of Ghana's water resources are now polluted, largely due to the
+      unregulated use of toxic chemicals such as mercury and cyanide."
+    </blockquote>
+    <cite>Ghana Water Company · as cited by Al Jazeera, 2025</cite>
+  </div>
+
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--forest);margin-bottom:24px;" class="rev d3">
+    The CLEARWATER <em>Delivery Model</em>
+  </h3>
+  <div class="model-steps rev d4">
+    <div class="step">
+      <span class="step-num">01</span>
+      <h5>Community Mapping</h5>
+      <p>Identified highest-need households in Alubo, Samreboi, and surrounding Tano and Ankobra basin communities based on proximity to contamination sources and absence of alternative water access.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <h5>Distribution</h5>
+      <p>400 water purification systems distributed through community focal points — leveraging existing community health structures to ensure equitable reach across households.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <h5>Usage Training</h5>
+      <p>Community health volunteers trained on correct purifier use, maintenance, and filter replacement — ensuring sustained effectiveness beyond distribution day.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <h5>Advocacy</h5>
+      <p>Programme findings documented and shared with Western Region environmental health authorities — contributing to the evidence base for policy action on galamsey water contamination.</p>
+    </div>
+  </div>
+
+  <div class="context-box rev d4" style="background:var(--cream)">
+    <div class="context-label">Looking Ahead — CLEARWATER Expansion</div>
+    <p>
+      The 2025 CLEARWATER programme covered an initial cohort of 2,400 households. Research
+      indicates that communities along the full extent of the Tano River basin — including
+      Elubo, Essiama, Aiyinase, and Tano Dumasi — face the same contamination burden.
+      <strong>Poverty 360 is developing a proposal to extend CLEARWATER coverage to
+      an additional 5,000 households in 2026</strong>, contingent on funding from bilateral
+      donors and Ghana-based community development funds. If you are a potential funder
+      or partner, please contact us at poverty360.org.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════
+     CUMULATIVE IMPACT
+════════════════════════════════════════════════ -->
+<div class="full" style="background:var(--forest);padding:80px 80px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow" style="color:var(--gold-lt);margin-bottom:16px;">
+      <span style="color:var(--gold-lt)">Seven Years of Evidence</span>
+    </div>
+    <h2 class="section-title light rev d1">
+      Cumulative Impact: <em>2019 – 2025</em>
+    </h2>
+    <p class="lead light rev d2">
+      Across six programme cycles, five countries, and three thematic areas —
+      Poverty 360 has maintained one discipline: evidence-based resource allocation
+      to the people most likely to be excluded from formal systems.
+    </p>
+
+    <div class="metrics-grid rev d3" style="margin-top:40px;background:transparent;border-color:rgba(255,255,255,0.1);">
+      <div class="metric-box" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+        <span class="mn" style="color:var(--gold-lt)">58,830+</span>
+        <span class="ml" style="color:rgba(247,244,238,0.55)">Total direct beneficiaries across all programmes</span>
+      </div>
+      <div class="metric-box" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+        <span class="mn" style="color:var(--gold-lt)">5</span>
+        <span class="ml" style="color:rgba(247,244,238,0.55)">Countries: Ghana · Mali · Burkina Faso · Niger · United States</span>
+      </div>
+      <div class="metric-box" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+        <span class="mn" style="color:var(--gold-lt)">11</span>
+        <span class="ml" style="color:rgba(247,244,238,0.55)">Named programmes across health, climate, agriculture, and WASH</span>
+      </div>
+      <div class="metric-box" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+        <span class="mn" style="color:var(--gold-lt)">7</span>
+        <span class="ml" style="color:rgba(247,244,238,0.55)">Years of programme delivery since 2019 founding</span>
+      </div>
+    </div>
+
+    <div class="two-col rev d4" style="margin-top:48px;gap:32px;">
+      <div style="border-top:1px solid rgba(255,255,255,0.15);padding-top:28px;">
+        <p style="font-family:'Jost',sans-serif;font-size:0.7rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:16px;">2019 – 2021 · Foundation Years</p>
+        <p style="font-family:'Jost',sans-serif;font-size:0.88rem;font-weight:300;color:rgba(247,244,238,0.6);line-height:1.75;">
+          21,000+ children fed. 16,330 farmers and women entrepreneurs supported.
+          5,000 solar lamps to Mali. 6,000 clean cookstoves. 10,000 seedlings planted.
+          $595K+ raised. Four nations reached.
+        </p>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.15);padding-top:28px;">
+        <p style="font-family:'Jost',sans-serif;font-size:0.7rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:16px;">2022 – 2025 · Expansion Years</p>
+        <p style="font-family:'Jost',sans-serif;font-size:0.88rem;font-weight:300;color:rgba(247,244,238,0.6);line-height:1.75;">
+          1,250 women enrolled into NHIA health insurance. 200 birth attendants trained in Niger.
+          1,400 women reached with PPH prevention. 2,400 households given clean water access.
+          Decision-support tools deployed across all 50 US states.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FORWARD VISION
+════════════════════════════════════════════════ -->
+<section class="cream rev d1">
+  <div class="eyebrow">Strategic Direction</div>
+  <h2 class="section-title rev d2">Looking <em>Forward: 2026 and Beyond</em></h2>
+  <p class="lead rev d2">
+    Poverty 360 enters 2026 with three parallel tracks — none of which is new.
+    All three are expressions of the same foundational question: how do scarce
+    resources reach the people most likely to be excluded from formal systems?
+  </p>
+
+  <div class="forward-grid rev d3">
+    <div class="forward-card">
+      <span class="tag">Track 1 · West Africa</span>
+      <h4>CLEARWATER Expansion</h4>
+      <p>Extend the CLEARWATER programme to 5,000 additional households across the Tano and Ankobra River basins. Engage Western Region authorities on the structural advocacy case for galamsey remediation. Continue BIRTHSAFE Niger with a second cohort of 200 traditional birth attendants targeting Agadez and Tahoua regions.</p>
+    </div>
+    <div class="forward-card gold-top">
+      <span class="tag">Track 2 · United States</span>
+      <h4>Government Digital Services</h4>
+      <p>Deepen Poverty 360's US presence through advisory work with Medicaid managed care organisations, Federally Qualified Health Centres, and USAID implementing partners. The analytical tools developed during 2022–2024 are the foundation for a fee-for-service technical assistance model that funds the Africa-facing work.</p>
+    </div>
+    <div class="forward-card">
+      <span class="tag">Track 3 · Future Platform</span>
+      <h4>Social Protection Systems</h4>
+      <p>Poverty 360 is developing a modular social protection management platform — a lightweight, open-architecture system purpose-built for low-capacity government environments in West Africa and Southeast Asia. Pilot scoping in 2026. First deployment target: Ghana's Ministry of Social Welfare.</p>
+    </div>
+  </div>
+
+  <div class="context-box rev d4" style="margin-top:48px;">
+    <div class="context-label">Resumption of Annual Reporting</div>
+    <p>
+      This report covers the 2022–2025 period as a consolidated strategic review. From 2025 onwards,
+      <strong>Poverty 360 commits to annual reporting on a calendar-year basis</strong> —
+      with the next annual report covering the full 2025 programme year to be published in
+      Q1 2026. All programme data, financial summaries, and beneficiary figures will be reported
+      transparently, consistent with our commitment to evidence and accountability.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════
+     PARTNERS
+════════════════════════════════════════════════ -->
+<section class="white rev d1">
+  <div class="eyebrow">Acknowledgements</div>
+  <h2 class="section-title rev d2">Partners &amp; <em>Funders</em></h2>
+  <p class="lead rev d2">
+    Poverty 360's work is made possible through the trust of donors, implementing
+    partners, and community organisations who share the belief that evidence-based
+    resource allocation is a moral imperative, not merely a technical exercise.
+  </p>
+  <div class="partners-grid rev d3">
+    <div class="partner-chip">USADF · US African Development Foundation</div>
+    <div class="partner-chip">UKAID · Foreign Commonwealth &amp; Development Office</div>
+    <div class="partner-chip">UNDP · United Nations Development Programme</div>
+    <div class="partner-chip">USAID · US Agency for International Development</div>
+    <div class="partner-chip">Canadian CFLI · Global Affairs Canada</div>
+    <div class="partner-chip">Ghana NHIA · National Health Insurance Authority</div>
+    <div class="partner-chip">Save the Children International</div>
+    <div class="partner-chip">Obama Foundation Leaders Network</div>
+    <div class="partner-chip">Mandela Washington Fellowship · US Dept of State</div>
+    <div class="partner-chip">Harvard Business School</div>
+    <div class="partner-chip">Community Health Partners — Tillabéri &amp; Diffa, Niger</div>
+    <div class="partner-chip">Western Region Community Health Volunteers, Ghana</div>
+  </div>
+  <p class="body rev d4" style="margin-top:36px;">
+    Poverty 360 is registered in Ghana (active). California DBA filing pending.
+    All programme work is conducted under the direction of the Founder &amp; Executive Director
+    with implementing partners on the ground in each programme country. For partnership
+    enquiries, grant opportunities, or to request our full financial disclosure:
+    <strong>poverty360.org</strong>
+  </p>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<div class="report-footer">
+  <div>
+    <div class="footer-org">Poverty <em>360</em></div>
+    <div class="footer-sub">
+      Registered Organisation · Ghana · Est. 2018<br>
+      poverty360.org · Founder: Sherriff Abdul-Hamid
+    </div>
+  </div>
+  <div class="footer-right">
+    Annual Report 2025<br>
+    Covering Programme Period 2022–2025<br>
+    Published: 2025<br>
+    Next Report: Q1 2026
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const revEls = document.querySelectorAll('.rev');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
