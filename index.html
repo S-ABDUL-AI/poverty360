@@ -12,8 +12,9 @@
   <meta property="og:title"       content="Poverty 360 — Evidence-Based Analytics & Social Impact"/>
   <meta property="og:description" content="Decision-support tools and social impact programs for underserved populations across West Africa and the United States. Founded 2018, Ghana."/>
   <meta property="og:url"         content="https://s-abdul-ai.github.io/poverty360/"/>
-  <meta property="og:image"       content="https://raw.githubusercontent.com/S-ABDUL-AI/PORTFOLIO-HUB/main/cover.png"/>
+  <meta property="og:image"       content="https://s-abdul-ai.github.io/poverty360/assets/p360-logo.png"/>
   <meta name="twitter:card"       content="summary_large_image"/>
+  <meta name="twitter:image"      content="https://s-abdul-ai.github.io/poverty360/assets/p360-logo.png"/>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -106,14 +107,31 @@
       align-items: center;
       justify-content: space-between;
     }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--forest);
-      letter-spacing: 0.5px;
+    /* Brand lockup: official logo (includes wordmark) */
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
     }
-    .nav-logo span { color: var(--gold); }
+    .nav-brand:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 10px;
+    }
+    .nav-logo-img {
+      display: block;
+      height: 42px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #002157;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 14px rgba(0, 0, 0, 0.12);
+      /* Crisp scaling on HiDPI */
+      image-rendering: auto;
+      -ms-interpolation-mode: bicubic;
+    }
     .nav-links {
       display: flex;
       gap: 32px;
@@ -196,6 +214,22 @@
       background-image: radial-gradient(circle, rgba(184,134,11,0.25) 1px, transparent 1px);
       background-size: 18px 18px;
       opacity: 0.4;
+    }
+
+    .hero-brand {
+      margin-bottom: 28px;
+    }
+    .hero-logo-img {
+      display: block;
+      width: min(220px, 52vw);
+      height: auto;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #002157;
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2), 0 24px 48px rgba(0, 0, 0, 0.35);
+      image-rendering: auto;
+      -ms-interpolation-mode: bicubic;
     }
 
     .hero-eyebrow {
@@ -742,8 +776,22 @@
     }
 
     .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: min(720px, 100%);
       font-size: 13px;
       color: rgba(253,252,249,0.35);
+    }
+    .footer-logo-img {
+      display: block;
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: #002157;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
     .footer-left strong {
       color: rgba(253,252,249,0.6);
@@ -811,6 +859,9 @@
         align-items: flex-start;
       }
       .tool-btn { align-self: stretch; text-align: center; }
+      .nav-logo-img { height: 38px; max-width: 170px; }
+      .hero-logo-img { width: min(200px, 70vw); }
+      .footer-left { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -821,7 +872,17 @@
 
   <!-- ── NAV ─────────────────────────────────────────────── -->
   <nav>
-    <a href="#home" class="nav-logo" style="text-decoration: none;">Poverty <span>360</span></a>
+    <a href="#home" class="nav-brand" aria-label="Poverty 360 — Home">
+      <img
+        class="nav-logo-img"
+        src="assets/p360-logo.png"
+        width="215"
+        height="215"
+        alt="Poverty 360"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </a>
     <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
       <span class="nav-toggle-bar" aria-hidden="true"></span>
       <span class="nav-toggle-bar" aria-hidden="true"></span>
@@ -842,6 +903,18 @@
     <div class="hero-geo"></div>
     <div class="hero-geo-2"></div>
     <div class="hero-dot-grid"></div>
+
+    <div class="hero-brand fade-in">
+      <img
+        class="hero-logo-img"
+        src="assets/p360-logo.png"
+        width="215"
+        height="215"
+        alt="Poverty 360 logo"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
 
     <p class="hero-eyebrow fade-in">Evidence-Based Analytics & Social Impact · Est. 2018 · Ghana</p>
 
@@ -1726,8 +1799,19 @@
   <!-- ── FOOTER ───────────────────────────────────────────── -->
   <footer>
     <div class="footer-left">
-      <strong>Poverty 360</strong> · Evidence-Based Analytics & Social Impact ·
-      Registered in Ghana · Est. 2018
+      <img
+        class="footer-logo-img"
+        src="assets/p360-logo.png"
+        width="215"
+        height="215"
+        alt=""
+        decoding="async"
+        aria-hidden="true"
+      />
+      <div>
+        <strong>Poverty 360</strong> · Evidence-Based Analytics & Social Impact ·
+        Registered in Ghana · Est. 2018
+      </div>
     </div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/abdul-hamid-sherriff-08583354/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
