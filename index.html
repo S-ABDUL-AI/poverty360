@@ -893,159 +893,164 @@
     }
     .tool-btn:hover { background: var(--orange); }
 
-    /* ── FOUNDER / WHO WE ARE ─────────────────────────────── */
-    #founder.section-founder {
-      background: linear-gradient(180deg, var(--pale) 0%, var(--white) 45%, var(--pale) 100%);
+    /* ── WHO WE ARE: Executive, Board, Advisory ─────────────── */
+    .who-band {
+      background: linear-gradient(180deg, var(--pale) 0%, var(--white) 38%, var(--pale) 100%);
     }
-    .founder-layout {
-      display: grid;
-      grid-template-columns: minmax(240px, 300px) 1fr;
-      gap: 48px 64px;
-      align-items: start;
-      max-width: 1080px;
-      margin: 0 auto;
+    .who-band--alt {
+      background: linear-gradient(180deg, var(--white) 0%, #e8f0fb 50%, var(--white) 100%);
     }
-    .founder-aside {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .founder-photo-frame {
-      aspect-ratio: 4 / 5;
-      max-width: 300px;
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--rule);
-      box-shadow: 0 18px 48px rgba(0, 33, 87, 0.1);
-      background: linear-gradient(165deg, var(--navy-mid) 0%, var(--navy-deep) 100%);
-      position: relative;
-    }
-    .founder-photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .founder-photo-fallback {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(3rem, 10vw, 4.25rem);
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.22);
-      letter-spacing: 0.06em;
-      user-select: none;
-      pointer-events: none;
-    }
-    .founder-main {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      padding: 36px 40px 40px;
-      box-shadow: 0 8px 32px rgba(0, 17, 51, 0.05);
-    }
-    .founder-main h3 {
-      margin-top: 0;
-    }
-    .founder-highlights {
-      list-style: none;
-      margin: 0 0 24px;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 14px;
-    }
-    .founder-highlights li {
-      font-family: 'Jost', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--navy);
-      background: var(--pale);
-      border: 1px solid var(--rule);
-      padding: 8px 14px;
-      border-radius: 4px;
-    }
-
-    .founder-card {
-      background: var(--forest);
-      padding: 32px 28px;
-      color: var(--white);
-      position: sticky;
-      top: 80px;
-      border-radius: 10px;
-      box-shadow: 0 14px 40px rgba(0, 17, 51, 0.18);
-    }
-
-    .founder-name {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 26px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .founder-title {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      margin-bottom: 20px;
-    }
-
-    .founder-bio {
-      font-size: 13px;
-      font-weight: 300;
-      color: rgba(253,252,249,0.72);
-      line-height: 1.75;
-      margin-bottom: 24px;
-    }
-
-    .founder-awards {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .award-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11.5px;
-      color: rgba(253,252,249,0.65);
-    }
-    .award-item::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      background: var(--gold);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .founder-main h3 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(1.35rem, 2.5vw, 1.65rem);
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 18px;
-      line-height: 1.25;
-    }
-
-    .founder-main p {
+    .who-intro {
+      max-width: 640px;
+      margin: 0 auto 40px;
+      text-align: center;
       font-size: 15px;
       font-weight: 300;
       color: var(--body);
-      line-height: 1.78;
-      margin-bottom: 18px;
+      line-height: 1.75;
     }
-
-    .founder-main p:last-of-type { margin-bottom: 0; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 22px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 22px 22px 20px;
+      border-top: 3px solid var(--blue);
+      box-shadow: 0 10px 32px rgba(0, 33, 87, 0.06);
+    }
+    .team-card--ceo {
+      grid-column: 1 / -1;
+      border-top-color: var(--navy);
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.4fr);
+      gap: 28px;
+      align-items: start;
+      padding: 28px 30px;
+    }
+    .team-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 6px;
+      line-height: 1.15;
+    }
+    .team-role {
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+    .team-bio {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.68;
+      margin: 0;
+    }
+    .team-bio + .team-bio { margin-top: 12px; }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .board-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 22px 24px 20px;
+      border-top: 3px solid var(--green);
+      box-shadow: 0 8px 26px rgba(0, 33, 87, 0.05);
+    }
+    .board-card--chair {
+      border-top-color: var(--navy);
+    }
+    .advisor-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .advisor-item {
+      border-bottom: 1px solid var(--rule);
+      padding: 6px 0 14px;
+    }
+    .advisor-item:last-child { border-bottom: none; }
+    .advisor-item summary {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 4px;
+    }
+    .advisor-item summary::-webkit-details-marker { display: none; }
+    .advisor-item summary::after {
+      content: '+';
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .advisor-item[open] summary::after { content: '−'; }
+    .advisor-item .team-bio {
+      padding: 4px 4px 12px;
+      font-size: 13px;
+    }
+    .advisor-tag {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .team-links {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .team-links a {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 11px 20px;
+      border-radius: 2px;
+      text-decoration: none;
+      background: var(--navy);
+      color: var(--white) !important;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .team-links a:hover { background: var(--blue); }
+    .team-links a.is-secondary {
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--navy) !important;
+    }
+    .team-links a.is-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue) !important;
+    }
 
     /* ── PARTNERS ──────────────────────────────────────────── */
     .partners-list {
@@ -1067,10 +1072,6 @@
     .partner-badge:hover {
       border-color: var(--blue);
       color: var(--navy);
-    }
-
-    .section-who-panel .section-sub {
-      max-width: 42rem;
     }
 
     /* ── CONTACT ───────────────────────────────────────────── */
@@ -1258,21 +1259,10 @@
       .mission-grid,
       .programs-grid,
       .tools-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .founder-layout {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .founder-photo-frame {
-        max-width: 260px;
-        margin: 0 auto;
-      }
-      .founder-card { position: static; }
+      .contact-grid,
       .impact-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 32px; }
+      .team-card--ceo { grid-template-columns: 1fr; }
       .hero-photo-field {
         left: 0;
         opacity: 0.18;
@@ -1323,9 +1313,9 @@
           Who we are <span class="nav-caret" aria-hidden="true"></span>
         </button>
         <ul id="nav-panel-who" class="nav-panel" role="menu" aria-labelledby="nav-trigger-who">
-          <li role="none"><a role="menuitem" href="#founder">Founder</a></li>
-          <li role="none"><a role="menuitem" href="#advisory-board">Advisory Board</a></li>
-          <li role="none"><a role="menuitem" href="#leadership">Leadership</a></li>
+          <li role="none"><a role="menuitem" href="#executive-team">Executive team</a></li>
+          <li role="none"><a role="menuitem" href="#advisory-board">Advisory board</a></li>
+          <li role="none"><a role="menuitem" href="#leadership">Board of directors</a></li>
         </ul>
       </li>
       <li class="nav-item nav-dropdown" data-nav-dropdown>
@@ -2127,107 +2117,221 @@
 
   <hr class="divider"/>
 
-  <!-- ── FOUNDER (Who we are) — Paste Google Doc bios into Advisory when the doc is shared as “Anyone with the link can view”. -->
-  <section id="founder" class="section-alt section-founder">
+  <!-- ── EXECUTIVE TEAM (Who we are) ──────────────────────── -->
+  <section id="executive-team" class="section-alt who-band">
     <p class="section-eyebrow">Who we are</p>
-    <h2 class="section-title">Founder</h2>
-    <div class="founder-layout">
-      <aside class="founder-aside">
-        <div class="founder-photo-frame">
-          <!-- Portrait: add assets/founder-portrait.jpg to the repo, then uncomment the line below. -->
-          <!-- <img src="assets/founder-portrait.jpg" width="600" height="750" alt="Sherriff Abdul-Hamid" decoding="async"> -->
-          <span class="founder-photo-fallback" aria-hidden="true">SA</span>
+    <h2 class="section-title">Executive team</h2>
+    <p class="who-intro">
+      Programme delivery and country coordination across West Africa, with the CEO
+      accountable for strategy, partnerships, and impact reporting.
+    </p>
+
+    <div class="team-grid">
+      <article class="team-card team-card--ceo">
+        <div>
+          <p class="team-role">Chief executive officer</p>
+          <h3 class="team-name">Abdul-Hamid Sherriff</h3>
         </div>
-        <div class="founder-card">
-          <div class="founder-name">Sherriff Abdul-Hamid</div>
-          <div class="founder-title">Founder &amp; Chief Executive Officer</div>
-          <p class="founder-bio">
-            Health economist and data scientist working where social protection,
-            government digital services, and applied analytics meet. Poverty 360 is
-            registered in Ghana; he is based in Los Angeles, California.
+        <div>
+          <p class="team-bio">
+            Investor and entrepreneur with more than ten years across private, public, and
+            international development. Former CEO of KNUST Dairy Company Limited, where he
+            helped scale one of Ghana&rsquo;s largest university-led dairy chains. He has led
+            impact programmes in energy, agriculture, sanitation, climate, enterprise
+            development, peacebuilding, and women&rsquo;s empowerment for UNDP, UKAID,
+            Australia&rsquo;s development programme, Canada&rsquo;s Fund for Local Initiatives,
+            and USADF.
           </p>
-          <div class="founder-awards">
-            <div class="award-item">Obama Leaders: Africa — Obama Foundation, 2023</div>
-            <div class="award-item">EB-1A Extraordinary Ability — U.S. Citizenship and Immigration Services, 2024</div>
-            <div class="award-item">Mandela Washington Fellow — U.S. Department of State</div>
-            <div class="award-item">Harvard Business School — Senior Executive Programme</div>
-            <div class="award-item">USADF + Citibank grant — globally competitive tier</div>
-            <div class="award-item">M.S. Economics (Econometrics) — KNUST, Ghana</div>
+          <p class="team-bio">
+            Founder and CEO of Poverty 360; partner at Psalm Corporation, an energy consortium
+            based in C&ocirc;te d&rsquo;Ivoire. Degrees in economics (KNUST), leadership and
+            entrepreneurship (University of Iowa), and management (Harvard Business School).
+            Mandela Washington Fellow.
+          </p>
+          <div class="team-links">
+            <a href="https://www.linkedin.com/in/abdul-hamid-sherriff-08583354/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://s-abdul-ai.github.io" target="_blank" rel="noopener noreferrer" class="is-secondary">Portfolio</a>
           </div>
         </div>
-      </aside>
+      </article>
 
-      <div class="founder-main">
-        <ul class="founder-highlights" aria-label="Focus areas">
-          <li>West Africa field programmes</li>
-          <li>Health systems &amp; financing</li>
-          <li>U.S. decision-support &amp; analytics</li>
-        </ul>
-        <h3>When policy meets reality, someone still has to decide.</h3>
-        <p>
-          Sherriff Abdul-Hamid founded <strong>Poverty 360</strong> because well-funded programmes
-          still miss the people they are meant for when delivery systems were never designed
-          around users. The organisation works in <strong>Ghana, Mali, Burkina Faso, and Niger</strong>
-          on community-led initiatives across livelihoods, health, nutrition, energy, and safety—priorities
-          reflected in his <a href="https://www.obama.org/programs/leaders/africa/2023/sherriff-abdul-hamid/" target="_blank" rel="noopener noreferrer" style="color: var(--blue); border-bottom: 1px solid rgba(0, 115, 207, 0.35);">Obama Leaders: Africa</a> profile.
+      <article class="team-card">
+        <h3 class="team-name">Isabella Sannette Agyekum</h3>
+        <p class="team-role">Ghana coordinator</p>
+        <p class="team-bio">
+          Four years in programme design and delivery for women in rural and peri-urban
+          communities. Experience with disability and rehabilitation organisations across Ghana;
+          research and training in entrepreneurship, community rehabilitation, and sign language.
+          BSc in Disability and Rehabilitation Studies (KNUST); MBA (University of Leipzig).
+          French and sign language.
         </p>
-        <p>
-          The same discipline supports partners in the <strong>United States</strong>—including telehealth
-          reaching <strong>150,000+</strong> patients, national health insurance onboarding for
-          <strong>1,250</strong> vulnerable women in Ghana, and analytics tools used by programme officers in all
-          <strong>50 states</strong>.
-        </p>
-        <p>
-          In <strong>2024</strong>, <strong>U.S. Citizenship and Immigration Services</strong> approved his
-          <strong>EB-1A</strong> petition on the basis of that body of work—an independent signal that the impact is both deep and documented.
-        </p>
+      </article>
 
-        <div style="margin-top: 28px;">
-          <a href="https://www.linkedin.com/in/abdul-hamid-sherriff-08583354/"
-             target="_blank" rel="noopener noreferrer"
-             style="display: inline-block; background: var(--forest);
-                    color: white; font-size: 11px; font-weight: 600;
-                    letter-spacing: 1.5px; text-transform: uppercase;
-                    padding: 12px 24px; border-radius: 2px; margin-right: 12px;
-                    transition: background .2s;">
-            LinkedIn →
-          </a>
-          <a href="https://s-abdul-ai.github.io"
-             target="_blank" rel="noopener noreferrer"
-             style="display: inline-block; border: 1px solid var(--rule);
-                    color: var(--forest); font-size: 11px; font-weight: 600;
-                    letter-spacing: 1.5px; text-transform: uppercase;
-                    padding: 12px 24px; border-radius: 2px;
-                    transition: border-color .2s;">
-            Portfolio →
-          </a>
-        </div>
-      </div>
+      <article class="team-card">
+        <h3 class="team-name">Ouattara Mafine N&rsquo;Charick</h3>
+        <p class="team-role">Burkina Faso coordinator</p>
+        <p class="team-bio">
+          Professional translator (French, English, Portuguese) across health, education,
+          agriculture, human rights, and relief for Plan, UNDP, WAHO, CARE, and others.
+          Former roles with Burkina Faso&rsquo;s social security fund and ministries. BA in
+          Translation (Ghana Institute of Languages); advanced diploma in business communication
+          (Universit&eacute; Nazi Boni).
+        </p>
+      </article>
+
+      <article class="team-card">
+        <h3 class="team-name">Mahamadou Seydou Sissoko</h3>
+        <p class="team-role">Mali coordinator</p>
+        <p class="team-bio">
+          Management and marketing consultant supporting SMEs and farm-based organisations
+          across rural and peri-urban Mali in entrepreneurship, energy, and information
+          technology. BBA (human resources), Lyc&eacute;e Fraternit&eacute; de Sangar&eacute;bougou.
+        </p>
+      </article>
+
+      <article class="team-card">
+        <h3 class="team-name">Francisca Mensah</h3>
+        <p class="team-role">Finance officer</p>
+        <p class="team-bio">
+          MSc Development Finance (University of Ghana); BSc Economics (KNUST). Supports
+          budgeting, reporting, and financial controls for field programmes and partnerships.
+        </p>
+      </article>
     </div>
   </section>
 
   <hr class="divider"/>
 
   <!-- ── ADVISORY BOARD (Who we are) ───────────────────────── -->
-  <section id="advisory-board" class="section-cream section-who-panel">
+  <section id="advisory-board" class="section-cream who-band--alt">
     <p class="section-eyebrow">Who we are</p>
-    <h2 class="section-title">Advisory Board</h2>
-    <p class="section-sub">
-      We are convening a compact advisory board—leaders in <strong>global health</strong>,
-      <strong>public finance</strong>, and <strong>digital government</strong>—to stress-test our methods and help evidence reach decision-makers faster.
-      Expressions of interest: <a href="#contact" style="color: var(--blue); border-bottom: 1px solid rgba(0, 115, 207, 0.35);">Contact</a>.
+    <h2 class="section-title">Advisory board</h2>
+    <p class="who-intro">
+      Independent experts who strengthen our methods in WASH, rural health, agriculture,
+      leadership education, energy, and public-sector delivery. Open a name to read more.
+      To connect with the organisation, use <a href="#contact" style="color: var(--blue); border-bottom: 1px solid rgba(0, 115, 207, 0.35);">Contact</a>.
     </p>
+
+    <div class="advisor-list">
+      <details class="advisor-item">
+        <summary>Dr. Kelly Baker</summary>
+        <p class="team-bio">
+          Associate Professor, Department of Epidemiology and Environmental Health, University at Buffalo (joined 2024); previously University of Iowa and Emory University.
+          Microbiologist and epidemiologist focused on water, sanitation, hygiene (WASH), enteric pathogens, and maternal and child health. PhD in molecular microbiology and immunology (University of Maryland).
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>Professor Diane Rohlman</summary>
+        <p class="team-bio">
+          Associate Dean for Research, Professor, and Endowed Chair in Rural Safety and Health, University of Iowa College of Public Health. Director of the Graduate Program in Agricultural Safety and Health and the Healthier Workforce Center of the Midwest. PhD in experimental psychology (Bowling Green State University); work spans cognitive ergonomics, agriculture, and rural health in the United States and Africa.
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>Professor Kimm Harris</summary>
+        <p class="team-bio">
+          Associate Professor of Practice in Management and Entrepreneurship, Tippie College of Business and John Pappajohn Entrepreneurial Center, University of Iowa. Entrepreneur and educator focused on innovation, teams, and cross-border collaboration (MBA Exchange, Rotary International). MBA (Iowa); BSc in communications, counselling, and English (Université Laval).
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>Onyeche Tefase</summary>
+        <p class="team-bio">
+          Vice President, Strategy, Technology &amp; Innovation, Industrial Applications, Siemens Energy. Career across Siemens UK, Germany, USA, and Nigeria; former Managing Director &amp; CEO of Siemens Nigeria. MPhil in electrical engineering (Cambridge); BEng in electrical and electronic engineering (University of Nottingham).
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>Carla Tishler</summary>
+        <p class="team-bio">
+          Former Senior Director, Global Markets, and Executive Education portfolio leader at Harvard Business School—overseeing executive education worldwide (including Shanghai and Mumbai) and digital learning products for faculty and students. MEd in technology in education (Harvard); BA in English literature (Smith College).
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>Nicky Kingston</summary>
+        <p class="team-bio">
+          Private Secretary to the Minister for Workplace Relations and Safety, New Zealand Parliament. Prior roles in policy, energy, and international development—including programmes in Ghana on human rights, women&rsquo;s empowerment, youth, agriculture, and environment. BA and LLB in law and French (University of Otago); experience with the ILO in Geneva.
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>Professor Christopher Antwi</summary>
+        <p class="team-bio">
+          Professor of Animal Science, Kwame Nkrumah University of Science and Technology (KNUST), Ghana. Research on greenhouse gases, climate adaptation, and livestock nutrition; consultant to AUSAID, Canada Fund, GIZ, and others. PhD in animal nutrition (UC Davis); Norman Borlaug and LEARN fellowships.
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>John Paul Engel</summary>
+        <p class="team-bio">
+          International consultant, speaker, and author working across twelve countries since 1996. Phi Beta Kappa graduate of the University of Iowa; MBA with international distinction (Chicago Booth). Vice Chair, American Red Cross, serving communities across dozens of U.S. jurisdictions; commentary featured in major business media.
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>André de Witt</summary>
+        <p class="team-bio">
+          Director and group executive at BBD, a global software engineering firm. Twenty-five years delivering complex digital, insurance, treasury, identity, and public-sector programmes across banking and government. Honours in industrial engineering (University of Pretoria); former Accenture executive.
+        </p>
+      </details>
+      <details class="advisor-item">
+        <summary>Patricia Araba Annan</summary>
+        <p class="team-bio">
+          Lawyer and development professional focused on women&rsquo;s and children&rsquo;s rights—programmes with Gender Studies and Human Rights Documentation Centre, WiLDAF, and others. Founder of Women Aspire. LLB (University of Ghana); MA in development studies (University of Cape Coast). Mandela Washington Fellow.
+        </p>
+      </details>
+    </div>
   </section>
 
   <hr class="divider"/>
 
-  <!-- ── LEADERSHIP (Who we are) ───────────────────────────── -->
-  <section id="leadership" class="section-alt section-who-panel">
+  <!-- ── BOARD OF DIRECTORS (Who we are) ─────────────────── -->
+  <section id="leadership" class="section-alt who-band">
     <p class="section-eyebrow">Who we are</p>
-    <h2 class="section-title">Leadership</h2>
-    <p class="section-sub">
-      Day-to-day leadership sits with the <strong>Founder &amp; CEO</strong>, supported by programme and analytics leads across West Africa and U.S. partner engagements. Named roles by geography and workstream will appear here as the team grows.
+    <h2 class="section-title">Board of directors</h2>
+    <p class="who-intro">
+      Governance and fiduciary oversight for Poverty 360. The board sets strategic direction,
+      approves major partnerships, and safeguards programme quality and ethics.
     </p>
+
+    <div class="board-grid">
+      <article class="board-card board-card--chair">
+        <h3 class="team-name">Professor Dadson Awunyo-Vitor</h3>
+        <p class="team-role">Board chair</p>
+        <p class="team-bio">
+          Professor of agricultural economics (KNUST); former Director, Institute of Local Government, Ghana. Research and consulting for IFAD, AfDB, EU, GIZ, and Ghana&rsquo;s Ministry of Food and Agriculture. PhD in agricultural economics (University of Ghana); MSc (Imperial College London); fellow of ACCA (UK) and member of ICA Ghana.
+        </p>
+      </article>
+      <article class="board-card">
+        <h3 class="team-name">Dr. Sephora Larissa Fondop–Medjowe</h3>
+        <p class="team-role">Vice-chair</p>
+        <p class="team-bio">
+          Pharmacist and public-health administrator with nine years across Ghana, Egypt, and Zimbabwe—including hospital practice and large-scale community projects on maternal health, WASH, HIV, and COVID-19, reaching tens of thousands of rural residents. PharmD (KNUST); MPH (Liverpool John Moores University). Member, Pharmaceutical Societies of Ghana and Cameroon.
+        </p>
+      </article>
+      <article class="board-card">
+        <h3 class="team-name">Dr. Sylvester Akpah</h3>
+        <p class="team-role">Director</p>
+        <p class="team-bio">
+          IT consultant and lecturer (University of Mines and Technology, Ghana); Executive Director, Firm Health Ghana Foundation; Western Regional Coordinator, Operation Smile Ghana; UNDP/GEF projects on responsible artisanal mining. BSc, MSc, and PhD in information technology (Ghanaian universities). Mandela Washington Fellow.
+        </p>
+      </article>
+      <article class="board-card">
+        <h3 class="team-name">Dr. Gifty Quarshie-Ngissah</h3>
+        <p class="team-role">Director</p>
+        <p class="team-bio">
+          Obstetrician–gynaecologist and Medical Director, Midway Hospital, Ghana—overseeing multidisciplinary clinical services, obstetric emergencies, and training. MBChB (University of Ghana); certificate in health administration (GIMPA). Fellow, Ghana College of Surgeons; Mandela Washington Fellow.
+        </p>
+      </article>
+      <article class="board-card">
+        <h3 class="team-name">Abdul-Hamid Sherriff</h3>
+        <p class="team-role">Ex officio · CEO</p>
+        <p class="team-bio">
+          Serves on the board in an ex officio capacity while leading day-to-day management as chief executive officer (see <a href="#executive-team">Executive team</a>).
+        </p>
+      </article>
+      <article class="board-card">
+        <h3 class="team-name">Dr. Josephine Akuba Buah Timtey</h3>
+        <p class="team-role">Director</p>
+        <p class="team-bio">
+          Food scientist and social entrepreneur—co-founder of Timtey&rsquo;s Restaurant &amp; Café and Hosserv Company Limited, linking smallholders to markets and vocational training for more than 2,000 women and girls. BSc, MSc, and PhD in food science and technology (KNUST). Mandela Washington Fellow.
+        </p>
+      </article>
+    </div>
   </section>
 
   <hr class="divider"/>
@@ -2345,6 +2449,14 @@
   </div>
 
   <script>
+    (function () {
+      if (location.hash === "#founder") {
+        history.replaceState(null, "", "#executive-team");
+        var ex = document.getElementById("executive-team");
+        if (ex) ex.scrollIntoView({ behavior: "auto", block: "start" });
+      }
+    })();
+
     (function () {
       var btn = document.querySelector(".nav-toggle");
       var nav = document.getElementById("primary-nav");
