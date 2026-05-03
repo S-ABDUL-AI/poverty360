@@ -171,8 +171,11 @@
     .nav-links {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 24px 28px;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links > li {
+      position: relative;
       list-style: none;
     }
     .nav-links a {
@@ -185,54 +188,97 @@
     }
     .nav-links a:hover { color: var(--blue); }
 
-    .nav-links > li.nav-group {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+    /* NGO-style dropdown (Mercy Corps–style: top label + nested links) */
+    .nav-dropdown > .nav-trigger {
+      display: inline-flex;
+      align-items: center;
       gap: 6px;
-    }
-    .nav-heading {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      color: var(--navy);
-      line-height: 1.2;
-    }
-    .nav-sub {
-      list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .nav-sub a {
-      font-size: 11px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--muted);
+      transition: color .2s;
     }
-    .nav-sub a:hover { color: var(--blue); }
-
-    #who-we-are .who-sub-block {
-      max-width: 720px;
+    .nav-dropdown > .nav-trigger:hover,
+    .nav-dropdown > .nav-trigger[aria-expanded="true"] {
+      color: var(--blue);
     }
-    #who-we-are .who-sub-block h3 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(22px, 2.6vw, 30px);
-      font-weight: 600;
+    .nav-dropdown > .nav-trigger:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 4px;
+    }
+    .nav-caret {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid currentColor;
+      opacity: 0.75;
+      transform: translateY(1px);
+      transition: transform .2s;
+    }
+    .nav-dropdown.is-open > .nav-trigger .nav-caret {
+      transform: rotate(180deg) translateY(-1px);
+    }
+    .nav-panel {
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+      min-width: 220px;
+      position: absolute;
+      left: 0;
+      top: calc(100% + 10px);
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      box-shadow: 0 16px 40px rgba(0, 17, 51, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity .2s, transform .2s, visibility .2s;
+      z-index: 120;
+    }
+    .nav-dropdown.is-open > .nav-panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    @media (min-width: 901px) {
+      .nav-dropdown:hover > .nav-panel,
+      .nav-dropdown:focus-within > .nav-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    }
+    .nav-panel li {
+      list-style: none;
+    }
+    .nav-panel a {
+      display: block;
+      padding: 10px 18px;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: none;
+      font-weight: 500;
       color: var(--ink);
-      line-height: 1.2;
-      margin: 0 0 12px;
+      border-left: 3px solid transparent;
+      transition: background .15s, border-color .15s, color .15s;
     }
-    #who-we-are #founder {
-      scroll-margin-top: 88px;
-    }
-    #who-we-are #advisory-board,
-    #who-we-are #leadership {
-      scroll-margin-top: 88px;
+    .nav-panel a:hover {
+      background: var(--pale);
+      border-left-color: var(--blue);
+      color: var(--navy);
     }
 
     .nav-toggle {
@@ -459,6 +505,28 @@
       font-weight: 300;
       color: var(--body);
       line-height: 1.85;
+    }
+
+    .mission-to-impact {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin: 8px 0 0;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+    }
+    .mission-to-impact a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--navy);
+      border-bottom: 2px solid var(--blue);
+      padding-bottom: 3px;
+      transition: color .2s, border-color .2s;
+    }
+    .mission-to-impact a:hover {
+      color: var(--blue);
+      border-bottom-color: var(--orange);
     }
 
     .mission-pillars {
@@ -892,7 +960,7 @@
         gap: 0;
         padding: 8px 24px 20px;
         margin: 0;
-        background: rgba(247, 244, 238, 0.98);
+        background: rgba(251, 253, 255, 0.98);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--rule);
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
@@ -901,19 +969,45 @@
       .nav-links.is-open { display: flex; }
       .nav-links > li { border-bottom: 1px solid var(--rule); }
       .nav-links > li:last-child { border-bottom: none; }
-      .nav-links a {
+      .nav-links > li > a {
         display: block;
         padding: 14px 4px;
       }
-      .nav-heading {
+      .nav-dropdown > .nav-trigger {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 4px;
+        text-align: left;
+      }
+      .nav-panel {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0 0 8px 8px;
+        min-width: 0;
+        background: transparent;
+      }
+      .nav-dropdown.is-open > .nav-panel {
         display: block;
-        padding: 12px 4px 4px;
       }
-      .nav-sub {
-        padding: 0 4px 8px 12px;
+      .nav-panel a {
+        padding: 10px 8px 10px 12px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted);
       }
-      .nav-sub a {
-        padding: 10px 4px;
+      .nav-panel a:hover {
+        color: var(--blue);
+        background: transparent;
+        border-left-color: transparent;
       }
       section { padding: 64px 24px; }
       .hero { padding: 100px 24px 64px; }
@@ -940,7 +1034,7 @@
 
 <body>
 
-  <a class="skip-link" href="#who-we-are">Skip to content</a>
+  <a class="skip-link" href="#mission">Skip to content</a>
 
   <!-- ── NAV ─────────────────────────────────────────────── -->
   <nav>
@@ -963,24 +1057,27 @@
       <span class="nav-toggle-bar" aria-hidden="true"></span>
     </button>
     <ul id="primary-nav" class="nav-links">
-      <li class="nav-group">
-        <span class="nav-heading">Who we are</span>
-        <ul class="nav-sub" aria-label="Who we are">
-          <li><a href="#founder">Founder</a></li>
-          <li><a href="#advisory-board">Advisory Board</a></li>
-          <li><a href="#leadership">Leadership</a></li>
+      <li class="nav-item nav-dropdown" data-nav-dropdown>
+        <button type="button" class="nav-trigger" id="nav-trigger-who" aria-expanded="false" aria-controls="nav-panel-who" aria-haspopup="true">
+          Who we are <span class="nav-caret" aria-hidden="true"></span>
+        </button>
+        <ul id="nav-panel-who" class="nav-panel" role="menu" aria-labelledby="nav-trigger-who">
+          <li role="none"><a role="menuitem" href="#founder">Founder</a></li>
+          <li role="none"><a role="menuitem" href="#advisory-board">Advisory Board</a></li>
+          <li role="none"><a role="menuitem" href="#leadership">Leadership</a></li>
         </ul>
       </li>
-      <li class="nav-group">
-        <span class="nav-heading">What we do</span>
-        <ul class="nav-sub" aria-label="What we do">
-          <li><a href="#mission">Mission</a></li>
-          <li><a href="#programs">Programs</a></li>
-          <li><a href="#impact">Impact</a></li>
+      <li class="nav-item nav-dropdown" data-nav-dropdown>
+        <button type="button" class="nav-trigger" id="nav-trigger-what" aria-expanded="false" aria-controls="nav-panel-what" aria-haspopup="true">
+          What we do <span class="nav-caret" aria-hidden="true"></span>
+        </button>
+        <ul id="nav-panel-what" class="nav-panel" role="menu" aria-labelledby="nav-trigger-what">
+          <li role="none"><a role="menuitem" href="#mission">Mission</a></li>
+          <li role="none"><a role="menuitem" href="#programs">Programs</a></li>
         </ul>
       </li>
-      <li><a href="#tools">Tools</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li class="nav-item"><a href="#tools">Tools</a></li>
+      <li class="nav-item"><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -1027,113 +1124,6 @@
 
     <div class="hero-scroll fade-in d5">Scroll to explore</div>
   </section>
-
-  <!-- ── WHO WE ARE ────────────────────────────────────────── -->
-  <section id="who-we-are" class="section-alt">
-    <p class="section-eyebrow">Who we are</p>
-    <h2 class="section-title">Governance &amp; leadership</h2>
-    <p class="section-sub">
-      The people guiding Poverty 360&rsquo;s strategy, partnerships, and delivery across West Africa and the United States.
-    </p>
-
-    <div id="founder">
-      <p class="section-eyebrow">Founder</p>
-      <div class="founder-grid">
-
-        <div class="founder-card">
-          <div class="founder-name">Sherriff Abdul-Hamid</div>
-          <div class="founder-title">Founder & Executive Director</div>
-          <p class="founder-bio">
-            Health economist, data scientist, and product leader
-            working at the intersection of evidence-based analytics,
-            government digital services, and social protection.
-            Based in Los Angeles, CA.
-          </p>
-          <div class="founder-awards">
-            <div class="award-item">EB1-A Extraordinary Ability — USCIS, 2024</div>
-            <div class="award-item">Obama Foundation Leaders Award — Top 1.3%, 2023</div>
-            <div class="award-item">Mandela Washington Fellow — Top 0.3%, U.S. Dept of State</div>
-            <div class="award-item">Harvard Business School — Senior Executive Program</div>
-            <div class="award-item">USADF + Citibank Grant — Top 0.1% globally</div>
-            <div class="award-item">MS Economics (Econometrics) — KNUST, Ghana</div>
-          </div>
-        </div>
-
-        <div class="founder-story">
-          <h3>Building from the gap between what a law says and what a system delivers.</h3>
-          <p>
-            In 2018, Sherriff Abdul-Hamid founded Poverty 360 with a single
-            observation: well-funded programs consistently fail to reach the
-            people they were designed to serve — not because of bad intentions,
-            but because the systems delivering the benefits were never built for
-            the people using them.
-          </p>
-          <p>
-            Over seven years, that observation has driven field programs in four
-            African countries, a telemedicine platform serving 150,000+ patients,
-            a national health insurance enrollment system for 1,250 vulnerable
-            women, and a suite of decision-support tools now used by program
-            officers managing SNAP, Medicaid, and global health funding.
-          </p>
-          <p>
-            The thread connecting all of it is the same question: what do you do
-            when evidence is incomplete, resources are limited, and a decision
-            still has to be made? Poverty 360 builds the frameworks, tools, and
-            institutional relationships that help the right people answer that
-            question — and act on the answer.
-          </p>
-          <p>
-            In 2024, the U.S. Citizenship and Immigration Services approved
-            Sherriff's EB1-A Extraordinary Ability petition on the basis of this
-            body of work — an independent validation of its global significance.
-          </p>
-
-          <div style="margin-top: 32px;">
-            <a href="https://www.linkedin.com/in/abdul-hamid-sherriff-08583354/"
-               target="_blank" rel="noopener noreferrer"
-               style="display: inline-block; background: var(--forest);
-                      color: white; font-size: 11px; font-weight: 600;
-                      letter-spacing: 1.5px; text-transform: uppercase;
-                      padding: 12px 24px; border-radius: 2px; margin-right: 12px;
-                      transition: background .2s;">
-              LinkedIn →
-            </a>
-            <a href="https://s-abdul-ai.github.io"
-               target="_blank" rel="noopener noreferrer"
-               style="display: inline-block; border: 1px solid var(--rule);
-                      color: var(--forest); font-size: 11px; font-weight: 600;
-                      letter-spacing: 1.5px; text-transform: uppercase;
-                      padding: 12px 24px; border-radius: 2px;
-                      transition: border-color .2s;">
-              Portfolio →
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider"/>
-
-    <article id="advisory-board" class="who-sub-block">
-      <p class="section-eyebrow">Advisory Board</p>
-      <h3>Independent counsel &amp; sector depth</h3>
-      <p class="section-sub">
-        Our advisory board brings together leaders in global health, public finance, digital government, and community-led delivery. Member profiles and public summaries will be published here as the board is formalised.
-      </p>
-    </article>
-
-    <hr class="divider"/>
-
-    <article id="leadership" class="who-sub-block">
-      <p class="section-eyebrow">Leadership</p>
-      <h3>Executive &amp; programme leadership</h3>
-      <p class="section-sub">
-        Leadership oversees strategy, partnerships, grant stewardship, and technical quality across field programmes and analytics products. Organisation charts and role descriptions will be added here as the team grows.
-      </p>
-    </article>
-  </section>
-
-  <hr class="divider"/>
 
   <!-- ── MISSION ──────────────────────────────────────────── -->
   <section id="mission" class="section-alt">
@@ -1183,68 +1173,9 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── PROGRAMS ─────────────────────────────────────────── -->
-  <section id="programs" class="section-cream">
-    <p class="section-eyebrow">Our Programs</p>
-    <h2 class="section-title">What We Do on the Ground</h2>
-    <p class="section-sub">
-      Direct delivery programs across four thematic areas —
-      each grounded in evidence, measured rigorously, and
-      designed to reach the people most often missed.
-    </p>
-
-    <div class="programs-grid">
-      <div class="program-card">
-        <div class="program-icon">🏥</div>
-        <div class="program-region">Ghana · West Africa</div>
-        <h3 class="program-title">Healthcare Access & Insurance Enrollment</h3>
-        <p class="program-desc">
-          Partnered with Ghana's National Health Insurance Authority to
-          redesign digital enrollment workflows for vulnerable populations.
-          Enrolled 1,250 women and abuse survivors into national health
-          coverage — demonstrating that the gap between eligibility and
-          enrollment is almost always a systems problem, not a policy problem.
-        </p>
-      </div>
-      <div class="program-card">
-        <div class="program-icon">⚡</div>
-        <div class="program-region">Mali</div>
-        <h3 class="program-title">Renewable Energy for Rural Schools</h3>
-        <p class="program-desc">
-          Delivered solar power to 50+ rural schools with no previous access
-          to electricity. Distributed 10,000 solar lamps — increasing
-          children's study hours by 700%. Clean cooking solutions reduced
-          monthly household fuel costs by $8 and CO₂ emissions by 0.2 tons
-          per household per month.
-        </p>
-      </div>
-      <div class="program-card">
-        <div class="program-icon">🌾</div>
-        <div class="program-region">Niger · Burkina Faso</div>
-        <h3 class="program-title">Food Security & Nutrition</h3>
-        <p class="program-desc">
-          Directed the Food Security and Nutrition Program in Niger —
-          significantly reducing child malnutrition through sustainable
-          agricultural practices and nutritional education. Empowered
-          600 farmers in Burkina Faso with climate-smart interventions,
-          boosting revenue margins by 60%.
-        </p>
-      </div>
-      <div class="program-card">
-        <div class="program-icon">📊</div>
-        <div class="program-region">United States · Global</div>
-        <h3 class="program-title">Decision Analytics & Government Digital Services</h3>
-        <p class="program-desc">
-          Expanding Poverty 360's evidence-based approach into US government
-          digital services — building decision-support tools for SNAP program
-          officers, Medicaid administrators, and global health funders.
-          The same analytical rigour that informed West Africa field programs
-          now powers tools used by program officers across 50 US states.
-        </p>
-      </div>
+      <p class="mission-to-impact">
+        <a href="#impact">Our impact in the field →</a>
+      </p>
     </div>
   </section>
 
@@ -1747,6 +1678,68 @@
     })();
   </script>
 
+  <!-- ── PROGRAMS ─────────────────────────────────────────── -->
+  <section id="programs" class="section-cream">
+    <p class="section-eyebrow">Our Programs</p>
+    <h2 class="section-title">What We Do on the Ground</h2>
+    <p class="section-sub">
+      Direct delivery programs across four thematic areas —
+      each grounded in evidence, measured rigorously, and
+      designed to reach the people most often missed.
+    </p>
+
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-icon">🏥</div>
+        <div class="program-region">Ghana · West Africa</div>
+        <h3 class="program-title">Healthcare Access & Insurance Enrollment</h3>
+        <p class="program-desc">
+          Partnered with Ghana's National Health Insurance Authority to
+          redesign digital enrollment workflows for vulnerable populations.
+          Enrolled 1,250 women and abuse survivors into national health
+          coverage — demonstrating that the gap between eligibility and
+          enrollment is almost always a systems problem, not a policy problem.
+        </p>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">⚡</div>
+        <div class="program-region">Mali</div>
+        <h3 class="program-title">Renewable Energy for Rural Schools</h3>
+        <p class="program-desc">
+          Delivered solar power to 50+ rural schools with no previous access
+          to electricity. Distributed 10,000 solar lamps — increasing
+          children's study hours by 700%. Clean cooking solutions reduced
+          monthly household fuel costs by $8 and CO₂ emissions by 0.2 tons
+          per household per month.
+        </p>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">🌾</div>
+        <div class="program-region">Niger · Burkina Faso</div>
+        <h3 class="program-title">Food Security & Nutrition</h3>
+        <p class="program-desc">
+          Directed the Food Security and Nutrition Program in Niger —
+          significantly reducing child malnutrition through sustainable
+          agricultural practices and nutritional education. Empowered
+          600 farmers in Burkina Faso with climate-smart interventions,
+          boosting revenue margins by 60%.
+        </p>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">📊</div>
+        <div class="program-region">United States · Global</div>
+        <h3 class="program-title">Decision Analytics & Government Digital Services</h3>
+        <p class="program-desc">
+          Expanding Poverty 360's evidence-based approach into US government
+          digital services — building decision-support tools for SNAP program
+          officers, Medicaid administrators, and global health funders.
+          The same analytical rigour that informed West Africa field programs
+          now powers tools used by program officers across 50 US states.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ── TOOLS ────────────────────────────────────────────── -->
   <section id="tools" class="section-alt">
     <p class="section-eyebrow">Decision Tools</p>
@@ -1817,6 +1810,112 @@
         View full portfolio →
       </a>
     </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- ── FOUNDER ──────────────────────────────────────────── -->
+  <section id="founder" class="section-alt">
+    <p class="section-eyebrow">Our Founder</p>
+    <div class="founder-grid">
+
+      <div class="founder-card">
+        <div class="founder-name">Sherriff Abdul-Hamid</div>
+        <div class="founder-title">Founder & Executive Director</div>
+        <p class="founder-bio">
+          Health economist, data scientist, and product leader
+          working at the intersection of evidence-based analytics,
+          government digital services, and social protection.
+          Based in Los Angeles, CA.
+        </p>
+        <div class="founder-awards">
+          <div class="award-item">EB1-A Extraordinary Ability — USCIS, 2024</div>
+          <div class="award-item">Obama Foundation Leaders Award — Top 1.3%, 2023</div>
+          <div class="award-item">Mandela Washington Fellow — Top 0.3%, U.S. Dept of State</div>
+          <div class="award-item">Harvard Business School — Senior Executive Program</div>
+          <div class="award-item">USADF + Citibank Grant — Top 0.1% globally</div>
+          <div class="award-item">MS Economics (Econometrics) — KNUST, Ghana</div>
+        </div>
+      </div>
+
+      <div class="founder-story">
+        <h3>Building from the gap between what a law says and what a system delivers.</h3>
+        <p>
+          In 2018, Sherriff Abdul-Hamid founded Poverty 360 with a single
+          observation: well-funded programs consistently fail to reach the
+          people they were designed to serve — not because of bad intentions,
+          but because the systems delivering the benefits were never built for
+          the people using them.
+        </p>
+        <p>
+          Over seven years, that observation has driven field programs in four
+          African countries, a telemedicine platform serving 150,000+ patients,
+          a national health insurance enrollment system for 1,250 vulnerable
+          women, and a suite of decision-support tools now used by program
+          officers managing SNAP, Medicaid, and global health funding.
+        </p>
+        <p>
+          The thread connecting all of it is the same question: what do you do
+          when evidence is incomplete, resources are limited, and a decision
+          still has to be made? Poverty 360 builds the frameworks, tools, and
+          institutional relationships that help the right people answer that
+          question — and act on the answer.
+        </p>
+        <p>
+          In 2024, the U.S. Citizenship and Immigration Services approved
+          Sherriff's EB1-A Extraordinary Ability petition on the basis of this
+          body of work — an independent validation of its global significance.
+        </p>
+
+        <div style="margin-top: 32px;">
+          <a href="https://www.linkedin.com/in/abdul-hamid-sherriff-08583354/"
+             target="_blank" rel="noopener noreferrer"
+             style="display: inline-block; background: var(--forest);
+                    color: white; font-size: 11px; font-weight: 600;
+                    letter-spacing: 1.5px; text-transform: uppercase;
+                    padding: 12px 24px; border-radius: 2px; margin-right: 12px;
+                    transition: background .2s;">
+            LinkedIn →
+          </a>
+          <a href="https://s-abdul-ai.github.io"
+             target="_blank" rel="noopener noreferrer"
+             style="display: inline-block; border: 1px solid var(--rule);
+                    color: var(--forest); font-size: 11px; font-weight: 600;
+                    letter-spacing: 1.5px; text-transform: uppercase;
+                    padding: 12px 24px; border-radius: 2px;
+                    transition: border-color .2s;">
+            Portfolio →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- ── ADVISORY BOARD (Who we are) ───────────────────────── -->
+  <section id="advisory-board" class="section-cream">
+    <p class="section-eyebrow">Who we are</p>
+    <h2 class="section-title">Advisory Board</h2>
+    <p class="section-sub">
+      We are assembling a small advisory board of practitioners in global health,
+      public finance, and digital government — to stress-test our methods and
+      open doors where evidence should travel faster. If you are interested in
+      serving, reach out via <a href="#contact" style="color: var(--blue); border-bottom: 1px solid rgba(0, 115, 207, 0.35);">Contact</a>.
+    </p>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- ── LEADERSHIP (Who we are) ───────────────────────────── -->
+  <section id="leadership" class="section-alt">
+    <p class="section-eyebrow">Who we are</p>
+    <h2 class="section-title">Leadership</h2>
+    <p class="section-sub">
+      Day-to-day leadership sits with the founder and executive director, supported
+      by project leads across field programs and analytics delivery. As we grow,
+      this page will list named roles responsible for each geography and workstream.
+    </p>
   </section>
 
   <hr class="divider"/>
@@ -1930,17 +2029,55 @@
       var btn = document.querySelector(".nav-toggle");
       var nav = document.getElementById("primary-nav");
       if (!btn || !nav) return;
+
+      var mqMobile = window.matchMedia("(max-width: 900px)");
+
+      function closeAllDropdowns() {
+        nav.querySelectorAll(".nav-dropdown").forEach(function (dd) {
+          dd.classList.remove("is-open");
+          var t = dd.querySelector(".nav-trigger");
+          if (t) t.setAttribute("aria-expanded", "false");
+        });
+      }
+
       btn.addEventListener("click", function () {
         var open = nav.classList.toggle("is-open");
         btn.setAttribute("aria-expanded", open ? "true" : "false");
         btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        if (!open) closeAllDropdowns();
       });
+
       nav.querySelectorAll("a").forEach(function (a) {
         a.addEventListener("click", function () {
           nav.classList.remove("is-open");
           btn.setAttribute("aria-expanded", "false");
           btn.setAttribute("aria-label", "Open menu");
+          closeAllDropdowns();
         });
+      });
+
+      nav.querySelectorAll(".nav-dropdown").forEach(function (dd) {
+        var trigger = dd.querySelector(".nav-trigger");
+        if (!trigger) return;
+        trigger.addEventListener("click", function (e) {
+          if (!mqMobile.matches) return;
+          e.preventDefault();
+          var willOpen = !dd.classList.contains("is-open");
+          closeAllDropdowns();
+          if (willOpen) {
+            dd.classList.add("is-open");
+            trigger.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!mqMobile.matches) return;
+        if (!nav.contains(e.target)) closeAllDropdowns();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeAllDropdowns();
       });
     })();
   </script>
