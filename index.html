@@ -920,19 +920,53 @@
       background: var(--white);
       border: 1px solid var(--rule);
       border-radius: 10px;
-      padding: 22px 22px 20px;
+      padding: 0;
+      overflow: hidden;
       border-top: 3px solid var(--blue);
       box-shadow: 0 10px 32px rgba(0, 33, 87, 0.06);
     }
+    .team-card-media {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(160deg, #e8f0fb 0%, var(--pale) 100%);
+      overflow: hidden;
+    }
+    .team-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+    .team-card .team-name,
+    .team-card .team-role,
+    .team-card .team-bio,
+    .team-card .team-links {
+      padding-left: 22px;
+      padding-right: 22px;
+    }
+    .team-card-media + .team-name { padding-top: 18px; }
+    .team-card .team-role { margin-top: 18px; margin-bottom: 10px; }
+    .team-card .team-name { margin-bottom: 6px; }
+    .team-card .team-bio:last-of-type { margin-bottom: 16px; }
+    .team-card .team-links { padding-bottom: 22px; margin-top: 0; }
     .team-card--ceo {
       grid-column: 1 / -1;
       border-top-color: var(--navy);
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.4fr);
-      gap: 28px;
-      align-items: start;
-      padding: 28px 30px;
+      grid-template-columns: minmax(220px, 1fr) minmax(0, 1.45fr);
+      gap: 0;
+      align-items: stretch;
     }
+    .team-card--ceo .team-card-media {
+      aspect-ratio: auto;
+      min-height: 300px;
+      height: auto;
+    }
+    .team-card--ceo .team-card-body {
+      padding: 26px 28px 22px 0;
+      align-self: center;
+    }
+    .team-card--ceo .team-card-body .team-role { margin-top: 0; }
     .team-name {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1.45rem;
@@ -969,10 +1003,32 @@
       background: var(--white);
       border: 1px solid var(--rule);
       border-radius: 10px;
-      padding: 22px 24px 20px;
+      padding: 0;
+      overflow: hidden;
       border-top: 3px solid var(--green);
       box-shadow: 0 8px 26px rgba(0, 33, 87, 0.05);
     }
+    .board-card-media {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(165deg, #eef6e8 0%, var(--pale) 100%);
+      overflow: hidden;
+    }
+    .board-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+    }
+    .board-card .team-name,
+    .board-card .team-role,
+    .board-card .team-bio {
+      padding-left: 22px;
+      padding-right: 22px;
+    }
+    .board-card-media + .team-name { padding-top: 18px; }
+    .board-card .team-role { margin-top: 18px; }
+    .board-card .team-bio { padding-bottom: 22px; }
     .board-card--chair {
       border-top-color: var(--navy);
     }
@@ -994,9 +1050,40 @@
       list-style: none;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 4px;
+      gap: 14px;
+      padding: 12px 6px;
+    }
+    .advisor-sum {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+      min-width: 0;
+    }
+    .advisor-sum-name {
+      flex: 1;
+      font-size: 1.15rem;
+    }
+    .advisor-face {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid rgba(0, 115, 207, 0.22);
+      box-shadow: 0 4px 14px rgba(0, 33, 87, 0.1);
+    }
+    .advisor-face--initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(140deg, var(--navy), var(--blue));
+      color: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: none;
     }
     .advisor-item summary::-webkit-details-marker { display: none; }
     .advisor-item summary::after {
@@ -1263,6 +1350,7 @@
       .impact-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 32px; }
       .team-card--ceo { grid-template-columns: 1fr; }
+      .team-card--ceo .team-card-body { padding: 22px 22px 22px 22px; }
       .hero-photo-field {
         left: 0;
         opacity: 0.18;
@@ -2128,11 +2216,12 @@
 
     <div class="team-grid">
       <article class="team-card team-card--ceo">
-        <div>
+        <div class="team-card-media">
+          <img src="assets/leadership/abdul-hamid-sherriff.jpg" alt="Portrait of Abdul-Hamid Sherriff" width="480" height="480" loading="lazy" decoding="async">
+        </div>
+        <div class="team-card-body">
           <p class="team-role">Chief executive officer</p>
           <h3 class="team-name">Abdul-Hamid Sherriff</h3>
-        </div>
-        <div>
           <p class="team-bio">
             Investor and entrepreneur with more than ten years across private, public, and
             international development. Former CEO of KNUST Dairy Company Limited, where he
@@ -2156,6 +2245,9 @@
       </article>
 
       <article class="team-card">
+        <div class="team-card-media">
+          <img src="assets/leadership/isabella-agyekum.jpg" alt="Portrait of Isabella Sannette Agyekum" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Isabella Sannette Agyekum</h3>
         <p class="team-role">Ghana coordinator</p>
         <p class="team-bio">
@@ -2168,6 +2260,9 @@
       </article>
 
       <article class="team-card">
+        <div class="team-card-media">
+          <img src="assets/leadership/ouattara-ncharick.jpg" alt="Portrait of Ouattara Mafine N'Charick" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Ouattara Mafine N&rsquo;Charick</h3>
         <p class="team-role">Burkina Faso coordinator</p>
         <p class="team-bio">
@@ -2180,6 +2275,9 @@
       </article>
 
       <article class="team-card">
+        <div class="team-card-media">
+          <img src="assets/leadership/mahamadou-sissoko.jpg" alt="Portrait of Mahamadou Seydou Sissoko" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Mahamadou Seydou Sissoko</h3>
         <p class="team-role">Mali coordinator</p>
         <p class="team-bio">
@@ -2190,6 +2288,9 @@
       </article>
 
       <article class="team-card">
+        <div class="team-card-media">
+          <img src="assets/leadership/francisca-mensah.jpg" alt="Portrait of Francisca Mensah" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Francisca Mensah</h3>
         <p class="team-role">Finance officer</p>
         <p class="team-bio">
@@ -2214,62 +2315,112 @@
 
     <div class="advisor-list">
       <details class="advisor-item">
-        <summary>Dr. Kelly Baker</summary>
+        <summary>
+          <span class="advisor-sum">
+            <span class="advisor-face advisor-face--initials" aria-hidden="true">KB</span>
+            <span class="advisor-sum-name">Dr. Kelly Baker</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Associate Professor, Department of Epidemiology and Environmental Health, University at Buffalo (joined 2024); previously University of Iowa and Emory University.
           Microbiologist and epidemiologist focused on water, sanitation, hygiene (WASH), enteric pathogens, and maternal and child health. PhD in molecular microbiology and immunology (University of Maryland).
         </p>
       </details>
       <details class="advisor-item">
-        <summary>Professor Diane Rohlman</summary>
+        <summary>
+          <span class="advisor-sum">
+            <span class="advisor-face advisor-face--initials" aria-hidden="true">DR</span>
+            <span class="advisor-sum-name">Professor Diane Rohlman</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Associate Dean for Research, Professor, and Endowed Chair in Rural Safety and Health, University of Iowa College of Public Health. Director of the Graduate Program in Agricultural Safety and Health and the Healthier Workforce Center of the Midwest. PhD in experimental psychology (Bowling Green State University); work spans cognitive ergonomics, agriculture, and rural health in the United States and Africa.
         </p>
       </details>
       <details class="advisor-item">
-        <summary>Professor Kimm Harris</summary>
+        <summary>
+          <span class="advisor-sum">
+            <span class="advisor-face advisor-face--initials" aria-hidden="true">KH</span>
+            <span class="advisor-sum-name">Professor Kimm Harris</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Associate Professor of Practice in Management and Entrepreneurship, Tippie College of Business and John Pappajohn Entrepreneurial Center, University of Iowa. Entrepreneur and educator focused on innovation, teams, and cross-border collaboration (MBA Exchange, Rotary International). MBA (Iowa); BSc in communications, counselling, and English (Université Laval).
         </p>
       </details>
       <details class="advisor-item">
-        <summary>Onyeche Tefase</summary>
+        <summary>
+          <span class="advisor-sum">
+            <img class="advisor-face" src="assets/leadership/onyeche-tefase.jpg" alt="" width="56" height="56" loading="lazy" decoding="async">
+            <span class="advisor-sum-name">Onyeche Tefase</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Vice President, Strategy, Technology &amp; Innovation, Industrial Applications, Siemens Energy. Career across Siemens UK, Germany, USA, and Nigeria; former Managing Director &amp; CEO of Siemens Nigeria. MPhil in electrical engineering (Cambridge); BEng in electrical and electronic engineering (University of Nottingham).
         </p>
       </details>
       <details class="advisor-item">
-        <summary>Carla Tishler</summary>
+        <summary>
+          <span class="advisor-sum">
+            <span class="advisor-face advisor-face--initials" aria-hidden="true">CT</span>
+            <span class="advisor-sum-name">Carla Tishler</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Former Senior Director, Global Markets, and Executive Education portfolio leader at Harvard Business School—overseeing executive education worldwide (including Shanghai and Mumbai) and digital learning products for faculty and students. MEd in technology in education (Harvard); BA in English literature (Smith College).
         </p>
       </details>
       <details class="advisor-item">
-        <summary>Nicky Kingston</summary>
+        <summary>
+          <span class="advisor-sum">
+            <span class="advisor-face advisor-face--initials" aria-hidden="true">NK</span>
+            <span class="advisor-sum-name">Nicky Kingston</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Private Secretary to the Minister for Workplace Relations and Safety, New Zealand Parliament. Prior roles in policy, energy, and international development—including programmes in Ghana on human rights, women&rsquo;s empowerment, youth, agriculture, and environment. BA and LLB in law and French (University of Otago); experience with the ILO in Geneva.
         </p>
       </details>
       <details class="advisor-item">
-        <summary>Professor Christopher Antwi</summary>
+        <summary>
+          <span class="advisor-sum">
+            <img class="advisor-face" src="assets/leadership/christopher-antwi.jpg" alt="" width="56" height="56" loading="lazy" decoding="async">
+            <span class="advisor-sum-name">Professor Christopher Antwi</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Professor of Animal Science, Kwame Nkrumah University of Science and Technology (KNUST), Ghana. Research on greenhouse gases, climate adaptation, and livestock nutrition; consultant to AUSAID, Canada Fund, GIZ, and others. PhD in animal nutrition (UC Davis); Norman Borlaug and LEARN fellowships.
         </p>
       </details>
       <details class="advisor-item">
-        <summary>John Paul Engel</summary>
+        <summary>
+          <span class="advisor-sum">
+            <span class="advisor-face advisor-face--initials" aria-hidden="true">JP</span>
+            <span class="advisor-sum-name">John Paul Engel</span>
+          </span>
+        </summary>
         <p class="team-bio">
           International consultant, speaker, and author working across twelve countries since 1996. Phi Beta Kappa graduate of the University of Iowa; MBA with international distinction (Chicago Booth). Vice Chair, American Red Cross, serving communities across dozens of U.S. jurisdictions; commentary featured in major business media.
         </p>
       </details>
       <details class="advisor-item">
-        <summary>André de Witt</summary>
+        <summary>
+          <span class="advisor-sum">
+            <img class="advisor-face" src="assets/leadership/andre-de-witt.jpg" alt="" width="56" height="56" loading="lazy" decoding="async">
+            <span class="advisor-sum-name">André de Witt</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Director and group executive at BBD, a global software engineering firm. Twenty-five years delivering complex digital, insurance, treasury, identity, and public-sector programmes across banking and government. Honours in industrial engineering (University of Pretoria); former Accenture executive.
         </p>
       </details>
       <details class="advisor-item">
-        <summary>Patricia Araba Annan</summary>
+        <summary>
+          <span class="advisor-sum">
+            <span class="advisor-face advisor-face--initials" aria-hidden="true">PA</span>
+            <span class="advisor-sum-name">Patricia Araba Annan</span>
+          </span>
+        </summary>
         <p class="team-bio">
           Lawyer and development professional focused on women&rsquo;s and children&rsquo;s rights—programmes with Gender Studies and Human Rights Documentation Centre, WiLDAF, and others. Founder of Women Aspire. LLB (University of Ghana); MA in development studies (University of Cape Coast). Mandela Washington Fellow.
         </p>
@@ -2290,6 +2441,9 @@
 
     <div class="board-grid">
       <article class="board-card board-card--chair">
+        <div class="board-card-media">
+          <img src="assets/leadership/dadson-awunyo-vitor.jpg" alt="Portrait of Professor Dadson Awunyo-Vitor" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Professor Dadson Awunyo-Vitor</h3>
         <p class="team-role">Board chair</p>
         <p class="team-bio">
@@ -2297,6 +2451,9 @@
         </p>
       </article>
       <article class="board-card">
+        <div class="board-card-media">
+          <img src="assets/leadership/sephora-fondop-medjowe.jpg" alt="Portrait of Dr. Sephora Larissa Fondop–Medjowe" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Dr. Sephora Larissa Fondop–Medjowe</h3>
         <p class="team-role">Vice-chair</p>
         <p class="team-bio">
@@ -2304,6 +2461,9 @@
         </p>
       </article>
       <article class="board-card">
+        <div class="board-card-media">
+          <img src="assets/leadership/sylvester-akpah.jpg" alt="Portrait of Dr. Sylvester Akpah" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Dr. Sylvester Akpah</h3>
         <p class="team-role">Director</p>
         <p class="team-bio">
@@ -2311,6 +2471,9 @@
         </p>
       </article>
       <article class="board-card">
+        <div class="board-card-media">
+          <img src="assets/leadership/gifty-quarshie-ngissah.jpg" alt="Portrait of Dr. Gifty Quarshie-Ngissah" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Dr. Gifty Quarshie-Ngissah</h3>
         <p class="team-role">Director</p>
         <p class="team-bio">
@@ -2325,6 +2488,9 @@
         </p>
       </article>
       <article class="board-card">
+        <div class="board-card-media">
+          <img src="assets/leadership/josephine-buah-timtey.jpg" alt="Portrait of Dr. Josephine Akuba Buah Timtey" width="400" height="300" loading="lazy" decoding="async">
+        </div>
         <h3 class="team-name">Dr. Josephine Akuba Buah Timtey</h3>
         <p class="team-role">Director</p>
         <p class="team-bio">
