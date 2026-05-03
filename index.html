@@ -893,20 +893,93 @@
     }
     .tool-btn:hover { background: var(--orange); }
 
-    /* ── FOUNDER ───────────────────────────────────────────── */
-    .founder-grid {
+    /* ── FOUNDER / WHO WE ARE ─────────────────────────────── */
+    #founder.section-founder {
+      background: linear-gradient(180deg, var(--pale) 0%, var(--white) 45%, var(--pale) 100%);
+    }
+    .founder-layout {
       display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
+      grid-template-columns: minmax(240px, 300px) 1fr;
+      gap: 48px 64px;
       align-items: start;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .founder-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .founder-photo-frame {
+      aspect-ratio: 4 / 5;
+      max-width: 300px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      box-shadow: 0 18px 48px rgba(0, 33, 87, 0.1);
+      background: linear-gradient(165deg, var(--navy-mid) 0%, var(--navy-deep) 100%);
+      position: relative;
+    }
+    .founder-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .founder-photo-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 10vw, 4.25rem);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.22);
+      letter-spacing: 0.06em;
+      user-select: none;
+      pointer-events: none;
+    }
+    .founder-main {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 36px 40px 40px;
+      box-shadow: 0 8px 32px rgba(0, 17, 51, 0.05);
+    }
+    .founder-main h3 {
+      margin-top: 0;
+    }
+    .founder-highlights {
+      list-style: none;
+      margin: 0 0 24px;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+    }
+    .founder-highlights li {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--pale);
+      border: 1px solid var(--rule);
+      padding: 8px 14px;
+      border-radius: 4px;
     }
 
     .founder-card {
       background: var(--forest);
-      padding: 40px 32px;
+      padding: 32px 28px;
       color: var(--white);
       position: sticky;
       top: 80px;
+      border-radius: 10px;
+      box-shadow: 0 14px 40px rgba(0, 17, 51, 0.18);
     }
 
     .founder-name {
@@ -955,24 +1028,24 @@
       flex-shrink: 0;
     }
 
-    .founder-story h3 {
+    .founder-main h3 {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 26px;
+      font-size: clamp(1.35rem, 2.5vw, 1.65rem);
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 20px;
-      line-height: 1.2;
+      margin-bottom: 18px;
+      line-height: 1.25;
     }
 
-    .founder-story p {
+    .founder-main p {
       font-size: 15px;
       font-weight: 300;
       color: var(--body);
-      line-height: 1.85;
-      margin-bottom: 20px;
+      line-height: 1.78;
+      margin-bottom: 18px;
     }
 
-    .founder-story p:last-child { margin-bottom: 0; }
+    .founder-main p:last-of-type { margin-bottom: 0; }
 
     /* ── PARTNERS ──────────────────────────────────────────── */
     .partners-list {
@@ -994,6 +1067,10 @@
     .partner-badge:hover {
       border-color: var(--blue);
       color: var(--navy);
+    }
+
+    .section-who-panel .section-sub {
+      max-width: 42rem;
     }
 
     /* ── CONTACT ───────────────────────────────────────────── */
@@ -1181,8 +1258,19 @@
       .mission-grid,
       .programs-grid,
       .tools-grid,
-      .contact-grid,
-      .founder-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .founder-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .founder-photo-frame {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+      .founder-card { position: static; }
       .impact-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 32px; }
       .hero-photo-field {
@@ -1194,7 +1282,6 @@
       .impact-gallery {
         grid-template-columns: repeat(2, 1fr);
       }
-      .founder-card { position: static; }
       .tool-card {
         flex-direction: column;
         align-items: flex-start;
@@ -2040,60 +2127,62 @@
 
   <hr class="divider"/>
 
-  <!-- ── FOUNDER ──────────────────────────────────────────── -->
-  <section id="founder" class="section-alt">
-    <p class="section-eyebrow">Our Founder</p>
-    <div class="founder-grid">
-
-      <div class="founder-card">
-        <div class="founder-name">Sherriff Abdul-Hamid</div>
-        <div class="founder-title">Founder & Executive Director</div>
-        <p class="founder-bio">
-          Health economist, data scientist, and product leader
-          working at the intersection of evidence-based analytics,
-          government digital services, and social protection.
-          Based in Los Angeles, CA.
-        </p>
-        <div class="founder-awards">
-          <div class="award-item">EB1-A Extraordinary Ability — USCIS, 2024</div>
-          <div class="award-item">Obama Foundation Leaders Award — Top 1.3%, 2023</div>
-          <div class="award-item">Mandela Washington Fellow — Top 0.3%, U.S. Dept of State</div>
-          <div class="award-item">Harvard Business School — Senior Executive Program</div>
-          <div class="award-item">USADF + Citibank Grant — Top 0.1% globally</div>
-          <div class="award-item">MS Economics (Econometrics) — KNUST, Ghana</div>
+  <!-- ── FOUNDER (Who we are) — Paste Google Doc bios into Advisory when the doc is shared as “Anyone with the link can view”. -->
+  <section id="founder" class="section-alt section-founder">
+    <p class="section-eyebrow">Who we are</p>
+    <h2 class="section-title">Founder</h2>
+    <div class="founder-layout">
+      <aside class="founder-aside">
+        <div class="founder-photo-frame">
+          <!-- Portrait: add assets/founder-portrait.jpg to the repo, then uncomment the line below. -->
+          <!-- <img src="assets/founder-portrait.jpg" width="600" height="750" alt="Sherriff Abdul-Hamid" decoding="async"> -->
+          <span class="founder-photo-fallback" aria-hidden="true">SA</span>
         </div>
-      </div>
+        <div class="founder-card">
+          <div class="founder-name">Sherriff Abdul-Hamid</div>
+          <div class="founder-title">Founder &amp; Chief Executive Officer</div>
+          <p class="founder-bio">
+            Health economist and data scientist working where social protection,
+            government digital services, and applied analytics meet. Poverty 360 is
+            registered in Ghana; he is based in Los Angeles, California.
+          </p>
+          <div class="founder-awards">
+            <div class="award-item">Obama Leaders: Africa — Obama Foundation, 2023</div>
+            <div class="award-item">EB-1A Extraordinary Ability — U.S. Citizenship and Immigration Services, 2024</div>
+            <div class="award-item">Mandela Washington Fellow — U.S. Department of State</div>
+            <div class="award-item">Harvard Business School — Senior Executive Programme</div>
+            <div class="award-item">USADF + Citibank grant — globally competitive tier</div>
+            <div class="award-item">M.S. Economics (Econometrics) — KNUST, Ghana</div>
+          </div>
+        </div>
+      </aside>
 
-      <div class="founder-story">
-        <h3>Building from the gap between what a law says and what a system delivers.</h3>
+      <div class="founder-main">
+        <ul class="founder-highlights" aria-label="Focus areas">
+          <li>West Africa field programmes</li>
+          <li>Health systems &amp; financing</li>
+          <li>U.S. decision-support &amp; analytics</li>
+        </ul>
+        <h3>When policy meets reality, someone still has to decide.</h3>
         <p>
-          In 2018, Sherriff Abdul-Hamid founded Poverty 360 with a single
-          observation: well-funded programs consistently fail to reach the
-          people they were designed to serve — not because of bad intentions,
-          but because the systems delivering the benefits were never built for
-          the people using them.
+          Sherriff Abdul-Hamid founded <strong>Poverty 360</strong> because well-funded programmes
+          still miss the people they are meant for when delivery systems were never designed
+          around users. The organisation works in <strong>Ghana, Mali, Burkina Faso, and Niger</strong>
+          on community-led initiatives across livelihoods, health, nutrition, energy, and safety—priorities
+          reflected in his <a href="https://www.obama.org/programs/leaders/africa/2023/sherriff-abdul-hamid/" target="_blank" rel="noopener noreferrer" style="color: var(--blue); border-bottom: 1px solid rgba(0, 115, 207, 0.35);">Obama Leaders: Africa</a> profile.
         </p>
         <p>
-          Over seven years, that observation has driven field programs in four
-          African countries, a telemedicine platform serving 150,000+ patients,
-          a national health insurance enrollment system for 1,250 vulnerable
-          women, and a suite of decision-support tools now used by program
-          officers managing SNAP, Medicaid, and global health funding.
+          The same discipline supports partners in the <strong>United States</strong>—including telehealth
+          reaching <strong>150,000+</strong> patients, national health insurance onboarding for
+          <strong>1,250</strong> vulnerable women in Ghana, and analytics tools used by programme officers in all
+          <strong>50 states</strong>.
         </p>
         <p>
-          The thread connecting all of it is the same question: what do you do
-          when evidence is incomplete, resources are limited, and a decision
-          still has to be made? Poverty 360 builds the frameworks, tools, and
-          institutional relationships that help the right people answer that
-          question — and act on the answer.
-        </p>
-        <p>
-          In 2024, the U.S. Citizenship and Immigration Services approved
-          Sherriff's EB1-A Extraordinary Ability petition on the basis of this
-          body of work — an independent validation of its global significance.
+          In <strong>2024</strong>, <strong>U.S. Citizenship and Immigration Services</strong> approved his
+          <strong>EB-1A</strong> petition on the basis of that body of work—an independent signal that the impact is both deep and documented.
         </p>
 
-        <div style="margin-top: 32px;">
+        <div style="margin-top: 28px;">
           <a href="https://www.linkedin.com/in/abdul-hamid-sherriff-08583354/"
              target="_blank" rel="noopener noreferrer"
              style="display: inline-block; background: var(--forest);
@@ -2120,27 +2209,24 @@
   <hr class="divider"/>
 
   <!-- ── ADVISORY BOARD (Who we are) ───────────────────────── -->
-  <section id="advisory-board" class="section-cream">
+  <section id="advisory-board" class="section-cream section-who-panel">
     <p class="section-eyebrow">Who we are</p>
     <h2 class="section-title">Advisory Board</h2>
     <p class="section-sub">
-      We are assembling a small advisory board of practitioners in global health,
-      public finance, and digital government — to stress-test our methods and
-      open doors where evidence should travel faster. If you are interested in
-      serving, reach out via <a href="#contact" style="color: var(--blue); border-bottom: 1px solid rgba(0, 115, 207, 0.35);">Contact</a>.
+      We are convening a compact advisory board—leaders in <strong>global health</strong>,
+      <strong>public finance</strong>, and <strong>digital government</strong>—to stress-test our methods and help evidence reach decision-makers faster.
+      Expressions of interest: <a href="#contact" style="color: var(--blue); border-bottom: 1px solid rgba(0, 115, 207, 0.35);">Contact</a>.
     </p>
   </section>
 
   <hr class="divider"/>
 
   <!-- ── LEADERSHIP (Who we are) ───────────────────────────── -->
-  <section id="leadership" class="section-alt">
+  <section id="leadership" class="section-alt section-who-panel">
     <p class="section-eyebrow">Who we are</p>
     <h2 class="section-title">Leadership</h2>
     <p class="section-sub">
-      Day-to-day leadership sits with the founder and executive director, supported
-      by project leads across field programs and analytics delivery. As we grow,
-      this page will list named roles responsible for each geography and workstream.
+      Day-to-day leadership sits with the <strong>Founder &amp; CEO</strong>, supported by programme and analytics leads across West Africa and U.S. partner engagements. Named roles by geography and workstream will appear here as the team grows.
     </p>
   </section>
 
