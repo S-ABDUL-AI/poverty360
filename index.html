@@ -141,27 +141,23 @@
       overflow: hidden;
       flex-shrink: 0;
       box-sizing: border-box;
-      box-shadow:
-        0 0 0 2px rgba(241, 129, 50, 0.45),
-        0 0 0 4px rgba(0, 115, 207, 0.22),
-        0 10px 28px rgba(0, 17, 51, 0.2);
     }
+    /* Hairline + soft lift that matches each surface (no brand-color rings) */
     .logo-circle--nav {
       width: 46px;
       height: 46px;
-    }
-    .logo-circle--hero {
-      width: min(168px, 42vw);
-      height: min(168px, 42vw);
-      max-width: 200px;
-      max-height: 200px;
+      box-shadow:
+        0 0 0 1px rgba(0, 33, 87, 0.1),
+        0 8px 22px rgba(0, 17, 51, 0.07);
     }
     .logo-circle--footer {
       width: 56px;
       height: 56px;
+      box-shadow:
+        0 0 0 1px rgba(251, 253, 255, 0.1),
+        0 8px 22px rgba(0, 0, 0, 0.22);
     }
     .nav-logo-img,
-    .hero-logo-img,
     .footer-logo-img {
       display: block;
       width: 100%;
@@ -255,10 +251,6 @@
       background-image: radial-gradient(circle, rgba(241, 129, 50, 0.28) 1px, transparent 1px);
       background-size: 18px 18px;
       opacity: 0.35;
-    }
-
-    .hero-brand {
-      margin-bottom: 28px;
     }
 
     .hero-eyebrow {
@@ -879,10 +871,6 @@
       }
       .tool-btn { align-self: stretch; text-align: center; }
       .logo-circle--nav { width: 42px; height: 42px; }
-      .logo-circle--hero {
-        width: min(148px, 52vw);
-        height: min(148px, 52vw);
-      }
       .footer-left { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -927,20 +915,6 @@
     <div class="hero-geo"></div>
     <div class="hero-geo-2"></div>
     <div class="hero-dot-grid"></div>
-
-    <div class="hero-brand fade-in">
-      <span class="logo-circle logo-circle--hero" role="img" aria-label="Poverty 360 logo">
-        <img
-          class="hero-logo-img"
-          src="assets/p360-logo.png"
-          width="215"
-          height="215"
-          alt=""
-          decoding="async"
-          fetchpriority="high"
-        />
-      </span>
-    </div>
 
     <p class="hero-eyebrow fade-in">Evidence-Based Analytics & Social Impact · Est. 2018 · Ghana</p>
 
