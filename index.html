@@ -28,14 +28,14 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Jost', sans-serif;
-      background: #F7F4EE;
-      color: #2C2C2C;
+      background: var(--pale);
+      color: var(--ink);
       overflow-x: hidden;
     }
     a { text-decoration: none; color: inherit; }
     a:focus-visible,
     button:focus-visible {
-      outline: 2px solid var(--gold);
+      outline: 2px solid var(--orange);
       outline-offset: 3px;
     }
     img { max-width: 100%; }
@@ -45,7 +45,7 @@
       top: 0;
       z-index: 200;
       padding: 10px 18px;
-      background: var(--forest);
+      background: var(--navy);
       color: var(--white);
       font-size: 12px;
       font-weight: 600;
@@ -57,21 +57,34 @@
       top: 72px;
     }
 
-    /* ── TOKENS ────────────────────────────────────────────── */
+    /* ── TOKENS (locked to official Poverty 360 logo) ───────── */
     :root {
-      --ink:       #1A1A1A;
-      --body:      #3D3D3D;
-      --muted:     #7A7A6E;
-      --pale:      #F7F4EE;
-      --cream:     #EDE9DF;
-      --white:     #FDFCF9;
-      --gold:      #B8860B;
-      --gold-lt:   #D4A843;
-      --gold-pale: #F5EDD3;
-      --forest:    #2D4A3E;
-      --forest-lt: #3D6B5A;
-      --forest-pale:#E8F0EC;
-      --rule:      #D8D2C4;
+      /* Logo primaries */
+      --navy:        #002157;
+      --navy-deep:   #001233;
+      --navy-mid:    #0a3570;
+      --blue:        #0073CF;
+      --blue-dk:     #005aa3;
+      --green:       #4DA409;
+      --green-lt:    #62c20f;
+      --orange:      #F18132;
+      --orange-lt:   #ffa64d;
+
+      /* Semantic aliases used across the stylesheet */
+      --forest:      var(--navy);
+      --forest-lt:   var(--navy-mid);
+      --forest-pale: #e3eef9;
+      --gold:        var(--orange);
+      --gold-lt:     var(--orange-lt);
+      --gold-pale:   #fff0e5;
+
+      --ink:         #0a1628;
+      --body:        #37465a;
+      --muted:       #5a6a7d;
+      --pale:        #eef4fc;
+      --cream:       #e4edf7;
+      --white:       #fbfdff;
+      --rule:        rgba(0, 33, 87, 0.14);
     }
 
     /* ── ANIMATIONS ────────────────────────────────────────── */
@@ -99,8 +112,8 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(247,244,238,0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(251, 253, 255, 0.94);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--rule);
       padding: 0 64px;
       height: 60px;
@@ -108,7 +121,7 @@
       align-items: center;
       justify-content: space-between;
     }
-    /* Brand lockup: official logo (includes wordmark) */
+    /* Brand: official logo in a round mark (not a square tile) */
     .nav-brand {
       display: flex;
       align-items: center;
@@ -116,20 +129,46 @@
       flex-shrink: 0;
     }
     .nav-brand:focus-visible {
-      outline: 2px solid var(--gold);
+      outline: 2px solid var(--orange);
       outline-offset: 4px;
-      border-radius: 10px;
+      border-radius: 999px;
     }
-    .nav-logo-img {
-      display: block;
-      height: 42px;
-      width: auto;
+    .logo-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      box-shadow:
+        0 0 0 2px rgba(241, 129, 50, 0.45),
+        0 0 0 4px rgba(0, 115, 207, 0.22),
+        0 10px 28px rgba(0, 17, 51, 0.2);
+    }
+    .logo-circle--nav {
+      width: 46px;
+      height: 46px;
+    }
+    .logo-circle--hero {
+      width: min(168px, 42vw);
+      height: min(168px, 42vw);
       max-width: 200px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #002157;
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 14px rgba(0, 0, 0, 0.12);
-      /* Crisp scaling on HiDPI */
+      max-height: 200px;
+    }
+    .logo-circle--footer {
+      width: 56px;
+      height: 56px;
+    }
+    .nav-logo-img,
+    .hero-logo-img,
+    .footer-logo-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 22%;
+      border-radius: 50%;
       image-rendering: auto;
       -ms-interpolation-mode: bicubic;
     }
@@ -146,7 +185,7 @@
       color: var(--muted);
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--forest); }
+    .nav-links a:hover { color: var(--blue); }
 
     .nav-toggle {
       display: none;
@@ -158,7 +197,7 @@
       height: 44px;
       border: 1px solid var(--rule);
       background: var(--white);
-      border-radius: 4px;
+      border-radius: 50%;
       cursor: pointer;
       padding: 0;
     }
@@ -166,14 +205,14 @@
       display: block;
       width: 20px;
       height: 2px;
-      background: var(--forest);
+      background: var(--navy);
       border-radius: 1px;
     }
 
     /* ── HERO ──────────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
-      background: var(--forest);
+      background: linear-gradient(165deg, var(--navy-deep) 0%, var(--navy) 38%, var(--navy-mid) 100%);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -188,8 +227,9 @@
       position: absolute;
       inset: 0;
       background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(184,134,11,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%);
+        radial-gradient(ellipse at 18% 40%, rgba(0, 115, 207, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 88% 12%, rgba(241, 129, 50, 0.14) 0%, transparent 45%),
+        radial-gradient(ellipse at 70% 88%, rgba(77, 164, 9, 0.1) 0%, transparent 40%);
       pointer-events: none;
     }
 
@@ -198,39 +238,27 @@
       position: absolute;
       right: 0; top: 0;
       width: 380px; height: 380px;
-      background: rgba(184,134,11,0.06);
+      background: linear-gradient(135deg, rgba(0, 115, 207, 0.12), rgba(241, 129, 50, 0.06));
       clip-path: polygon(100% 0, 0 0, 100% 100%);
     }
     .hero-geo-2 {
       position: absolute;
       right: 0; top: 0;
       width: 240px; height: 240px;
-      background: rgba(184,134,11,0.09);
+      background: linear-gradient(135deg, rgba(241, 129, 50, 0.1), rgba(0, 115, 207, 0.08));
       clip-path: polygon(100% 0, 0 0, 100% 100%);
     }
     .hero-dot-grid {
       position: absolute;
       right: 80px; bottom: 80px;
       width: 160px; height: 160px;
-      background-image: radial-gradient(circle, rgba(184,134,11,0.25) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(241, 129, 50, 0.28) 1px, transparent 1px);
       background-size: 18px 18px;
-      opacity: 0.4;
+      opacity: 0.35;
     }
 
     .hero-brand {
       margin-bottom: 28px;
-    }
-    .hero-logo-img {
-      display: block;
-      width: min(220px, 52vw);
-      height: auto;
-      max-height: 200px;
-      object-fit: contain;
-      border-radius: 14px;
-      background: #002157;
-      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2), 0 24px 48px rgba(0, 0, 0, 0.35);
-      image-rendering: auto;
-      -ms-interpolation-mode: bicubic;
     }
 
     .hero-eyebrow {
@@ -238,7 +266,7 @@
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--gold-lt);
+      color: rgba(255, 255, 255, 0.78);
       margin-bottom: 20px;
     }
 
@@ -252,14 +280,14 @@
       margin-bottom: 8px;
     }
     .hero-title em {
-      color: var(--gold-lt);
+      color: var(--orange-lt);
       font-style: italic;
     }
 
     .hero-line {
       width: 0;
-      height: 2px;
-      background: var(--gold);
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--blue));
       margin: 28px 0;
       animation: lineGrow 1s .5s ease both;
     }
@@ -287,7 +315,7 @@
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 38px;
       font-weight: 700;
-      color: var(--gold-lt);
+      color: var(--orange-lt);
       line-height: 1;
       margin-bottom: 4px;
     }
@@ -377,7 +405,7 @@
       font-style: italic;
       color: var(--forest);
       line-height: 1.5;
-      border-left: 3px solid var(--gold);
+      border-left: 3px solid var(--blue);
       padding-left: 28px;
       margin-bottom: 32px;
     }
@@ -441,7 +469,7 @@
       transition: background .3s;
     }
     .impact-card:hover {
-      background: rgba(184,134,11,0.08);
+      background: rgba(0, 115, 207, 0.12);
     }
 
     .impact-num {
@@ -474,9 +502,9 @@
     }
 
     .validator-pill {
-      background: rgba(184,134,11,0.12);
-      border: 1px solid rgba(184,134,11,0.25);
-      color: var(--gold-lt);
+      background: rgba(241, 129, 50, 0.12);
+      border: 1px solid rgba(241, 129, 50, 0.28);
+      color: var(--orange-lt);
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.5px;
@@ -485,7 +513,7 @@
       transition: background .2s;
     }
     .validator-pill:hover {
-      background: rgba(184,134,11,0.22);
+      background: rgba(241, 129, 50, 0.2);
     }
 
     /* ── PROGRAMS ──────────────────────────────────────────── */
@@ -498,7 +526,7 @@
     .program-card {
       background: var(--pale);
       border: 1px solid var(--rule);
-      border-top: 3px solid var(--forest);
+      border-top: 3px solid var(--blue);
       padding: 32px 28px;
       transition: box-shadow .25s, transform .25s;
     }
@@ -547,7 +575,7 @@
     .tool-card {
       background: var(--white);
       border: 1px solid var(--rule);
-      border-left: 4px solid var(--gold);
+      border-left: 4px solid var(--blue);
       padding: 22px 24px;
       display: flex;
       justify-content: space-between;
@@ -586,7 +614,7 @@
       white-space: nowrap;
       transition: background .2s;
     }
-    .tool-btn:hover { background: var(--gold); }
+    .tool-btn:hover { background: var(--orange); }
 
     /* ── FOUNDER ───────────────────────────────────────────── */
     .founder-grid {
@@ -687,8 +715,8 @@
       transition: border-color .2s, color .2s;
     }
     .partner-badge:hover {
-      border-color: var(--gold);
-      color: var(--forest);
+      border-color: var(--blue);
+      color: var(--navy);
     }
 
     /* ── CONTACT ───────────────────────────────────────────── */
@@ -767,7 +795,7 @@
 
     /* ── FOOTER ────────────────────────────────────────────── */
     footer {
-      background: #111A16;
+      background: var(--navy-deep);
       padding: 32px 80px;
       display: flex;
       justify-content: space-between;
@@ -783,16 +811,6 @@
       max-width: min(720px, 100%);
       font-size: 13px;
       color: rgba(253,252,249,0.35);
-    }
-    .footer-logo-img {
-      display: block;
-      height: 52px;
-      width: auto;
-      object-fit: contain;
-      flex-shrink: 0;
-      border-radius: 8px;
-      background: #002157;
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
     .footer-left strong {
       color: rgba(253,252,249,0.6);
@@ -810,7 +828,7 @@
       text-transform: uppercase;
       color: rgba(253,252,249,0.4);
       transition: color .2s;
-      border-bottom: 1px solid rgba(184,134,11,0.3);
+      border-bottom: 1px solid rgba(0, 115, 207, 0.45);
       padding-bottom: 2px;
     }
     .footer-links a:hover { color: var(--gold-lt); }
@@ -860,8 +878,11 @@
         align-items: flex-start;
       }
       .tool-btn { align-self: stretch; text-align: center; }
-      .nav-logo-img { height: 38px; max-width: 170px; }
-      .hero-logo-img { width: min(200px, 70vw); }
+      .logo-circle--nav { width: 42px; height: 42px; }
+      .logo-circle--hero {
+        width: min(148px, 52vw);
+        height: min(148px, 52vw);
+      }
       .footer-left { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -874,15 +895,17 @@
   <!-- ── NAV ─────────────────────────────────────────────── -->
   <nav>
     <a href="#home" class="nav-brand" aria-label="Poverty 360 — Home">
-      <img
-        class="nav-logo-img"
-        src="assets/p360-logo.png"
-        width="215"
-        height="215"
-        alt="Poverty 360"
-        decoding="async"
-        fetchpriority="high"
-      />
+      <span class="logo-circle logo-circle--nav" aria-hidden="true">
+        <img
+          class="nav-logo-img"
+          src="assets/p360-logo.png"
+          width="215"
+          height="215"
+          alt=""
+          decoding="async"
+          fetchpriority="high"
+        />
+      </span>
     </a>
     <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
       <span class="nav-toggle-bar" aria-hidden="true"></span>
@@ -906,15 +929,17 @@
     <div class="hero-dot-grid"></div>
 
     <div class="hero-brand fade-in">
-      <img
-        class="hero-logo-img"
-        src="assets/p360-logo.png"
-        width="215"
-        height="215"
-        alt="Poverty 360 logo"
-        decoding="async"
-        fetchpriority="high"
-      />
+      <span class="logo-circle logo-circle--hero" role="img" aria-label="Poverty 360 logo">
+        <img
+          class="hero-logo-img"
+          src="assets/p360-logo.png"
+          width="215"
+          height="215"
+          alt=""
+          decoding="async"
+          fetchpriority="high"
+        />
+      </span>
     </div>
 
     <p class="hero-eyebrow fade-in">Evidence-Based Analytics & Social Impact · Est. 2018 · Ghana</p>
@@ -1139,8 +1164,8 @@
       font-weight: 500; padding: 3px 10px; border-radius: 20px;
     }
     .rev-pill.neutral { background: var(--cream); color: var(--muted); border: 1px solid var(--rule); }
-    .rev-pill.up { background: rgba(45,74,62,0.08); color: var(--forest); }
-    .rev-pill.up-big { background: rgba(184,134,11,0.12); color: var(--gold); }
+    .rev-pill.up { background: rgba(0, 33, 87, 0.08); color: var(--navy); }
+    .rev-pill.up-big { background: rgba(241, 129, 50, 0.14); color: var(--orange); }
     /* Year cards */
     .tl-cards {
       display: grid; grid-template-columns: repeat(3,1fr);
@@ -1148,12 +1173,12 @@
     }
     .tl-card {
       background: var(--white);
-      border: 1px solid rgba(45,74,62,0.1);
-      border-top: 3px solid var(--forest);
+      border: 1px solid rgba(0, 33, 87, 0.1);
+      border-top: 3px solid var(--navy);
       position: relative; overflow: hidden;
       transition: box-shadow 0.3s, transform 0.3s;
     }
-    .tl-card:hover { box-shadow: 0 12px 36px rgba(45,74,62,0.11); transform: translateY(-4px); }
+    .tl-card:hover { box-shadow: 0 12px 36px rgba(0, 33, 87, 0.12); transform: translateY(-4px); }
     .tl-card.gold-top { border-top-color: var(--gold); }
     .tl-hero { width: 100%; height: 200px; overflow: hidden; }
     .tl-hero img {
@@ -1208,7 +1233,7 @@
     .tl-tags span {
       font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 3px 8px; border: 1px solid rgba(45,74,62,0.18);
+      padding: 3px 8px; border: 1px solid rgba(0, 33, 87, 0.18);
       color: var(--forest); border-radius: 2px; background: var(--cream);
     }
     .tl-eff { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
@@ -1218,7 +1243,7 @@
       white-space: nowrap; min-width: 84px;
     }
     .tl-eff-bar { flex: 1; height: 4px; background: var(--cream); border-radius: 2px; overflow: hidden; }
-    .tl-eff-fill { height: 100%; background: linear-gradient(90deg, var(--forest), var(--gold)); border-radius: 2px; }
+    .tl-eff-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: 2px; }
     .tl-eff-pct {
       font-family: 'Jost', sans-serif; font-size: 0.72rem;
       font-weight: 600; color: var(--forest); white-space: nowrap;
@@ -1259,9 +1284,9 @@
     .tl-cum .big-l {
       font-family: 'Jost', sans-serif; font-size: 0.68rem;
       font-weight: 400; letter-spacing: 0.13em; text-transform: uppercase;
-      color: rgba(247,244,238,0.6); line-height: 1.4;
+      color: rgba(251, 253, 255, 0.62); line-height: 1.4;
     }
-    .tl-div { width: 1px; height: 56px; background: rgba(247,244,238,0.15); }
+    .tl-div { width: 1px; height: 56px; background: rgba(251, 253, 255, 0.16); }
     /* Bridge note */
     .tl-bridge {
       background: var(--forest);
@@ -1275,7 +1300,7 @@
     }
     .tl-bridge p {
       font-family: 'Jost', sans-serif; font-size: 0.875rem;
-      font-weight: 300; color: rgba(247,244,238,0.6);
+      font-weight: 300; color: rgba(251, 253, 255, 0.62);
       line-height: 1.75;
     }
     .tl-bridge strong { color: var(--gold-lt); font-weight: 500; }
@@ -1295,7 +1320,7 @@
       .tl-cards { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
       .rev-arc { flex-direction: column; align-items: stretch; gap: 12px; }
       .rev-arc::before { display: none; }
-      .rev-bar { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 14px 16px; background: var(--white); border: 1px solid rgba(45,74,62,0.1); gap: 6px 12px; }
+      .rev-bar { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 14px 16px; background: var(--white); border: 1px solid rgba(0, 33, 87, 0.1); gap: 6px 12px; }
       .tl-banner { grid-template-columns: 1fr 1fr; gap: 32px 16px; padding: 44px 32px; }
       .tl-div { display: none; }
       .tl-bridge { padding: 0 24px 40px; }
@@ -1788,7 +1813,7 @@
           <div class="contact-value">
             <a href="https://s-abdul-ai.github.io"
                target="_blank" rel="noopener noreferrer"
-               style="color: var(--gold-lt); border-bottom: 1px solid rgba(184,134,11,0.4);">
+               style="color: var(--orange-lt); border-bottom: 1px solid rgba(0, 115, 207, 0.45);">
               s-abdul-ai.github.io
             </a>
           </div>
@@ -1800,15 +1825,16 @@
   <!-- ── FOOTER ───────────────────────────────────────────── -->
   <footer>
     <div class="footer-left">
-      <img
-        class="footer-logo-img"
-        src="assets/p360-logo.png"
-        width="215"
-        height="215"
-        alt=""
-        decoding="async"
-        aria-hidden="true"
-      />
+      <span class="logo-circle logo-circle--footer" aria-hidden="true">
+        <img
+          class="footer-logo-img"
+          src="assets/p360-logo.png"
+          width="215"
+          height="215"
+          alt=""
+          decoding="async"
+        />
+      </span>
       <div>
         <strong>Poverty 360</strong> · Evidence-Based Analytics & Social Impact ·
         Registered in Ghana · Est. 2018
