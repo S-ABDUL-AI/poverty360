@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="preload" as="image" href="assets/p360-logo.png" fetchpriority="high"/>
+  <link rel="preload" as="image" href="assets/impact/lightforall-02.jpg"/>
 
   <style>
     /* ── RESET ─────────────────────────────────────────────── */
@@ -351,6 +352,45 @@
       opacity: 0.35;
     }
 
+    /* Hero field photography (NGO-style: human story on one side, copy on the other) */
+    .hero-photo-field {
+      position: absolute;
+      inset: 0;
+      left: 42%;
+      background: url("assets/impact/lightforall-02.jpg") 60% center / cover no-repeat;
+      opacity: 0.32;
+      pointer-events: none;
+      z-index: 0;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 28%, #000 52%);
+      mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 28%, #000 52%);
+    }
+    .hero-watermark {
+      position: absolute;
+      bottom: clamp(56px, 10vh, 100px);
+      right: clamp(20px, 5vw, 80px);
+      font-family: 'Jost', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.14);
+      pointer-events: none;
+      z-index: 2;
+      user-select: none;
+    }
+    .hero-geo,
+    .hero-geo-2,
+    .hero-dot-grid { z-index: 1; }
+    .hero-eyebrow,
+    .hero-title,
+    .hero-line,
+    .hero-sub,
+    .hero-stats,
+    .hero-scroll {
+      position: relative;
+      z-index: 2;
+    }
+
     .hero-eyebrow {
       font-size: 10px;
       font-weight: 600;
@@ -605,6 +645,145 @@
       font-weight: 300;
       color: rgba(253,252,249,0.45);
       line-height: 1.6;
+    }
+
+    /* Impact photography strip (browse + enlarge, common on INGO annual-story pages) */
+    .impact-gallery-wrap {
+      max-width: 1100px;
+      margin: 0 auto 48px;
+      padding: 0 8px;
+    }
+    .impact-gallery {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .impact-gallery-tile {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      border: none;
+      cursor: zoom-in;
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .impact-gallery-tile:hover,
+    .impact-gallery-tile:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+      outline: none;
+    }
+    .impact-gallery-tile:focus-visible {
+      box-shadow: 0 0 0 2px var(--orange), 0 14px 32px rgba(0, 0, 0, 0.35);
+    }
+    .impact-gallery-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+    .impact-gallery-tile:hover img {
+      transform: scale(1.05);
+    }
+    .impact-gallery-tile::after {
+      content: "P360";
+      position: absolute;
+      right: 8px;
+      bottom: 6px;
+      font-family: 'Jost', sans-serif;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.55);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
+      pointer-events: none;
+    }
+    .impact-gallery-hint {
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253, 252, 249, 0.38);
+      text-align: center;
+      margin: 14px 0 0;
+    }
+
+    .p360-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: max(16px, 3vw);
+      box-sizing: border-box;
+      background: rgba(0, 18, 51, 0.92);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+    .p360-lightbox.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .p360-lightbox-inner {
+      position: relative;
+      max-width: min(1120px, 96vw);
+      max-height: min(82vh, 900px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .p360-lightbox img {
+      max-width: 100%;
+      max-height: min(72vh, 820px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+    }
+    .p360-lightbox-caption {
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(251, 253, 255, 0.88);
+      text-align: center;
+      max-width: 52rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .p360-lb-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      background: rgba(0, 33, 87, 0.45);
+      color: var(--white);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .p360-lb-close:hover {
+      background: rgba(0, 115, 207, 0.55);
+      border-color: rgba(255, 255, 255, 0.45);
     }
 
     .impact-validators {
@@ -1020,6 +1199,16 @@
       .founder-grid { grid-template-columns: 1fr; gap: 40px; }
       .impact-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 32px; }
+      .hero-photo-field {
+        left: 0;
+        opacity: 0.18;
+        -webkit-mask-image: linear-gradient(105deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 55%, transparent 88%);
+        mask-image: linear-gradient(105deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 55%, transparent 88%);
+      }
+      .hero-watermark { display: none; }
+      .impact-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .founder-card { position: static; }
       .tool-card {
         flex-direction: column;
@@ -1083,6 +1272,8 @@
 
   <!-- ── HERO ────────────────────────────────────────────── -->
   <section class="hero" id="home">
+    <div class="hero-photo-field" role="presentation" aria-hidden="true"></div>
+    <div class="hero-watermark" aria-hidden="true">Poverty 360</div>
     <div class="hero-geo"></div>
     <div class="hero-geo-2"></div>
     <div class="hero-dot-grid"></div>
@@ -1191,6 +1382,40 @@
       Every number below represents a real decision made by a real person
       whose life was materially changed by evidence-based resource allocation.
     </p>
+
+    <div class="impact-gallery-wrap">
+      <ul class="impact-gallery" aria-label="Field programme photography">
+        <li>
+          <button type="button" class="impact-gallery-tile js-lightbox-open"
+            data-src="assets/impact/usadfdairynutrition-04.JPG"
+            data-caption="Dairy and nutrition resilience work with smallholder farmers — Ghana (USADF-supported programme).">
+            <img src="assets/impact/usadfdairynutrition-04.JPG" width="640" height="480" alt="Dairy farmer, Ghana" loading="lazy" decoding="async">
+          </button>
+        </li>
+        <li>
+          <button type="button" class="impact-gallery-tile js-lightbox-open"
+            data-src="assets/impact/lightforall-01.jpg"
+            data-caption="Students studying with solar light — Light for All, rural Mali.">
+            <img src="assets/impact/lightforall-01.jpg" width="640" height="480" alt="Children studying by solar lamp, Mali" loading="lazy" decoding="async">
+          </button>
+        </li>
+        <li>
+          <button type="button" class="impact-gallery-tile js-lightbox-open"
+            data-src="assets/impact/farmershopeburkina-01.jpg"
+            data-caption="Farmers' Hope — livelihoods and market skills for women entrepreneurs, Burkina Faso.">
+            <img src="assets/impact/farmershopeburkina-01.jpg" width="640" height="480" alt="Women farmers, Burkina Faso" loading="lazy" decoding="async">
+          </button>
+        </li>
+        <li>
+          <button type="button" class="impact-gallery-tile js-lightbox-open"
+            data-src="assets/impact/cookclean-01.jpg"
+            data-caption="Clean cooking and household health — community distribution, Ghana.">
+            <img src="assets/impact/cookclean-01.jpg" width="640" height="480" alt="Clean cookstove programme, Ghana" loading="lazy" decoding="async">
+          </button>
+        </li>
+      </ul>
+      <p class="impact-gallery-hint">Tap an image to view larger</p>
+    </div>
 
     <div class="impact-grid">
       <div class="impact-card">
@@ -1328,7 +1553,24 @@
     }
     .tl-card:hover { box-shadow: 0 12px 36px rgba(0, 33, 87, 0.12); transform: translateY(-4px); }
     .tl-card.gold-top { border-top-color: var(--gold); }
-    .tl-hero { width: 100%; height: 200px; overflow: hidden; }
+    .tl-hero {
+      width: 100%; height: 200px; overflow: hidden;
+      position: relative;
+    }
+    .tl-hero::after {
+      content: "P360";
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      font-family: 'Jost', sans-serif;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.5);
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
+      pointer-events: none;
+      z-index: 2;
+    }
     .tl-hero img {
       width: 100%; height: 100%; object-fit: cover;
       object-position: center top; display: block;
@@ -1524,7 +1766,7 @@
         <!-- 2019 -->
         <div class="tl-card tl-rev d1">
           <div class="tl-hero">
-            <img src="usadfdairynutrition-01.JPG" width="800" height="600" alt="Dairy farmer supported through USADF C.A.R.E.S. programme, Ghana 2019" loading="lazy" decoding="async">
+            <img src="assets/impact/usadfdairynutrition-01.JPG" width="800" height="600" alt="Dairy farmer supported through USADF C.A.R.E.S. programme, Ghana 2019" loading="lazy" decoding="async">
           </div>
           <p class="tl-caption">Dairy farmer supported through the USADF C.A.R.E.S. programme, Ghana</p>
           <span class="tl-year-ghost">19</span>
@@ -1556,7 +1798,7 @@
         <!-- 2020 -->
         <div class="tl-card gold-top tl-rev d2">
           <div class="tl-hero">
-            <img src="lightforall-01.jpg" width="800" height="600" alt="Children studying by solar lamp — Light for All programme, Mali 2020" loading="lazy" decoding="async">
+            <img src="assets/impact/lightforall-01.jpg" width="800" height="600" alt="Children studying by solar lamp — Light for All programme, Mali 2020" loading="lazy" decoding="async">
           </div>
           <p class="tl-caption">Children studying by solar lamp — Light for All programme, rural Mali</p>
           <span class="tl-year-ghost">20</span>
@@ -1590,7 +1832,7 @@
         <!-- 2021 -->
         <div class="tl-card tl-rev d3">
           <div class="tl-hero">
-            <img src="climesmart-01.JPG" width="800" height="600" alt="CLIMESMART student peer educators with seedlings, northern Ghana 2021" loading="lazy" decoding="async">
+            <img src="assets/impact/climesmart-01.jpg" width="800" height="600" alt="CLIMESMART student peer educators with seedlings, northern Ghana 2021" loading="lazy" decoding="async">
           </div>
           <p class="tl-caption">CLIMESMART student peer educators with seedlings ready for planting, northern Ghana</p>
           <span class="tl-year-ghost">21</span>
@@ -2024,6 +2266,14 @@
     </div>
   </footer>
 
+  <div id="p360-lightbox" class="p360-lightbox" role="dialog" aria-modal="true" aria-labelledby="p360-lb-caption" hidden>
+    <button type="button" class="p360-lb-close js-lightbox-close" aria-label="Close image">&times;</button>
+    <div class="p360-lightbox-inner">
+      <img id="p360-lb-img" src="" alt="">
+      <p id="p360-lb-caption" class="p360-lightbox-caption"></p>
+    </div>
+  </div>
+
   <script>
     (function () {
       var btn = document.querySelector(".nav-toggle");
@@ -2078,6 +2328,53 @@
 
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") closeAllDropdowns();
+      });
+    })();
+
+    (function () {
+      var lb = document.getElementById("p360-lightbox");
+      var imgEl = document.getElementById("p360-lb-img");
+      var capEl = document.getElementById("p360-lb-caption");
+      if (!lb || !imgEl || !capEl) return;
+
+      function openLb(src, caption, alt) {
+        imgEl.src = src;
+        imgEl.alt = alt || "";
+        capEl.textContent = caption || "";
+        lb.hidden = false;
+        lb.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        lb.querySelector(".p360-lb-close").focus();
+      }
+      function closeLb() {
+        lb.classList.remove("is-open");
+        lb.hidden = true;
+        imgEl.removeAttribute("src");
+        imgEl.alt = "";
+        capEl.textContent = "";
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".js-lightbox-open").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var src = btn.getAttribute("data-src");
+          var cap = btn.getAttribute("data-caption") || "";
+          var t = btn.querySelector("img");
+          var alt = t ? t.getAttribute("alt") || "" : "";
+          openLb(src, cap, alt);
+        });
+      });
+      lb.querySelectorAll(".js-lightbox-close").forEach(function (b) {
+        b.addEventListener("click", function (e) {
+          e.stopPropagation();
+          closeLb();
+        });
+      });
+      lb.addEventListener("click", function (e) {
+        if (e.target === lb) closeLb();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lb.classList.contains("is-open")) closeLb();
       });
     })();
   </script>
