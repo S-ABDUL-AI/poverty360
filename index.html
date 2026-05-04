@@ -26,7 +26,11 @@
   <style>
     /* ── RESET ─────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      /* Fixed nav (60px) + breathing room so in-page anchors never sit under the bar */
+      scroll-padding-top: 78px;
+    }
     body {
       font-family: 'Jost', sans-serif;
       background: var(--pale);
@@ -1027,40 +1031,20 @@
       border-top: 3px solid var(--green);
       box-shadow: 0 8px 26px rgba(0, 33, 87, 0.05);
     }
+    /* Board: uniform square headshot band (same crop language across directors) */
     .board-card-media {
-      aspect-ratio: 4 / 3;
-      /* Same neutral as leadership export letterbox (#f5f7fa) — no green tint */
+      aspect-ratio: 1 / 1;
       background: #f5f7fa;
       overflow: hidden;
-      box-sizing: border-box;
-      padding: 16px 18px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 0;
+      position: relative;
     }
     .board-card-media img {
       display: block;
       width: 100%;
       height: 100%;
-      min-height: 0;
-      object-fit: contain;
-      object-position: center center;
-      border-radius: 8px;
-    }
-    /* Ex officio text-only card: same photo band height as other board cards */
-    .board-card-media--empty {
-      align-items: center;
-      justify-content: center;
-    }
-    .board-card-media-placeholder {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(0, 33, 87, 0.22);
-      user-select: none;
+      max-width: none;
+      object-fit: cover;
+      object-position: center 24%;
     }
     .board-card .team-name,
     .board-card .team-role,
@@ -2465,7 +2449,7 @@
     <div class="board-grid">
       <article class="board-card board-card--chair">
         <div class="board-card-media">
-          <img src="assets/leadership/dadson-awunyo-vitor.jpg" alt="Portrait of Professor Dadson Awunyo-Vitor" width="400" height="300" loading="lazy" decoding="async">
+          <img src="assets/leadership/dadson-awunyo-vitor.jpg" alt="Portrait of Professor Dadson Awunyo-Vitor" width="600" height="600" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Professor Dadson Awunyo-Vitor</h3>
         <p class="team-role">Board chair</p>
@@ -2475,7 +2459,7 @@
       </article>
       <article class="board-card">
         <div class="board-card-media">
-          <img src="assets/leadership/sephora-fondop-medjowe.jpg" alt="Portrait of Dr. Sephora Larissa Fondop–Medjowe" width="400" height="300" loading="lazy" decoding="async">
+          <img src="assets/leadership/sephora-fondop-medjowe.jpg" alt="Portrait of Dr. Sephora Larissa Fondop–Medjowe" width="600" height="600" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Dr. Sephora Larissa Fondop–Medjowe</h3>
         <p class="team-role">Vice-chair</p>
@@ -2485,7 +2469,7 @@
       </article>
       <article class="board-card">
         <div class="board-card-media">
-          <img src="assets/leadership/sylvester-akpah.jpg" alt="Portrait of Dr. Sylvester Akpah" width="400" height="300" loading="lazy" decoding="async">
+          <img src="assets/leadership/sylvester-akpah.jpg" alt="Portrait of Dr. Sylvester Akpah" width="600" height="600" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Dr. Sylvester Akpah</h3>
         <p class="team-role">Director</p>
@@ -2495,7 +2479,7 @@
       </article>
       <article class="board-card">
         <div class="board-card-media">
-          <img src="assets/leadership/gifty-quarshie-ngissah.jpg" alt="Portrait of Dr. Gifty Quarshie-Ngissah" width="400" height="300" loading="lazy" decoding="async">
+          <img src="assets/leadership/gifty-quarshie-ngissah.jpg" alt="Portrait of Dr. Gifty Quarshie-Ngissah" width="600" height="600" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Dr. Gifty Quarshie-Ngissah</h3>
         <p class="team-role">Director</p>
@@ -2504,8 +2488,8 @@
         </p>
       </article>
       <article class="board-card">
-        <div class="board-card-media board-card-media--empty" aria-hidden="true">
-          <span class="board-card-media-placeholder">Poverty 360</span>
+        <div class="board-card-media">
+          <img src="assets/leadership/abdul-hamid-sherriff.jpg" alt="Portrait of Abdul-Hamid Sherriff" width="600" height="600" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Abdul-Hamid Sherriff</h3>
         <p class="team-role">Ex officio · CEO</p>
@@ -2515,7 +2499,7 @@
       </article>
       <article class="board-card">
         <div class="board-card-media">
-          <img src="assets/leadership/josephine-buah-timtey.jpg" alt="Portrait of Dr. Josephine Akuba Buah Timtey" width="400" height="300" loading="lazy" decoding="async">
+          <img src="assets/leadership/josephine-buah-timtey.jpg" alt="Portrait of Dr. Josephine Akuba Buah Timtey" width="600" height="600" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Dr. Josephine Akuba Buah Timtey</h3>
         <p class="team-role">Director</p>
