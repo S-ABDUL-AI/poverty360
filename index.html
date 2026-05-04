@@ -802,8 +802,19 @@
     }
 
     .program-icon {
-      font-size: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       margin-bottom: 14px;
+      min-height: 30px;
+    }
+    .program-icon img {
+      display: block;
+      width: 40px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 2px;
+      box-shadow: 0 0 0 1px rgba(0, 33, 87, 0.1);
     }
 
     .program-region {
@@ -2020,7 +2031,9 @@
 
     <div class="programs-grid">
       <div class="program-card">
-        <div class="program-icon">🏥</div>
+        <div class="program-icon" role="img" aria-label="Ghana">
+          <img src="https://flagcdn.com/w40/gh.png" width="40" alt="" loading="lazy" decoding="async">
+        </div>
         <div class="program-region">Ghana · West Africa</div>
         <h3 class="program-title">Healthcare Access & Insurance Enrollment</h3>
         <p class="program-desc">
@@ -2032,7 +2045,9 @@
         </p>
       </div>
       <div class="program-card">
-        <div class="program-icon">⚡</div>
+        <div class="program-icon" role="img" aria-label="Mali">
+          <img src="https://flagcdn.com/w40/ml.png" width="40" alt="" loading="lazy" decoding="async">
+        </div>
         <div class="program-region">Mali</div>
         <h3 class="program-title">Renewable Energy for Rural Schools</h3>
         <p class="program-desc">
@@ -2044,7 +2059,10 @@
         </p>
       </div>
       <div class="program-card">
-        <div class="program-icon">🌾</div>
+        <div class="program-icon" role="img" aria-label="Niger and Burkina Faso">
+          <img src="https://flagcdn.com/w40/ne.png" width="40" alt="" loading="lazy" decoding="async">
+          <img src="https://flagcdn.com/w40/bf.png" width="40" alt="" loading="lazy" decoding="async">
+        </div>
         <div class="program-region">Niger · Burkina Faso</div>
         <h3 class="program-title">Food Security & Nutrition</h3>
         <p class="program-desc">
@@ -2056,7 +2074,9 @@
         </p>
       </div>
       <div class="program-card">
-        <div class="program-icon">📊</div>
+        <div class="program-icon" role="img" aria-label="United States">
+          <img src="https://flagcdn.com/w40/us.png" width="40" alt="" loading="lazy" decoding="async">
+        </div>
         <div class="program-region">United States · Global</div>
         <h3 class="program-title">Decision Analytics & Government Digital Services</h3>
         <p class="program-desc">
