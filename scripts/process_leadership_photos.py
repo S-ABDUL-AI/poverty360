@@ -92,7 +92,7 @@ def save_jpeg(im: Image.Image, dest: Path) -> None:
 # kind=avatar: square center crop for advisory row; kind=card: 4:3 for team + board
 MAPPINGS: list[tuple[str, str, str]] = [
     ("Sherriff.png", "abdul-hamid-sherriff.jpg", "card"),
-    ("isabella Agyekum.jpg", "isabella-agyekum.jpg", "card"),
+    ("isabella Agyekum.png", "isabella-agyekum.jpg", "card"),
     # Windows filename uses typographic apostrophes (U+2032 / U+2019), not ASCII 0x27
     ("Ouattara Mafine\u2032 N\u2019Charic.jpg", "ouattara-ncharick.jpg", "card"),
     ("mahmoud.jpg", "mahamadou-sissoko.jpg", "card"),
