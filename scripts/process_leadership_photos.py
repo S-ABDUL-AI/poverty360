@@ -91,6 +91,9 @@ MAPPINGS: list[tuple[str, str, str]] = [
     ("kelly_baker.avif", "kelly-baker.jpg", "avatar"),
     ("rohlman_diane.jpg", "diane-rohlman.jpg", "avatar"),
     ("Nicky Kingston.png", "nicky-kingston.jpg", "avatar"),
+    ("patricia-araba-annan.png", "patricia-araba-annan.jpg", "avatar"),
+    ("john-paul-engel.png", "john-paul-engel.jpg", "avatar"),
+    ("kimm-harris.png", "kimm-harris.jpg", "avatar"),
 ]
 
 
