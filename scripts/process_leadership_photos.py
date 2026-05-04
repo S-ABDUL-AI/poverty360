@@ -2,7 +2,7 @@
 Process Leadership / LEADERSHIP PICTURES 2 sources into standardized assets/leadership JPEGs.
 
 - Neutral background (#f5f7fa) for transparency / odd edges
-- 4:3 card portraits at 1200x900 (executive + board)
+- 4:3 card portraits at 1200x900 (executive + board) via letterbox fit — full subject visible, no decapitating crop
 - Square advisor avatars at 240x240 (displayed small in UI)
 - Mild sharpen + JPEG quality 90
 
@@ -62,6 +62,21 @@ def cover_crop(im: Image.Image, w: int, h: int) -> Image.Image:
     return im.crop((left, top, left + w, top + h))
 
 
+def contain_pad(im: Image.Image, w: int, h: int) -> Image.Image:
+    """Scale uniformly to fit inside w×h, pad with neutral (no cropping)."""
+    im = to_rgb_on_neutral(im)
+    im = ImageOps.exif_transpose(im)
+    src_w, src_h = im.size
+    scale = min(w / src_w, h / src_h)
+    nw, nh = max(1, int(round(src_w * scale))), max(1, int(round(src_h * scale)))
+    resized = im.resize((nw, nh), Image.Resampling.LANCZOS)
+    canvas = Image.new("RGB", (w, h), NEUTRAL)
+    left = (w - nw) // 2
+    top = (h - nh) // 2
+    canvas.paste(resized, (left, top))
+    return canvas
+
+
 def enhance_clarity(im: Image.Image) -> Image.Image:
     im = ImageEnhance.Contrast(im).enhance(1.04)
     im = ImageEnhance.Sharpness(im).enhance(1.1)
@@ -105,7 +120,7 @@ def process_pair(src_name: str, out_name: str, kind: str) -> str:
     if kind == "avatar":
         out_im = cover_crop(im, *AVATAR)
     else:
-        out_im = cover_crop(im, *CARD)
+        out_im = contain_pad(im, *CARD)
     out_im = enhance_clarity(out_im)
     save_jpeg(out_im, OUT_DIR / out_name)
     return f"OK -> {out_name}"
@@ -117,7 +132,7 @@ def reprocess_existing(out_name: str) -> str | None:
     if not p.exists():
         return None
     im = _open(p)
-    out_im = cover_crop(im, *CARD)
+    out_im = contain_pad(im, *CARD)
     out_im = enhance_clarity(out_im)
     save_jpeg(out_im, p)
     return f"OK (reprocess existing) {out_name}"
