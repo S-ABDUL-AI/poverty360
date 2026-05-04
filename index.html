@@ -126,12 +126,22 @@
       align-items: center;
       justify-content: space-between;
     }
-    /* Brand: full lockup PNG clipped to a round mark (not a square tile) */
+    /* Brand: round lockup + separate title-case wordmark */
     .nav-brand {
       display: flex;
       align-items: center;
+      gap: 12px;
       text-decoration: none;
       flex-shrink: 0;
+    }
+    .nav-brand-name {
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1rem, 2.2vw, 1.125rem);
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      line-height: 1.2;
+      white-space: nowrap;
     }
     .nav-brand:focus-visible {
       outline: 2px solid var(--orange);
@@ -1402,6 +1412,8 @@
       }
       .tool-btn { align-self: stretch; text-align: center; }
       .logo-circle--nav { width: 42px; height: 42px; }
+      .nav-brand { gap: 8px; }
+      .nav-brand-name { font-size: 0.9375rem; }
       .footer-left { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -1413,8 +1425,8 @@
 
   <!-- ── NAV ─────────────────────────────────────────────── -->
   <nav>
-    <a href="#home" class="nav-brand" aria-label="Poverty 360 — Home">
-      <span class="logo-circle logo-circle--nav">
+    <a href="#home" class="nav-brand">
+      <span class="logo-circle logo-circle--nav" aria-hidden="true">
         <img
           class="nav-logo-img"
           src="assets/p360-logo.png?v=20260503logo3"
@@ -1425,6 +1437,7 @@
           fetchpriority="high"
         />
       </span>
+      <span class="nav-brand-name">Poverty 360</span>
     </a>
     <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
       <span class="nav-toggle-bar" aria-hidden="true"></span>
