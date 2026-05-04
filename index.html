@@ -1498,10 +1498,6 @@
         <span class="stat-num">7</span>
         <span class="stat-lbl">Years of impact</span>
       </div>
-      <div class="stat">
-        <span class="stat-num">$50K</span>
-        <span class="stat-lbl">USADF + Citibank Grant</span>
-      </div>
     </div>
 
     <div class="hero-scroll fade-in d5">Scroll to explore</div>
@@ -1669,7 +1665,7 @@
       background: linear-gradient(90deg, var(--forest), var(--gold), var(--forest));
     }
     .tl-container { max-width: 1140px; margin: 0 auto; padding: 0 80px; }
-    .tl-header { text-align: center; margin-bottom: 72px; }
+    .tl-header { text-align: center; margin-bottom: 48px; }
     .tl-eyebrow {
       font-family: 'Jost', sans-serif; font-weight: 500;
       font-size: 0.75rem; letter-spacing: 0.22em;
@@ -1691,7 +1687,7 @@
     .rev-arc {
       display: flex; align-items: stretch;
       justify-content: center; gap: 0;
-      margin-bottom: 72px; position: relative;
+      margin-bottom: 44px; position: relative;
     }
     .rev-arc::before {
       content: '';
@@ -1702,7 +1698,7 @@
     }
     .rev-bar {
       flex: 1; display: flex; flex-direction: column;
-      align-items: center; padding: 0 16px 32px;
+      align-items: center; padding: 0 16px 18px;
       position: relative; cursor: default;
       transition: transform 0.3s ease;
     }
@@ -1711,7 +1707,7 @@
       font-family: 'Jost', sans-serif; font-weight: 600;
       font-size: 0.7rem; letter-spacing: 0.18em;
       color: var(--white); background: var(--forest);
-      padding: 4px 12px; border-radius: 2px; margin-bottom: 14px;
+      padding: 4px 12px; border-radius: 2px; margin-bottom: 10px;
     }
     .rev-bar .yr-amt {
       font-family: 'Cormorant Garamond', serif; font-weight: 600;
@@ -1721,15 +1717,8 @@
     .rev-bar .yr-lbl {
       font-family: 'Jost', sans-serif; font-size: 0.7rem;
       color: var(--muted); letter-spacing: 0.06em;
-      text-transform: uppercase; margin-bottom: 14px;
+      text-transform: uppercase; margin-bottom: 0;
     }
-    .rev-pill {
-      font-family: 'Jost', sans-serif; font-size: 0.68rem;
-      font-weight: 500; padding: 3px 10px; border-radius: 20px;
-    }
-    .rev-pill.neutral { background: var(--cream); color: var(--muted); border: 1px solid var(--rule); }
-    .rev-pill.up { background: rgba(0, 33, 87, 0.08); color: var(--navy); }
-    .rev-pill.up-big { background: rgba(241, 129, 50, 0.14); color: var(--orange); }
     /* Year cards */
     .tl-cards {
       display: grid; grid-template-columns: repeat(3,1fr);
@@ -1845,9 +1834,9 @@
     /* Cumulative banner */
     .tl-banner {
       background: var(--forest); color: var(--white);
-      padding: 56px 80px; margin-top: 48px;
+      padding: 40px 56px; margin-top: 36px;
       display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
       align-items: center; position: relative; overflow: hidden;
     }
     .tl-banner::before {
@@ -1860,7 +1849,7 @@
     .tl-cum .big-n {
       font-family: 'Cormorant Garamond', serif; font-weight: 600;
       font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--gold-lt);
-      display: block; line-height: 1; margin-bottom: 7px;
+      display: block; line-height: 1; margin-bottom: 5px;
     }
     .tl-cum .big-l {
       font-family: 'Jost', sans-serif; font-size: 0.68rem;
@@ -1871,12 +1860,12 @@
     /* Bridge note */
     .tl-bridge {
       background: var(--forest);
-      padding: 0 80px 48px;
+      padding: 0 80px 40px;
       text-align: center;
     }
     .tl-bridge-inner {
       border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 28px;
+      padding-top: 22px;
       max-width: 680px; margin: 0 auto;
     }
     .tl-bridge p {
@@ -1935,19 +1924,16 @@
           <span class="yr-badge">2019</span>
           <span class="yr-amt">$56,443</span>
           <span class="yr-lbl">Total Revenue</span>
-          <span class="rev-pill neutral">Baseline Year</span>
         </div>
         <div class="rev-bar">
           <span class="yr-badge">2020</span>
           <span class="yr-amt">$71,448</span>
           <span class="yr-lbl">Total Revenue</span>
-          <span class="rev-pill up">&#9650; 27% YoY</span>
         </div>
         <div class="rev-bar">
           <span class="yr-badge">2021</span>
           <span class="yr-amt">$467,744</span>
           <span class="yr-lbl">Total Revenue</span>
-          <span class="rev-pill up-big">&#9650; 554% YoY</span>
         </div>
       </div>
 
@@ -2067,11 +2053,6 @@
       <div class="tl-cum">
         <span class="big-n">16,330</span>
         <span class="big-l">Farmers &amp; women<br>entrepreneurs supported</span>
-      </div>
-      <div class="tl-div"></div>
-      <div class="tl-cum">
-        <span class="big-n">$595K+</span>
-        <span class="big-l">Cumulative revenue<br>raised 2019–2021</span>
       </div>
       <div class="tl-div"></div>
       <div class="tl-cum">
