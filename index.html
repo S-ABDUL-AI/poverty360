@@ -12,15 +12,15 @@
   <meta property="og:title"       content="Poverty 360 — Evidence-Based Analytics & Social Impact"/>
   <meta property="og:description" content="Decision-support tools and social impact programs for underserved populations across West Africa and the United States. Founded 2018, Ghana."/>
   <meta property="og:url"         content="https://s-abdul-ai.github.io/poverty360/"/>
-  <meta property="og:image"       content="https://s-abdul-ai.github.io/poverty360/assets/p360-logo.png"/>
+  <meta property="og:image"       content="https://s-abdul-ai.github.io/poverty360/assets/p360-logo.png?v=20260503logo"/>
   <meta name="twitter:card"       content="summary_large_image"/>
-  <meta name="twitter:image"      content="https://s-abdul-ai.github.io/poverty360/assets/p360-logo.png"/>
+  <meta name="twitter:image"      content="https://s-abdul-ai.github.io/poverty360/assets/p360-logo.png?v=20260503logo"/>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="preload" as="image" href="assets/p360-logo.png" fetchpriority="high"/>
+  <link rel="preload" as="image" href="assets/p360-logo.png?v=20260503logo" fetchpriority="high"/>
   <link rel="preload" as="image" href="assets/impact/lightforall-hero.png"/>
 
   <style>
@@ -126,7 +126,7 @@
       align-items: center;
       justify-content: space-between;
     }
-    /* Brand: official logo in a round mark (not a square tile) */
+    /* Brand: horizontal logo lockup (emblem + wordmark) */
     .nav-brand {
       display: flex;
       align-items: center;
@@ -136,42 +136,27 @@
     .nav-brand:focus-visible {
       outline: 2px solid var(--orange);
       outline-offset: 4px;
-      border-radius: 999px;
+      border-radius: 4px;
     }
-    .logo-circle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      overflow: hidden;
-      flex-shrink: 0;
-      box-sizing: border-box;
-    }
-    /* Hairline + soft lift that matches each surface (no brand-color rings) */
-    .logo-circle--nav {
-      width: 46px;
-      height: 46px;
-      box-shadow:
-        0 0 0 1px rgba(0, 33, 87, 0.1),
-        0 8px 22px rgba(0, 17, 51, 0.07);
-    }
-    .logo-circle--footer {
-      width: 56px;
-      height: 56px;
-      box-shadow:
-        0 0 0 1px rgba(251, 253, 255, 0.1),
-        0 8px 22px rgba(0, 0, 0, 0.22);
-    }
-    .nav-logo-img,
-    .footer-logo-img {
+    .nav-brand .nav-logo-img {
       display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 22%;
-      border-radius: 50%;
+      height: 44px;
+      width: auto;
+      max-width: min(300px, 58vw);
+      object-fit: contain;
+      object-position: left center;
       image-rendering: auto;
       -ms-interpolation-mode: bicubic;
+    }
+    .footer-left .footer-logo-img {
+      display: block;
+      height: 40px;
+      width: auto;
+      max-width: 220px;
+      object-fit: contain;
+      object-position: left center;
+      flex-shrink: 0;
+      image-rendering: auto;
     }
     .nav-links {
       display: flex;
@@ -1398,7 +1383,7 @@
         align-items: flex-start;
       }
       .tool-btn { align-self: stretch; text-align: center; }
-      .logo-circle--nav { width: 42px; height: 42px; }
+      .nav-brand .nav-logo-img { height: 38px; max-width: min(260px, 70vw); }
       .footer-left { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -1411,17 +1396,15 @@
   <!-- ── NAV ─────────────────────────────────────────────── -->
   <nav>
     <a href="#home" class="nav-brand" aria-label="Poverty 360 — Home">
-      <span class="logo-circle logo-circle--nav" aria-hidden="true">
-        <img
-          class="nav-logo-img"
-          src="assets/p360-logo.png"
-          width="215"
-          height="215"
-          alt=""
-          decoding="async"
-          fetchpriority="high"
-        />
-      </span>
+      <img
+        class="nav-logo-img"
+        src="assets/p360-logo.png?v=20260503logo"
+        width="320"
+        height="80"
+        alt=""
+        decoding="async"
+        fetchpriority="high"
+      />
     </a>
     <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
       <span class="nav-toggle-bar" aria-hidden="true"></span>
@@ -2513,16 +2496,14 @@
   <!-- ── FOOTER ───────────────────────────────────────────── -->
   <footer>
     <div class="footer-left">
-      <span class="logo-circle logo-circle--footer" aria-hidden="true">
-        <img
-          class="footer-logo-img"
-          src="assets/p360-logo.png"
-          width="215"
-          height="215"
-          alt=""
-          decoding="async"
-        />
-      </span>
+      <img
+        class="footer-logo-img"
+        src="assets/p360-logo.png?v=20260503logo"
+        width="320"
+        height="80"
+        alt=""
+        decoding="async"
+      />
       <div>
         <strong>Poverty 360</strong> · Evidence-Based Analytics & Social Impact ·
         Registered in Ghana · Est. 2018
