@@ -96,6 +96,7 @@ MAPPINGS: list[tuple[str, str, str]] = [
     # Windows filename uses typographic apostrophes (U+2032 / U+2019), not ASCII 0x27
     ("Ouattara Mafine\u2032 N\u2019Charic.jpg", "ouattara-ncharick.jpg", "card"),
     ("mahmoud.jpg", "mahamadou-sissoko.jpg", "card"),
+    ("Chanze Parfait.jpg", "chanze-parfait.jpg", "card"),
     ("onyeche.jpg", "onyeche-tefase.jpg", "avatar"),
     ("chris antewi-removebg-preview(1).jpg", "christopher-antwi.jpg", "avatar"),
     ("andre dewitt-removebg-preview.jpg", "andre-de-witt.jpg", "avatar"),
@@ -149,7 +150,7 @@ def main() -> int:
     for msg in lines:
         print(msg)
 
-    for extra in ("francisca-mensah.jpg", "gifty-quarshie-ngissah.jpg"):
+    for extra in ("chanze-parfait.jpg", "gifty-quarshie-ngissah.jpg"):
         m = reprocess_existing(extra)
         if m:
             print(m)
