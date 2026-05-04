@@ -1,0 +1,2 @@
+# Optional: for scripts/process_leadership_photos.py (AVIF sources)
+pillow-heif>=0.16
