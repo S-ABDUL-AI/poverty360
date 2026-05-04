@@ -1015,11 +1015,12 @@
       margin: 0;
     }
     .team-bio + .team-bio { margin-top: 12px; }
+    /* Board grid: same column width & max width as Executive team */
     .board-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 22px;
-      max-width: 1100px;
+      max-width: 1040px;
       margin: 0 auto;
     }
     .board-card {
@@ -1029,22 +1030,28 @@
       padding: 0;
       overflow: hidden;
       border-top: 3px solid var(--green);
-      box-shadow: 0 8px 26px rgba(0, 33, 87, 0.05);
+      box-shadow: 0 10px 32px rgba(0, 33, 87, 0.06);
     }
-    /* Board: uniform square headshot band (same crop language across directors) */
+    /* Board portraits: same 4:3 letterboxed band as Executive team cards */
     .board-card-media {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 3;
       background: #f5f7fa;
       overflow: hidden;
-      position: relative;
+      box-sizing: border-box;
+      padding: 16px 18px 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 0;
     }
     .board-card-media img {
       display: block;
       width: 100%;
       height: 100%;
-      max-width: none;
-      object-fit: cover;
-      object-position: center 24%;
+      min-height: 0;
+      object-fit: contain;
+      object-position: center top;
+      border-radius: 8px;
     }
     .board-card .team-name,
     .board-card .team-role,
@@ -1053,7 +1060,7 @@
       padding-right: 22px;
     }
     .board-card-media + .team-name { padding-top: 18px; }
-    .board-card .team-role { margin-top: 18px; }
+    .board-card .team-role { margin-top: 18px; margin-bottom: 10px; }
     .board-card .team-bio { padding-bottom: 22px; }
     .board-card--chair {
       border-top-color: var(--navy);
@@ -2448,7 +2455,7 @@
     <div class="board-grid">
       <article class="board-card board-card--chair">
         <div class="board-card-media">
-          <img src="assets/leadership/dadson-awunyo-vitor.jpg" alt="Portrait of Professor Dadson Awunyo-Vitor" width="600" height="600" loading="lazy" decoding="async">
+          <img src="assets/leadership/dadson-awunyo-vitor.jpg" alt="Portrait of Professor Dadson Awunyo-Vitor" width="400" height="300" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Professor Dadson Awunyo-Vitor</h3>
         <p class="team-role">Board chair</p>
@@ -2458,7 +2465,7 @@
       </article>
       <article class="board-card">
         <div class="board-card-media">
-          <img src="assets/leadership/sephora-fondop-medjowe.jpg" alt="Portrait of Dr. Sephora Larissa Fondop–Medjowe" width="600" height="600" loading="lazy" decoding="async">
+          <img src="assets/leadership/sephora-fondop-medjowe.jpg" alt="Portrait of Dr. Sephora Larissa Fondop–Medjowe" width="400" height="300" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Dr. Sephora Larissa Fondop–Medjowe</h3>
         <p class="team-role">Vice-chair</p>
@@ -2468,7 +2475,7 @@
       </article>
       <article class="board-card">
         <div class="board-card-media">
-          <img src="assets/leadership/sylvester-akpah.jpg" alt="Portrait of Dr. Sylvester Akpah" width="600" height="600" loading="lazy" decoding="async">
+          <img src="assets/leadership/sylvester-akpah.jpg" alt="Portrait of Dr. Sylvester Akpah" width="400" height="300" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Dr. Sylvester Akpah</h3>
         <p class="team-role">Director</p>
@@ -2478,7 +2485,7 @@
       </article>
       <article class="board-card">
         <div class="board-card-media">
-          <img src="assets/leadership/josephine-buah-timtey.jpg" alt="Portrait of Dr. Josephine Akuba Buah Timtey" width="600" height="600" loading="lazy" decoding="async">
+          <img src="assets/leadership/josephine-buah-timtey.jpg" alt="Portrait of Dr. Josephine Akuba Buah Timtey" width="400" height="300" loading="lazy" decoding="async">
         </div>
         <h3 class="team-name">Dr. Josephine Akuba Buah Timtey</h3>
         <p class="team-role">Director</p>
