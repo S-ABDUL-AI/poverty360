@@ -1698,6 +1698,7 @@
       gap: 24px; margin-bottom: 0;
     }
     .tl-card {
+      --tl-hero-h: min(320px, 42vw);
       background: var(--white);
       border: 1px solid rgba(0, 33, 87, 0.1);
       border-top: 3px solid var(--navy);
@@ -1707,7 +1708,10 @@
     .tl-card:hover { box-shadow: 0 12px 36px rgba(0, 33, 87, 0.12); transform: translateY(-4px); }
     .tl-card.gold-top { border-top-color: var(--gold); }
     .tl-hero {
-      width: 100%; height: 200px; overflow: hidden;
+      width: 100%;
+      height: var(--tl-hero-h);
+      min-height: 240px;
+      overflow: hidden;
       position: relative;
     }
     .tl-hero::after {
@@ -1726,7 +1730,8 @@
     }
     .tl-hero img {
       width: 100%; height: 100%; object-fit: cover;
-      object-position: center top; display: block;
+      object-position: center 22%;
+      display: block;
       transition: transform 0.5s ease;
     }
     .tl-card:hover .tl-hero img { transform: scale(1.04); }
@@ -1740,7 +1745,9 @@
     .tl-year-ghost {
       font-family: 'Cormorant Garamond', serif; font-size: 2.8rem;
       font-weight: 300; color: var(--cream);
-      position: absolute; top: 210px; right: 18px;
+      position: absolute;
+      top: calc(var(--tl-hero-h) + 6px);
+      right: 18px;
       line-height: 1; user-select: none; z-index: 1;
     }
     .tl-theme {
@@ -1867,7 +1874,7 @@
     }
     @media (max-width: 600px) {
       #impact-timeline { padding: 64px 0 0; }
-      .tl-hero { height: 175px; }
+      .tl-card { --tl-hero-h: min(280px, 58vw); }
       .tl-banner { grid-template-columns: 1fr; padding: 40px 24px; }
     }
   </style>
