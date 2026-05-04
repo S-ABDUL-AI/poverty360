@@ -674,7 +674,8 @@
       cursor: zoom-in;
       border-radius: 4px;
       overflow: hidden;
-      aspect-ratio: 4 / 3;
+      /* Taller than 4:3 so vertical programme photos show heads/faces with cover crop */
+      aspect-ratio: 5 / 7;
       background: rgba(0, 0, 0, 0.25);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
@@ -691,6 +692,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 28%;
       display: block;
       transition: transform 0.45s ease;
     }
