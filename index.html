@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
   <link rel="canonical" href="https://s-abdul-ai.github.io/poverty360/"/>
 
   <!-- SEO & Open Graph -->
@@ -875,7 +878,7 @@
       padding: 22px 24px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       gap: 16px;
       transition: box-shadow .2s;
     }
@@ -914,9 +917,11 @@
 
     .tool-actions {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 8px;
       flex-shrink: 0;
+      justify-content: flex-end;
     }
 
     .tool-btn-secondary {
@@ -1439,9 +1444,13 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      .tool-actions { align-self: stretch; width: 100%; }
+      .tool-actions {
+        align-self: stretch;
+        width: 100%;
+        justify-content: stretch;
+      }
       .tool-btn,
-      .tool-btn-secondary { align-self: stretch; text-align: center; }
+      .tool-btn-secondary { flex: 1 1 calc(50% - 4px); text-align: center; }
       .logo-circle--nav { width: 42px; height: 42px; }
       .nav-brand { gap: 8px; }
       .nav-brand-name { font-size: 0.9375rem; }
