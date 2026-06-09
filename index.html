@@ -912,6 +912,33 @@
     }
     .tool-btn:hover { background: var(--orange); }
 
+    .tool-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .tool-btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--forest) !important;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      border-radius: 2px;
+      border: 2px solid var(--forest);
+      white-space: nowrap;
+      text-align: center;
+      transition: background .2s, color .2s;
+    }
+    .tool-btn-secondary:hover {
+      background: var(--forest);
+      color: var(--white) !important;
+    }
+
     /* ── WHO WE ARE: Executive, Board, Advisory ─────────────── */
     .who-band {
       background: linear-gradient(180deg, var(--pale) 0%, var(--white) 38%, var(--pale) 100%);
@@ -1412,7 +1439,9 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      .tool-btn { align-self: stretch; text-align: center; }
+      .tool-actions { align-self: stretch; width: 100%; }
+      .tool-btn,
+      .tool-btn-secondary { align-self: stretch; text-align: center; }
       .logo-circle--nav { width: 42px; height: 42px; }
       .nav-brand { gap: 8px; }
       .nav-brand-name { font-size: 0.9375rem; }
@@ -2133,77 +2162,110 @@
           <h4>Medicaid & Healthcare Access Risk Monitor</h4>
           <p>State-level coverage risk scoring across all 50 US states — insurance gaps, cost burden, income capacity, and rural reach.</p>
         </div>
-        <a href="https://medicaid-healthcare-access-risk-monitor.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://medicaid-healthcare-access-risk-monitor.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/MEDICAID-HEALTHCARE-ACCESS-RISK-MONITOR" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>Safety Net Risk Monitor</h4>
           <p>Proactive SNAP and food security vulnerability targeting — identifies communities at risk before they reach crisis point.</p>
         </div>
-        <a href="https://safety-net-risk-monitor.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://safety-net-risk-monitor.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/SAFETY-NET-RISK-MONITOR" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>Public Budget Allocation Tool</h4>
           <p>Need-based government budget distribution — generates a ministerial-grade decision brief with risk flags and action steps.</p>
         </div>
-        <a href="https://smart-resource-allocation-dashboard.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://smart-resource-allocation-dashboard.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/PUBLIC-BUDGET-ALLOCATION-TOOL" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>GovFund Allocation Engine</h4>
           <p>Cost-effectiveness decision tool for global health funders — models cost-per-life-saved across malaria and social protection interventions.</p>
         </div>
-        <a href="https://govfund-allocation-engine.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://govfund-allocation-engine.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/GOVFUND-ALLOCATION-ENGINE" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>Global Vaccination Coverage Explorer</h4>
           <p>WHO-linked vaccination coverage across 190+ countries — trend views, comparisons, and exportable policy briefs for program managers.</p>
         </div>
-        <a href="https://global-vaccination-coverage-explorer.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://global-vaccination-coverage-explorer.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/GLOBAL-VACCINATION-COVERAGE-EXPLORER" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>Housing Stability Risk Monitor</h4>
           <p>Regional housing stress signals with HUD and Census-backed panels, model-led prioritisation, and budget simulation for prevention teams.</p>
         </div>
-        <a href="https://housing-stability-risk-monitor.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://housing-stability-risk-monitor.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/HOUSING-STABILITY-RISK-MONITOR" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>Humanitarian Procurement Optimiser</h4>
           <p>Linear programming for logistics cost minimisation — useful for field supply chains and scenario planning in resource-constrained settings.</p>
         </div>
-        <a href="https://appuctionplanningoptimizationlinearprogramming.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://appuctionplanningoptimizationlinearprogramming.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/PRODUCTION_PLANNING_OPTIMIZATION_LP" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>California Grid Asset Risk & Wildfire Vulnerability Dashboard</h4>
           <p>Random Forest asset failure prediction and budget optimization for Southern California utility infrastructure — CPUC RBDM aligned.</p>
         </div>
-        <a href="https://california-grid-asset-risk-wildfire-vulnerability-dashboard-hm.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://california-grid-asset-risk-wildfire-vulnerability-dashboard-hm.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/California-Grid-Asset-Risk-Wildfire-Vulnerability-Dashboard" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>Grid Investment Prioritization Engine</h4>
           <p>Expected-value portfolio optimization for utility infrastructure capital decisions — BCR, NPV, Monte Carlo uncertainty quantification.</p>
         </div>
-        <a href="https://grid-investment-prioritization-engine.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://grid-investment-prioritization-engine.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/grid-investment-prioritization-engine" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>California Electricity Load Forecasting & Grid Demand Planning</h4>
           <p>SARIMA demand forecasting with EV adoption and solar penetration scenario builder across four Southern California service territory zones.</p>
         </div>
-        <a href="https://california-grid-demand-forecast.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://california-grid-demand-forecast.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/california-grid-demand-forecast" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
       <div class="tool-card">
         <div class="tool-info">
           <h4>Oil Price Shock Transmission Dashboard</h4>
           <p>Interactive econometric tool — Johansen cointegration, VAR, IRF, and FEVD — exploring oil price shock transmission into public debt dynamics.</p>
         </div>
-        <a href="https://oil-price-shock-transmission.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+        <div class="tool-actions">
+          <a href="https://oil-price-shock-transmission.streamlit.app/" target="_blank" rel="noopener noreferrer" class="tool-btn">Open →</a>
+          <a href="https://github.com/S-ABDUL-AI/oil-price-shock-transmission" target="_blank" rel="noopener noreferrer" class="tool-btn-secondary">GitHub →</a>
+        </div>
       </div>
     </div>
 
